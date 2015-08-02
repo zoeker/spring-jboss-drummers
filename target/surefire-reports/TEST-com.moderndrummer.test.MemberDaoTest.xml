@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="1" time="0.466" errors="3" skipped="0" tests="4" name="com.moderndrummer.test.MemberDaoTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\java\jdk1.7.0_51\jre\bin"/>
+    <property name="java.vm.version" value="24.51-b03"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="SE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\conpem\workspace_luna\ModernDrummer"/>
+    <property name="java.runtime.version" value="1.7.0_51-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\java\jdk1.7.0_51\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\conpem\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="C:\Users\conpem\workspace_luna\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf1050553197053465363.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\java\jdk1.7.0_51\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\basedir\app\conpem\product\11.2.0\dbhome_1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\java\jdk1.7.0_45\bin;C:\maven\apache-maven-3.0.5\bin;C:\Program Files (x86)\Windows Live\Shared;C:\java\sun\jwsdp-2.0\jwsdp-shared\bin;C:\apache\apache-tomcat-8.0.15\bin;C:\Program Files (x86)\MySQL\MySQL Server 6.0\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files (x86)\MySQL\MySQL Server 6.0\bin;C:\Program Files (x86)\Internet Explorer;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\WinMerge;C:\php\xampp\php;C:\ProgramData\ComposerSetup\bin;%JBOSS_HOME%\bin;C:\java\android\adt-bundle\sdk\platform-tools;C:\java\android\adt-bundle\sdk\tools;C:\java\findbugs\findbugs-3.0.0\bin;C:\sonarrunner\sonar-runner-2.4\bin;C:\sonarqube\sonarqube-4.5.1\bin\windows-x86-64;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\MongoDB\Server\3.0\bin;C:\java\jdk1.7.0_45\bin;C:\maven\apache-maven-3.0.5\bin;C:\java\ant\apache-ant-1.8.2\bin;C:\java\sun\jwsdp-2.0\jwsdp-shared\bin;C:\Program Files (x86)\MySQL\MySQL Server 6.0\bin;C:\glassfish3.1.2\glassfish\bin;C:\basedir\app\conpem\product\11.2.0\dbhome_1\BIN;C:\Program Files (x86)\MySQL\MySQL Server 6.0\bin;C:\Program Files (x86)\SenchaSDKTools-2.0.0-Beta\bin;C:\java\android\adt-bundle\sdk\tools;C:\java\android\adt-bundle\sdk\platform-tools;C:\Program Files (x86)\MySQL\MySQL Server 6.0\bin;C:\sonarrunner\sonar-runner-2.4\bin;C:\sonarqube\sonarqube-4.5.1\bin\windows-x86-64;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\conpem"/>
+    <property name="user.timezone" value="Europe/Berlin"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="ISO-8859-1"/>
+    <property name="user.name" value="conpem"/>
+    <property name="java.class.path" value="C:\maven\apache-maven-3.0.5\boot\plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\java\jdk1.7.0_51\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -s C:\maven\repo\settings.xml install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="sv"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_51"/>
+    <property name="java.ext.dirs" value="C:\java\jdk1.7.0_51\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\java\jdk1.7.0_51\jre\lib\resources.jar;C:\java\jdk1.7.0_51\jre\lib\rt.jar;C:\java\jdk1.7.0_51\jre\lib\sunrsasign.jar;C:\java\jdk1.7.0_51\jre\lib\jsse.jar;C:\java\jdk1.7.0_51\jre\lib\jce.jar;C:\java\jdk1.7.0_51\jre\lib\charsets.jar;C:\java\jdk1.7.0_51\jre\lib\jfr.jar;C:\java\jdk1.7.0_51\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\maven\apache-maven-3.0.5"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase time="0.32" classname="com.moderndrummer.test.MemberDaoTest" name="testRegister">
+    <error message="Failed to insert   Member " type="com.moderndrummer.entity.exceptions.ModernDrummerException">com.moderndrummer.entity.exceptions.ModernDrummerException: Failed to insert   Member 
+	at com.moderndrummer.data.MemberDaoImpl.register(MemberDaoImpl.java:166)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy35.register(Unknown Source)
+	at com.moderndrummer.test.MemberDaoTest.testRegister(MemberDaoTest.java:71)
+</error>
+    <system-out>Hibernate: drop table Member if exists
+Hibernate: create table Member (MemberId bigint generated by default as identity, CreatedDate timestamp, Email varchar(255) not null, MemberStory varchar(255), Name varchar(30) not null, password varchar(200) not null, PhoneNumber varchar(15), primary key (MemberId))
+Hibernate: alter table Member add constraint UK_a96e1uemhcj8nrc9p9eld5281 unique (Email)
+</system-out>
+    <system-err>aug 01, 2015 7:46:21 EM org.springframework.test.context.support.AbstractTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+Info: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+aug 01, 2015 7:46:21 EM org.springframework.test.context.support.AbstractTestContextBootstrapper getTestExecutionListeners
+Info: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@73155948, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@7e98c0fe, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5ea6a4a0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@e8234ec, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6607965]
+aug 01, 2015 7:46:21 EM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+Info: Loading XML bean definitions from class path resource [test-context.xml]
+aug 01, 2015 7:46:22 EM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+Info: Loading XML bean definitions from class path resource [META-INF/spring/applicationContext.xml]
+aug 01, 2015 7:46:22 EM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+Info: Refreshing org.springframework.context.support.GenericApplicationContext@f5ebe2d: startup date [Sat Aug 01 19:46:22 CEST 2015]; root of context hierarchy
+aug 01, 2015 7:46:22 EM org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory initDatabase
+Info: Creating embedded database &apos;dataSource&apos;
+aug 01, 2015 7:46:22 EM org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean createNativeEntityManagerFactory
+Info: Building JPA container EntityManagerFactory for persistence unit &apos;testPU&apos;
+aug 01, 2015 7:46:23 EM org.hibernate.annotations.common.Version &lt;clinit&gt;
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.1.Final-redhat-2}
+aug 01, 2015 7:46:23 EM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {4.2.14.SP4-redhat-1}
+aug 01, 2015 7:46:23 EM org.hibernate.cfg.Environment &lt;clinit&gt;
+INFO: HHH000206: hibernate.properties not found
+aug 01, 2015 7:46:23 EM org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+aug 01, 2015 7:46:23 EM org.hibernate.ejb.Ejb3Configuration configure
+INFO: HHH000204: Processing PersistenceUnitInfo [
+	name: testPU
+	...]
+aug 01, 2015 7:46:23 EM org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator instantiateExplicitConnectionProvider
+INFO: HHH000130: Instantiating explicit connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+aug 01, 2015 7:46:23 EM org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+aug 01, 2015 7:46:23 EM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+aug 01, 2015 7:46:24 EM org.hibernate.engine.transaction.internal.TransactionFactoryInitiator initiateService
+INFO: HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+aug 01, 2015 7:46:24 EM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory &lt;init&gt;
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+aug 01, 2015 7:46:24 EM org.hibernate.validator.internal.util.Version &lt;clinit&gt;
+INFO: HV000001: Hibernate Validator 4.3.2.Final-redhat-1
+aug 01, 2015 7:46:24 EM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000227: Running hbm2ddl schema export
+aug 01, 2015 7:46:24 EM org.hibernate.tool.hbm2ddl.SchemaExport importScript
+ERROR: HHH000388: Unsuccessful: insert into MemberBasic (id, name, email, phone_number) values (0, &apos;John Smith&apos;, &apos;john.smith@mailinator.com&apos;, &apos;2125551212&apos;)
+aug 01, 2015 7:46:24 EM org.hibernate.tool.hbm2ddl.SchemaExport importScript
+ERROR: Table &quot;MEMBERBASIC&quot; not found; SQL statement:
+insert into MemberBasic (id, name, email, phone_number) values (0, &apos;John Smith&apos;, &apos;john.smith@mailinator.com&apos;, &apos;2125551212&apos;) [42102-165]
+aug 01, 2015 7:46:24 EM org.hibernate.tool.hbm2ddl.SchemaExport execute
+INFO: HHH000230: Schema export complete
+aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext startTransaction
+Info: Began transaction (1) for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@68328bc5, testMethod = testRegister@MemberDaoTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@3fa2ec6a]; rollback [true]
+[main] ERROR drumchops-errorslog - Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+javax.validation.ConstraintViolationException: Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:159)
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:94)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.preInsert(EntityIdentityInsertAction.java:178)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:75)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:291)
+	at com.sun.proxy.$Proxy32.persist(Unknown Source)
+	at com.moderndrummer.repo.base.BaseJPQLDao.insert(BaseJPQLDao.java:230)
+	at com.moderndrummer.data.MemberDaoImpl.register(MemberDaoImpl.java:164)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy35.register(Unknown Source)
+	at com.moderndrummer.test.MemberDaoTest.testRegister(MemberDaoTest.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:82)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:73)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:217)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
+[main] ERROR drumchops-errorslog - Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+javax.validation.ConstraintViolationException: Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:159)
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:94)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.preInsert(EntityIdentityInsertAction.java:178)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:75)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:291)
+	at com.sun.proxy.$Proxy32.persist(Unknown Source)
+	at com.moderndrummer.repo.base.BaseJPQLDao.insert(BaseJPQLDao.java:230)
+	at com.moderndrummer.data.MemberDaoImpl.register(MemberDaoImpl.java:164)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy35.register(Unknown Source)
+	at com.moderndrummer.test.MemberDaoTest.testRegister(MemberDaoTest.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:82)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:73)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:217)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
+aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext endTransaction
+Info: Rolled back transaction for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@68328bc5, testMethod = testRegister@MemberDaoTest, testException = com.moderndrummer.entity.exceptions.ModernDrummerException: Failed to insert   Member , mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]].
+</system-err>
+  </testcase>
+  <testcase time="0.025" classname="com.moderndrummer.test.MemberDaoTest" name="testFindById">
+    <failure message="expected:&lt;John Smith&gt; but was:&lt;null&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;John Smith&gt; but was:&lt;null&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at com.moderndrummer.test.MemberDaoTest.testFindById(MemberDaoTest.java:48)
+</failure>
+    <system-out>Hibernate: select member0_.MemberId as MemberId1_0_0_, member0_.CreatedDate as CreatedD2_0_0_, member0_.Email as Email3_0_0_, member0_.MemberStory as MemberSt4_0_0_, member0_.Name as Name5_0_0_, member0_.password as password6_0_0_, member0_.PhoneNumber as PhoneNum7_0_0_ from Member member0_ where member0_.MemberId=?
+</system-out>
+    <system-err>aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext startTransaction
+Info: Began transaction (1) for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@784f6235, testMethod = testFindById@MemberDaoTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@3fa2ec6a]; rollback [true]
+[main] INFO drumchops-errorslog - null
+aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext endTransaction
+Info: Rolled back transaction for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@784f6235, testMethod = testFindById@MemberDaoTest, testException = java.lang.AssertionError: expected:&lt;John Smith&gt; but was:&lt;null&gt;, mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]].
+</system-err>
+  </testcase>
+  <testcase time="0.071" classname="com.moderndrummer.test.MemberDaoTest" name="testFindByEmail">
+    <error message="No entity found for query" type="javax.persistence.NoResultException">javax.persistence.NoResultException: No entity found for query
+	at org.hibernate.ejb.QueryImpl.getSingleResult(QueryImpl.java:290)
+	at org.hibernate.ejb.criteria.CriteriaQueryCompiler$3.getSingleResult(CriteriaQueryCompiler.java:258)
+	at com.moderndrummer.data.MemberDaoImpl.findByEmail(MemberDaoImpl.java:91)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy35.findByEmail(Unknown Source)
+	at com.moderndrummer.test.MemberDaoTest.testFindByEmail(MemberDaoTest.java:56)
+</error>
+    <system-out>Hibernate: select member0_.MemberId as MemberId1_0_, member0_.CreatedDate as CreatedD2_0_, member0_.Email as Email3_0_, member0_.MemberStory as MemberSt4_0_, member0_.Name as Name5_0_, member0_.password as password6_0_, member0_.PhoneNumber as PhoneNum7_0_ from Member member0_ where member0_.Email=?
+</system-out>
+    <system-err>aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext startTransaction
+Info: Began transaction (1) for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@4026c0e9, testMethod = testFindByEmail@MemberDaoTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@3fa2ec6a]; rollback [true]
+aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext endTransaction
+Info: Rolled back transaction for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@4026c0e9, testMethod = testFindByEmail@MemberDaoTest, testException = javax.persistence.NoResultException: No entity found for query, mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]].
+</system-err>
+  </testcase>
+  <testcase time="0.05" classname="com.moderndrummer.test.MemberDaoTest" name="testFindAllOrderedByName">
+    <error message="Failed to insert   Member " type="com.moderndrummer.entity.exceptions.ModernDrummerException">com.moderndrummer.entity.exceptions.ModernDrummerException: Failed to insert   Member 
+	at com.moderndrummer.data.MemberDaoImpl.register(MemberDaoImpl.java:166)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy35.register(Unknown Source)
+	at com.moderndrummer.test.MemberDaoTest.testFindAllOrderedByName(MemberDaoTest.java:90)
+</error>
+    <system-err>aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext startTransaction
+Info: Began transaction (1) for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@18c097c6, testMethod = testFindAllOrderedByName@MemberDaoTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@3fa2ec6a]; rollback [true]
+[main] ERROR drumchops-errorslog - Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+javax.validation.ConstraintViolationException: Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:159)
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:94)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.preInsert(EntityIdentityInsertAction.java:178)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:75)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:291)
+	at com.sun.proxy.$Proxy32.persist(Unknown Source)
+	at com.moderndrummer.repo.base.BaseJPQLDao.insert(BaseJPQLDao.java:230)
+	at com.moderndrummer.data.MemberDaoImpl.register(MemberDaoImpl.java:164)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy35.register(Unknown Source)
+	at com.moderndrummer.test.MemberDaoTest.testFindAllOrderedByName(MemberDaoTest.java:90)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:82)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:73)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:217)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
+[main] ERROR drumchops-errorslog - Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+javax.validation.ConstraintViolationException: Validation failed for classes [com.moderndrummer.model.Member] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=password, rootBeanClass=class com.moderndrummer.model.Member, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:159)
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:94)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.preInsert(EntityIdentityInsertAction.java:178)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:75)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:291)
+	at com.sun.proxy.$Proxy32.persist(Unknown Source)
+	at com.moderndrummer.repo.base.BaseJPQLDao.insert(BaseJPQLDao.java:230)
+	at com.moderndrummer.data.MemberDaoImpl.register(MemberDaoImpl.java:164)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy35.register(Unknown Source)
+	at com.moderndrummer.test.MemberDaoTest.testFindAllOrderedByName(MemberDaoTest.java:90)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:82)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:73)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:217)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
+aug 01, 2015 7:46:25 EM org.springframework.test.context.transaction.TransactionContext endTransaction
+Info: Rolled back transaction for test context [DefaultTestContext@1285384a testClass = MemberDaoTest, testInstance = com.moderndrummer.test.MemberDaoTest@18c097c6, testMethod = testFindAllOrderedByName@MemberDaoTest, testException = com.moderndrummer.entity.exceptions.ModernDrummerException: Failed to insert   Member , mergedContextConfiguration = [MergedContextConfiguration@4e7667f4 testClass = MemberDaoTest, locations = &apos;{classpath:test-context.xml, classpath:/META-INF/spring/applicationContext.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, propertySourceLocations = &apos;{}&apos;, propertySourceProperties = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;, parent = [null]]].
+</system-err>
+  </testcase>
+</testsuite>
