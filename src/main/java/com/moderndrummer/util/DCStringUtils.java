@@ -9,6 +9,11 @@ import org.apache.commons.validator.EmailValidator;
 import com.moderndrummer.entity.exceptions.EntityParseException;
 import com.moderndrummer.messages.ModernDrummerMessages;
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 public class DCStringUtils {
 

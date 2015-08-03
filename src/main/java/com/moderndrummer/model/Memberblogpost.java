@@ -25,13 +25,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.moderndrummer.entity.transformers.DateAdapter;
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 /**
  * The persistent class for the memberblogpost database table.
  * 
  */
 @Entity
-@NamedQuery(name = "Memberblogpost.findAll", query = "SELECT m FROM Memberblogpost m")
+@NamedQuery(name = "Memberblogpost.findAll", query = "SELECT m FROM Memberblogpost m order by m.datePosted desc")
 @SequenceGenerator(name = "sq_memberblogpost", sequenceName = "sq_memberblogpost", initialValue = 1)
 public class Memberblogpost implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -113,7 +118,7 @@ public class Memberblogpost implements Serializable {
     return this.topic;
   }
 
-  public void setTopicId(Topic  topic) {
+  public void setTopic(Topic  topic) {
     this.topic = topic;
   }
 

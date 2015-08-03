@@ -35,6 +35,11 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.repo.base.BaseJPQLDao;
 import com.moderndrummer.util.ObjectUtil;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Repository
 @Transactional

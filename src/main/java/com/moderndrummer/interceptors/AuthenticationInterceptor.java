@@ -10,6 +10,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.moderndrummer.model.Member;
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Component("authenticationInterceptor")
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {

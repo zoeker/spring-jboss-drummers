@@ -14,6 +14,11 @@ import com.moderndrummer.model.Memberblogpost;
 import com.moderndrummer.model.Memberblogpostimage;
 import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.repo.base.BaseJPQLDao;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Repository//("blogsDao")
 @Transactional
@@ -138,7 +143,7 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao
   
   @Override
   public Set<Memberblogpost> getAllBlogPosts(){
-    return asSet(executeNamedQueryReturnList("Diverblogpost.findAll",Memberblogpost.class));
+    return asSet(executeNamedQueryReturnList("Memberblogpost.findAll",Memberblogpost.class));
   }
   
   @Override

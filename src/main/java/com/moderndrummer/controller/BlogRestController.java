@@ -27,6 +27,11 @@ import com.moderndrummer.model.Memberblogpostimage;
 import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.rest.converters.JSONConverterHandler;
 import com.moderndrummer.util.DateConverter;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Controller("blogRestController")
 @RequestMapping("/rest/blogs")

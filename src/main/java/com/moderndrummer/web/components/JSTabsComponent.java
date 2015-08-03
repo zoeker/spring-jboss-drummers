@@ -6,6 +6,11 @@ import org.springframework.stereotype.Component;
 import com.moderndrummer.data.BlogsDao;
 
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Component("jsTabsComponent")
 public class JSTabsComponent {
@@ -18,8 +23,16 @@ public class JSTabsComponent {
 	
 	@Autowired
 	BlogsDao blogsDao;
-
+	
+	@Autowired
+	DiverBlogTableFacade diverBlogTableFacade;
+	
+	
 	public String buildJSTabs() {
+		return buildJSTabs(false);
+	}
+
+	public String buildJSTabs(Boolean useViewHandler) {
 		final StringBuilder builder = new StringBuilder();
 
 		builder.append("<div id=tab-container class=tab-container style=\"width:100%;\">");
@@ -35,7 +48,7 @@ public class JSTabsComponent {
 		builder.append("<h3 class=\"ft-myriad-14\">Latest blogs</h3>");
 		builder.append("<input type=hidden name=\"" + "selectedBlogId" + "\" id=\"" + "selectedBlogId" + "\" />");
 		// builder.append(
-		// diverBlogTableFacade.printDiverBlogPostAsTableDiv(diverBlogPostsEJB.getAllDiverBlogPosts()));
+		builder.append(diverBlogTableFacade.printDiverBlogPostAsTableDiv(blogsDao.getAllBlogPosts()));
 		
 		
 		builder.append("</div>");// editor
@@ -62,15 +75,23 @@ public class JSTabsComponent {
 		builder.append(
 				"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11\">Topic: </div><div class=\"cellDiv ft-myriad-11\">");
 		builder.append(topicSearchableSelector.buildSelectorAllTopics("selecttopic",
-				"inputhandler-classic-rnd m-2-imp w-70-imp"));
+				"inputhandler-classic-rnd m-2-imp w-70-imp",useViewHandler));
 		builder.append("</div></div>");
-
-		builder.append(
-				"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog title:</div><div class=\"cellDiv ft-myriad-11\"><input type=\"text\" name=\"blogtitle\" id=\"blogtitle\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></div></div>");
-
-		builder.append(
-				"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogcomments\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></textarea></div></div>");
-
+		
+		if(useViewHandler){
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog title:</div><div class=\"cellDiv ft-myriad-11\"><form:input type=\"text\" path=\"memberBlogPost.blogPostTitle\"  name=\"blogtitle\" id=\"blogtitle\" cssClass=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></div></div>");
+		}
+		else{
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog title:</div><div class=\"cellDiv ft-myriad-11\"><input type=\"text\" name=\"blogtitle\" id=\"blogtitle\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></div></div>");
+		}
+		
+		if(useViewHandler){
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><form:textarea rows=\"10\" cols=\"40\" path=\"memberBlogPost.blogPostBody\"  name=\"blogcomments\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></form:textarea></div></div>");
+		}
+		else{
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogcomments\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></textarea></div></div>");
+    	}
+	
 		builder.append(imageSelector.buildImageSelectorWithRow());
 
 		setSubmitButtonRow(builder, WebComponentsConstants.POST);

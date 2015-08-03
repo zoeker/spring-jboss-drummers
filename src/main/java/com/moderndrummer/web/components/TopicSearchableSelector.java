@@ -8,9 +8,14 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.moderndrummer.data.TopicDAO;
+import com.moderndrummer.data.TopicDao;
 import com.moderndrummer.model.Topic;
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Component("topicSearchableSelector")
 public class TopicSearchableSelector extends SearchableSelector<Topic> implements Serializable {
@@ -18,7 +23,7 @@ public class TopicSearchableSelector extends SearchableSelector<Topic> implement
   private static final long serialVersionUID = -7735771752201224531L;
   
   @Autowired
-  private TopicDAO topicDao;
+  private TopicDao topicDao;
 
   @Override
   public String buildSelector(final String elementId, final List<Topic> listOfElements) {
@@ -34,23 +39,37 @@ public class TopicSearchableSelector extends SearchableSelector<Topic> implement
 
   public String buildSelector(final String elementId, final List<Topic> listOfElements,
       final String classes) {
-    return printSelector(elementId, listOfElements, classes);
+    return printSelector(elementId, listOfElements, classes, false);
   }
   
   public String buildSelectorAllTopics(final String elementId, 
-      final String classes) {
+      final String classes, boolean useViewHandler) {
     Set<Topic> topics = topicDao.findAllTopics();
-    return printSelector(elementId,new ArrayList<Topic>(topics) , classes);
+    return printSelector(elementId,new ArrayList<Topic>(topics) , classes, useViewHandler);
   }
 
   private String printSelector(final String elementId, final List<Topic> listOfElements,
-      final String classes) {
+      final String classes, Boolean useViewHandler) {
     final StringBuilder builder = new StringBuilder();
     builder.append("<div id=\"search\">");
-    builder.append("<select name=\"" + elementId + "\" id=\"" + elementId + "\" class=\"" + classes
-        + "\">");
+    
+    if(!useViewHandler){
+    	builder.append("<select name=\"" + elementId + "\" id=\"" + elementId + "\" class=\"" + classes + "\">");
+    }
+    else{
+       	builder.append("<form:select path=\"memberBlogPost.topic\" name=\"" + elementId + "\" id=\"" + elementId + "\" cssClass=\"" + classes + "\">");
+    }
+    //<form:select path="myFormVariable">
+    
     buildOptionValues(listOfElements, new Topic(), builder);
-    builder.append("</select>");
+    if(!useViewHandler){
+    	builder.append("</select>");
+    }
+    else{
+    	builder.append("</form:select>");
+    }
+    
+    
     builder.append("</div>");
     return builder.toString();
   }

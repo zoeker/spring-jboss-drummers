@@ -1,57 +1,94 @@
 package com.moderndrummer.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moderndrummer.data.BlogsDao;
 import com.moderndrummer.data.MemberDao;
+import com.moderndrummer.entity.exceptions.EntityParseException;
+import com.moderndrummer.enums.GraphicType;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.model.Memberblogpost;
+import com.moderndrummer.model.Memberblogpostimage;
 import com.moderndrummer.model.Memberpostcomment;
-import com.moderndrummer.web.components.JSTabsComponent;
+import com.moderndrummer.presentationmanagers.BlogPresentationManager;
+import com.moderndrummer.requesthandler.FileItemRequestHandler;
+import com.moderndrummer.viewhandlers.BlogsViewHandler;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 
 @Controller("blogController")
 @RequestMapping(value = "/blogs")
 public class BlogController {
 
-  
-  @Autowired
-  private MemberDao memberDao;
-  
-  @Autowired
-  private BlogsDao blogsDao;
-  
-  
-  //@Autowired
-  //private JSTabsComponent jsTabsComponent;
-  
-  
-  
-  @RequestMapping( method = RequestMethod.GET)
-  public String getBlogs(Model model)
-  {
-      model.addAttribute("blogPost", new  Memberblogpost() );
-      model.addAttribute("postComment", new  Memberpostcomment() );
-      
-      
-      return "blogs";
-  }
-  
-  @RequestMapping(method = RequestMethod.POST)
-  public String postBlog(  @Valid @ModelAttribute("blogMember") Member loginMember, BindingResult result, ModelMap model, HttpServletRequest request ){
-  
-    return "blogs";
-  }
-  
-  
+	protected static final Logger LOGGER = LoggerFactory.getLogger(BlogController.class);
+
+	@Autowired
+	private MemberDao memberDao;
+
+	@Autowired
+	private BlogsDao blogsDao;
+
+	@Autowired
+	private FileItemRequestHandler fileItemRequestHandler;
+
+	@Autowired
+	private BlogPresentationManager blogPresentationManager;
+
+	private Member loggedMember = new Member();
+
+	// @Autowired
+	// private JSTabsComponent jsTabsComponent;
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String getBlogs(Model model, HttpServletRequest request) {
+		model.addAttribute("blogPost", new Memberblogpost());
+		model.addAttribute("postComment", new Memberpostcomment());
+		loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+		model.addAttribute("loggedMember", loggedMember);
+
+		return "blogs";
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	// public String postBlog( @Valid @ModelAttribute("blogMember") Member
+	// loginMember, BindingResult result, ModelMap model, HttpServletRequest
+	// request ){
+	public String postBlog(@Valid BlogsViewHandler blogsViewHandler, BindingResult result, ModelMap model,
+			HttpServletRequest request) {
+		try {
+			Map<String, String> mapData = fileItemRequestHandler.getRequestParameters(request, GraphicType.BLOG_IMAGE);
+			List<Memberblogpostimage> images = (List<Memberblogpostimage>) fileItemRequestHandler.getListGraphics();
+			Memberblogpost blogPost = blogPresentationManager.buildEntity(mapData, loggedMember);
+			if (!images.isEmpty()) {
+				blogPost.setMemberBlogPostImages(images);
+			}
+			Memberblogpost inserted = blogsDao.insert(blogPost);
+			fileItemRequestHandler.clearListGraphics();
+			model.addAttribute("blogPost", inserted );
+			
+		} catch (EntityParseException e) {
+			LOGGER.error("error post request blog controller", e);
+			model.addAttribute("errorMessage", "failed to insert blog");
+		}
+		return "blogs";
+	}
+
 }

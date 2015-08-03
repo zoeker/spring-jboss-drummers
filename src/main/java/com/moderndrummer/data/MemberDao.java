@@ -21,6 +21,11 @@ import java.util.List;
 
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.model.Member;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 public interface MemberDao {
   

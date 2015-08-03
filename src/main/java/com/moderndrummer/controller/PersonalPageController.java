@@ -21,6 +21,11 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.util.ObjectUtil;
 import com.moderndrummer.validators.MemberValidator;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Controller
 public class PersonalPageController {

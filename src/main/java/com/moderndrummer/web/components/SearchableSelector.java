@@ -2,12 +2,16 @@ package com.moderndrummer.web.components;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
 import com.moderndrummer.model.Topic;
 import com.moderndrummer.validators.StringUtilValidator;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Component("searchableSelector")
 public class SearchableSelector<E> implements Serializable {

@@ -1,4 +1,9 @@
 package com.moderndrummer.web.components;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 public class WebComponentsConstants {
     public static final String SEARCH = "Search";

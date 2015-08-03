@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
-
 import com.moderndrummer.files.FileUtils;
 import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;

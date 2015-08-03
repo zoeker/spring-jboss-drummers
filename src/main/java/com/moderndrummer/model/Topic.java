@@ -10,13 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 /**
  * The persistent class for the topic database table.
  * 
  */
 @Entity
-@NamedQuery(name = "Topic.findAll", query = "SELECT t FROM Topic t order by t.topicName desc")
+@NamedQuery(name = "Topic.findAll", query = "SELECT t FROM Topic t order by t.topicName asc")
 @SequenceGenerator(name = "sq_topic", sequenceName = "sq_topic", initialValue = 1)
 public class Topic implements Serializable {
   private static final long serialVersionUID = 1L;

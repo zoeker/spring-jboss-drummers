@@ -5,6 +5,11 @@ import org.springframework.stereotype.Component;
 import com.moderndrummer.messages.ModernDrummerMessages;
 
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 
 @Component("imageSelector")

@@ -1,6 +1,11 @@
 package com.moderndrummer.entity.exceptions;
 
 import org.springframework.dao.DataAccessException;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 public class BlogJPAException extends DataAccessException {
 

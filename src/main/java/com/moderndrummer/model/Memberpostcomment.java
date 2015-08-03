@@ -22,6 +22,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.moderndrummer.entity.transformers.DateAdapter;
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 /**
  * The persistent class for the memberpostcomments database table.

@@ -21,6 +21,11 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 //import com.drumchops.authentication.DrumChopsRoles;
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 @Entity
 @NamedQueries({

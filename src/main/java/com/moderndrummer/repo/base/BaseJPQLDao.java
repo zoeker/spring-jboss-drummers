@@ -30,6 +30,11 @@ import com.moderndrummer.repo.base.helpers.JPAResultHelper;
 import com.moderndrummer.util.ObjectUtil;
 
 
+/***
+ * 
+ * @author conpem 2015-08-03
+ *
+ */
 
 public abstract class BaseJPQLDao<E> {
 

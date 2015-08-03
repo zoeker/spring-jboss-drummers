@@ -10,6 +10,7 @@
 <%@ page import="java.lang.*"%>
 <%@ page import="com.moderndrummer.menu.DCMenu"%>
 <%@ page import="com.moderndrummer.web.components.*"%>
+<%@ page import="com.moderndrummer.viewhandlers.*"%>
 <%@ page
 	import="org.springframework.context.ApplicationContext,org.springframework.web.servlet.support.RequestContextUtils"%>
 
@@ -22,7 +23,7 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<title>Personal page</title>
+<title>Blogs by members</title>
 <script src="http://code.jquery.com/jquery-latest.js"
 	type="text/javascript"></script>
 <script src="<c:url value="/static/resources/js/globals.js"/>"
@@ -48,7 +49,8 @@
 <link href="<c:url value="/resources/css/moderndrummer.css"/>"
 	type="text/css" href="resources/css/moderndrummer.css" rel="stylesheet" />
 <link type="text/css"
-	href="<c:url value="/resources/css/moderndrummer-basic.css"/>" rel="stylesheet" />
+	href="<c:url value="/resources/css/moderndrummer-basic.css"/>"
+	rel="stylesheet" />
 <link type="text/css"
 	href="<c:url value="/resources/css/moderndrummer-mediaqueries.css"/>"
 	rel="stylesheet" />
@@ -78,15 +80,23 @@
 						<div id="search" class="animate form w-90-percent">
 
 
-							<form:form commandName="blogPost" id="blogsForm">
+							<form:form commandName="blogsViewHandler" id="blogsForm" enctype="multipart/form-data">
+								<div align="center">
+									<div class="errormessage">
+										<form:errors path="*"></form:errors>
+										<c:if test="${not empty errorMessage}">
+  												${errorMessage}
+												</c:if>
+									</div>
 
-								<%
-									ApplicationContext ctx = RequestContextUtils.getWebApplicationContext(request);
-										JSTabsComponent jsTabsComponent = (JSTabsComponent) ctx.getBean("jsTabsComponent");
-										out.println(jsTabsComponent.buildJSTabs());
-								%>
-
+									<%
+										ApplicationContext ctx = RequestContextUtils.getWebApplicationContext(request);
+											JSTabsComponent jsTabsComponent = (JSTabsComponent) ctx.getBean("jsTabsComponent");
+											out.println(jsTabsComponent.buildJSTabs(false));
+									%>
+								</div>
 							</form:form>
+
 						</div>
 
 					</div>
