@@ -51,7 +51,7 @@ public class BlogRestController
 
 
    
-    @RequestMapping(value="/{blogPostId}",  method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON)
+    @RequestMapping(value="/get/json/memberblog/{blogPostId}",  method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON)
     public Response getDiverBlogPost(@PathVariable("blogPostId") final int blogPostId) {
       
         Memberblogpost memberBlogPost =  blogsDao.findBlogPostById(blogPostId);

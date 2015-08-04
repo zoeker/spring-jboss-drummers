@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moderndrummer.data.BlogsDao;
 import com.moderndrummer.data.MemberDao;
+import com.moderndrummer.entity.exceptions.BlogJPAException;
 import com.moderndrummer.entity.exceptions.EntityParseException;
+import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.enums.GraphicType;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.model.Memberblogpost;
@@ -27,6 +29,7 @@ import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.presentationmanagers.BlogPresentationManager;
 import com.moderndrummer.requesthandler.FileItemRequestHandler;
 import com.moderndrummer.viewhandlers.BlogsViewHandler;
+import com.moderndrummer.web.components.WebComponentsConstants;
 /***
  * 
  * @author conpem 2015-08-03
@@ -75,20 +78,47 @@ public class BlogController {
 			HttpServletRequest request) {
 		try {
 			Map<String, String> mapData = fileItemRequestHandler.getRequestParameters(request, GraphicType.BLOG_IMAGE);
-			List<Memberblogpostimage> images = (List<Memberblogpostimage>) fileItemRequestHandler.getListGraphics();
-			Memberblogpost blogPost = blogPresentationManager.buildEntity(mapData, loggedMember);
-			if (!images.isEmpty()) {
-				blogPost.setMemberBlogPostImages(images);
+			String btn = mapData.get("submitInsertForm");
+			if (btn != null && btn.equals(WebComponentsConstants.POST)) {
+				Memberblogpost inserted = postBlog(mapData);
+				model.addAttribute("blogPost", inserted);
+			} else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
+				 Memberpostcomment inserted = postBlogComment(model, mapData);
+				 model.addAttribute("postComment", inserted );
 			}
-			Memberblogpost inserted = blogsDao.insert(blogPost);
-			fileItemRequestHandler.clearListGraphics();
-			model.addAttribute("blogPost", inserted );
 			
-		} catch (EntityParseException e) {
+		} catch (EntityParseException | BlogJPAException e) {
 			LOGGER.error("error post request blog controller", e);
 			model.addAttribute("errorMessage", "failed to insert blog");
 		}
 		return "blogs";
+	}
+
+	private Memberpostcomment postBlogComment(ModelMap model, Map<String, String> mapData) throws EntityParseException {
+		int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
+		 if(selectedBlogId > 0){
+		 //  postComment(request, response, loggedUser, parameters, selectedBlogId);
+			 Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData,loggedMember,selectedBlogId);
+		     Memberblogpost post  = blogsDao.findBlogPostById(selectedBlogId);
+		     //post.addBlogPostComment(comment);
+		     comment.setBlogPost(post);
+		     return blogsDao.insertTruly(comment);
+		    
+		 }
+		 else{
+		   throw new ModernDrummerException("Choose blog to post comment on");
+		 }
+	}
+
+	private Memberblogpost postBlog(Map<String, String> mapData) throws EntityParseException {
+		List<Memberblogpostimage> images = (List<Memberblogpostimage>) fileItemRequestHandler.getListGraphics();
+		Memberblogpost blogPost = blogPresentationManager.buildEntity(mapData, loggedMember);
+		if (!images.isEmpty()) {
+			blogPost.setMemberBlogPostImages(images);
+		}
+		Memberblogpost inserted = blogsDao.insert(blogPost);
+		fileItemRequestHandler.clearListGraphics();
+		return inserted;
 	}
 
 }

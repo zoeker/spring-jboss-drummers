@@ -25,7 +25,7 @@ public class JSTabsComponent {
 	BlogsDao blogsDao;
 	
 	@Autowired
-	DiverBlogTableFacade diverBlogTableFacade;
+	MemberBlogTableFacade diverBlogTableFacade;
 	
 	
 	public String buildJSTabs() {
@@ -86,10 +86,10 @@ public class JSTabsComponent {
 		}
 		
 		if(useViewHandler){
-			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><form:textarea rows=\"10\" cols=\"40\" path=\"memberBlogPost.blogPostBody\"  name=\"blogcomments\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></form:textarea></div></div>");
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><form:textarea rows=\"10\" cols=\"40\" path=\"memberBlogPost.blogPostBody\"  name=\"blogpostbody\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></form:textarea></div></div>");
 		}
 		else{
-			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogcomments\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></textarea></div></div>");
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogpostbody\" id=\"blogpostbody\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></textarea></div></div>");
     	}
 	
 		builder.append(imageSelector.buildImageSelectorWithRow());

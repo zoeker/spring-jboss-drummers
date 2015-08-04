@@ -78,6 +78,7 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao
 
   }
   
+  @Override
   public Memberpostcomment insertTruly(Memberpostcomment comment)
       throws BlogJPAException {
 
