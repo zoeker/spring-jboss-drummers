@@ -83,8 +83,10 @@ public class BlogController {
 				Memberblogpost inserted = postBlog(mapData);
 				model.addAttribute("blogPost", inserted);
 			} else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
-				 Memberpostcomment inserted = postBlogComment(model, mapData);
-				 model.addAttribute("postComment", inserted );
+				// Memberpostcomment inserted = postBlogComment(model, mapData);
+				 Memberblogpost inserted = postBlogComment(model, mapData);
+				 //model.addAttribute("postComment", inserted );
+				 model.addAttribute("blogPost", inserted);
 			}
 			
 		} catch (EntityParseException | BlogJPAException e) {
@@ -94,7 +96,7 @@ public class BlogController {
 		return "blogs";
 	}
 
-	private Memberpostcomment postBlogComment(ModelMap model, Map<String, String> mapData) throws EntityParseException {
+	private Memberblogpost /*Memberpostcomment*/ postBlogComment(ModelMap model, Map<String, String> mapData) throws EntityParseException {
 		int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
 		 if(selectedBlogId > 0){
 		 //  postComment(request, response, loggedUser, parameters, selectedBlogId);
@@ -102,8 +104,11 @@ public class BlogController {
 		     Memberblogpost post  = blogsDao.findBlogPostById(selectedBlogId);
 		     //post.addBlogPostComment(comment);
 		     comment.setBlogPost(post);
-		     return blogsDao.insertTruly(comment);
-		    
+		     post.addMemberBlogPostComment(comment);
+		     
+		     Memberblogpost updated =  blogsDao.update(post);
+		     //return updated.getMemberBlogPostComments().
+		     return updated;
 		 }
 		 else{
 		   throw new ModernDrummerException("Choose blog to post comment on");

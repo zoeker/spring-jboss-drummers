@@ -29,4 +29,6 @@ public interface BlogsDao {
 
 	Memberpostcomment insertTruly(Memberpostcomment comment) throws BlogJPAException;
 
+	Memberblogpost update(Memberblogpost object) throws BlogJPAException;
+
 }

@@ -158,13 +158,13 @@ public class Memberblogpost implements Serializable {
   }
 
   public Memberpostcomment addMemberBlogPostComment(Memberpostcomment comment) {
-    getMemberBlogPostComments().add(comment);
+    blogPostComments.add(comment);
     comment.setBlogPost(this);
     return comment;
   }
 
   public Memberpostcomment removeMemberblogpostimage(Memberpostcomment comment) {
-    getMemberBlogPostComments().remove(comment);
+	  blogPostComments.remove(comment);
     comment.setBlogPost(null);
     return comment;
   }

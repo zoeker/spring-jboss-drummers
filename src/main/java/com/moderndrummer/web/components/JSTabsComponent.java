@@ -61,6 +61,10 @@ public class JSTabsComponent {
 		builder.append("<div class=\"containerDiv display-blogpost\" style=\"width:95%;\">");
 
 		builder.append("</div>");
+		
+		builder.append("<div class=\"containerDiv display-comments\" style=\"width:95%;\">");
+
+		builder.append("</div>");
 
 		builder.append("</div>");
 		builder.append("</div>"); // end tabs1-editor
@@ -106,7 +110,7 @@ public class JSTabsComponent {
 	    builder.append("<div class=statistics style=\"width:100%;\">");
 	    builder.append("<h3 class=\"ft-myriad-14\">Add comment</h3>");
 	    
-	    builder.append("<div class=\"containerDiv display-comments\">");
+	    builder.append("<div class=\"containerDiv postdisplay-comments\">");
 	    builder.append("</div>");
 	    
 	    builder.append("<div class=\"containerDiv\">");

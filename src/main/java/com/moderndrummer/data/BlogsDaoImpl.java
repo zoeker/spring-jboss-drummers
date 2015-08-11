@@ -94,13 +94,15 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao
 
   }
   
+  
   @Override
   public Memberpostcomment insertWithMerge(Memberpostcomment object) throws BlogJPAException {
-    boolean activatedTransaction = false;
      try {
 
     
       em.persist(object);
+     // em.merge(object) ;
+    	 
       em.flush();
  
       Memberblogpost inserted = em.find(Memberblogpost.class, object.getBlogPost().getBlogPostId());
@@ -116,6 +118,30 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao
       throw new BlogJPAException(ex.getMessage());
     }
   }
+  
+  
+  @Override
+  public Memberblogpost update(Memberblogpost object) throws BlogJPAException {
+     try {
+
+    
+     // em.persist(object);
+      em.merge(object) ;
+    	 
+      em.flush();
+ 
+      Memberblogpost inserted = em.find(Memberblogpost.class, object.getBlogPostId());
+      
+      em.refresh(inserted);
+    
+      return object;
+
+    } catch (final Exception ex) {
+      LOGGER.error(ex.getMessage(), ex);
+      throw new BlogJPAException(ex.getMessage());
+    }
+  }
+  
   
   @Override
   public boolean delete(Memberblogpost blogPost)

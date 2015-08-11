@@ -66,6 +66,7 @@ function() {
 	              
 	              //display comments
 	              var comments = item.comments;
+	              displayComments = displayComments + '<div class="cellDiv ft-myriad-11">Comments</div>';
 	              displayComments = displayComments + '<div class="rowDivHeader">';
 	              displayComments =  displayComments + '<div class="cellDivHeader ft-myriad-11" >Message</div>';
 	              displayComments =   displayComments + '<div class="cellDivHeader ft-myriad-11" >Posted date</div>';
