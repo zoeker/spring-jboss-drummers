@@ -14,6 +14,7 @@ import com.moderndrummer.model.Memberblogpost;
 import com.moderndrummer.model.Memberblogpostimage;
 import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.repo.base.BaseJPQLDao;
+
 /***
  * 
  * @author conpem 2015-08-03

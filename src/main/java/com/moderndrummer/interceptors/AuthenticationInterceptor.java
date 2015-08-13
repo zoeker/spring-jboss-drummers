@@ -18,22 +18,21 @@ import com.moderndrummer.model.Member;
 
 @Component("authenticationInterceptor")
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
-  
-  private static final Logger LOGGER = LoggerFactory
-      .getLogger( AuthenticationInterceptor.class);
-  
-  @Override
-  public boolean preHandle(HttpServletRequest request,
-      HttpServletResponse response, Object handler) throws Exception {
-    String uri = request.getRequestURI();
-    if (!uri.endsWith("/login") && !uri.endsWith("/logout") && !uri.endsWith("/register") && !uri.endsWith(".png") ) {
-      Member userData =
-          (Member) request.getSession().getAttribute("loggedUser");
-      if (userData == null) {
-        response.sendRedirect("/ModernDrummer/login");
-        return false;
-      }
-    }
-    return true;
-  }
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationInterceptor.class);
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		String uri = request.getRequestURI();
+		if (!uri.endsWith("/login") && !uri.endsWith("/logout") && !uri.endsWith("/register")
+				&& !uri.endsWith(".png")) {
+			Member userData = (Member) request.getSession().getAttribute("loggedUser");
+			if (userData == null) {
+				response.sendRedirect("/ModernDrummer/login");
+				return false;
+			}
+		}
+		return true;
+	}
 }

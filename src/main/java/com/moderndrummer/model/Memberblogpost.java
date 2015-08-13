@@ -39,134 +39,134 @@ import com.moderndrummer.entity.transformers.DateAdapter;
 @NamedQuery(name = "Memberblogpost.findAll", query = "SELECT m FROM Memberblogpost m order by m.datePosted desc")
 @SequenceGenerator(name = "sq_memberblogpost", sequenceName = "sq_memberblogpost", initialValue = 1)
 public class Memberblogpost implements Serializable {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int blogPostId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int blogPostId;
 
-  @Column(name = "BlogPostBody")
-  private String blogPostBody = "";
+	@Column(name = "BlogPostBody")
+	private String blogPostBody = "";
 
-  @Column(name = "BlogPostTitle")
-  private String blogPostTitle = "";
+	@Column(name = "BlogPostTitle")
+	private String blogPostTitle = "";
 
-  @XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "DatePosted")
-  private Date datePosted = new Date(System.currentTimeMillis());
+	@XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DatePosted")
+	private Date datePosted = new Date(System.currentTimeMillis());
 
-  @OneToOne
-  @JoinColumn(name = "MemberAuthorId", nullable = false)
-  private Member member = new Member();
+	@OneToOne
+	@JoinColumn(name = "MemberAuthorId", nullable = false)
+	private Member member = new Member();
 
-  @ManyToOne
-  @JoinColumn(name = "TopicId", nullable = false)
-  private Topic topic = new Topic();
+	@ManyToOne
+	@JoinColumn(name = "TopicId", nullable = false)
+	private Topic topic = new Topic();
 
-  @OneToMany(mappedBy = "blogPost",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  //@JoinColumn(name = "BlogPostId", nullable = false)
-  private Set<Memberblogpostimage> blogPostImages = new HashSet<Memberblogpostimage>();
+	@OneToMany(mappedBy = "blogPost", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	// @JoinColumn(name = "BlogPostId", nullable = false)
+	private Set<Memberblogpostimage> blogPostImages = new HashSet<Memberblogpostimage>();
 
-  @OneToMany(mappedBy = "blogPost",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  //@JoinColumn(name = "BlogPostId", nullable = false)
-  private Set<Memberpostcomment> blogPostComments = new HashSet<Memberpostcomment>();
+	@OneToMany(mappedBy = "blogPost", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	// @JoinColumn(name = "BlogPostId", nullable = false)
+	private Set<Memberpostcomment> blogPostComments = new HashSet<Memberpostcomment>();
 
-  public Memberblogpost() {}
+	public Memberblogpost() {
+	}
 
-  public int getBlogPostId() {
-    return this.blogPostId;
-  }
+	public int getBlogPostId() {
+		return this.blogPostId;
+	}
 
-  public void setBlogPostId(int blogPostId) {
-    this.blogPostId = blogPostId;
-  }
+	public void setBlogPostId(int blogPostId) {
+		this.blogPostId = blogPostId;
+	}
 
-  public String getBlogPostBody() {
-    return this.blogPostBody;
-  }
+	public String getBlogPostBody() {
+		return this.blogPostBody;
+	}
 
-  public void setBlogPostBody(String blogPostBody) {
-    this.blogPostBody = blogPostBody;
-  }
+	public void setBlogPostBody(String blogPostBody) {
+		this.blogPostBody = blogPostBody;
+	}
 
-  public String getBlogPostTitle() {
-    return this.blogPostTitle;
-  }
+	public String getBlogPostTitle() {
+		return this.blogPostTitle;
+	}
 
-  public void setBlogPostTitle(String blogPostTitle) {
-    this.blogPostTitle = blogPostTitle;
-  }
+	public void setBlogPostTitle(String blogPostTitle) {
+		this.blogPostTitle = blogPostTitle;
+	}
 
-  public Date getDatePosted() {
-    return datePosted;
-  }
+	public Date getDatePosted() {
+		return datePosted;
+	}
 
-  public void setDatePosted(Date datePosted) {
-    this.datePosted = datePosted;
-  }
+	public void setDatePosted(Date datePosted) {
+		this.datePosted = datePosted;
+	}
 
-  public Member getMember() {
-    return this.member;
-  }
+	public Member getMember() {
+		return this.member;
+	}
 
-  public void setMember(Member member) {
-    this.member = member;
-  }
+	public void setMember(Member member) {
+		this.member = member;
+	}
 
-  public Topic  getTopic() {
-    return this.topic;
-  }
+	public Topic getTopic() {
+		return this.topic;
+	}
 
-  public void setTopic(Topic  topic) {
-    this.topic = topic;
-  }
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
 
-  public Set<Memberblogpostimage> getMemberBlogPostImages() {
-    return this.blogPostImages;
-  }
+	public Set<Memberblogpostimage> getMemberBlogPostImages() {
+		return this.blogPostImages;
+	}
 
-  public void setMemberBlogPostImages(Collection<Memberblogpostimage> images) {
-    if(!this.blogPostImages.isEmpty()){
-      this.blogPostImages.clear();
-    }
-    this.blogPostImages.addAll(images);
-  }
+	public void setMemberBlogPostImages(Collection<Memberblogpostimage> images) {
+		if (!this.blogPostImages.isEmpty()) {
+			this.blogPostImages.clear();
+		}
+		this.blogPostImages.addAll(images);
+	}
 
-  public Memberblogpostimage addMemberblogpostimage(Memberblogpostimage memberblogpostimage) {
-    getMemberBlogPostImages().add(memberblogpostimage);
-    memberblogpostimage.setMemberBlogPost(this);
-    return memberblogpostimage;
-  }
+	public Memberblogpostimage addMemberblogpostimage(Memberblogpostimage memberblogpostimage) {
+		getMemberBlogPostImages().add(memberblogpostimage);
+		memberblogpostimage.setMemberBlogPost(this);
+		return memberblogpostimage;
+	}
 
-  public Memberblogpostimage removeMemberblogpostimage(Memberblogpostimage memberblogpostimage) {
-    getMemberBlogPostImages().remove(memberblogpostimage);
-    memberblogpostimage.setMemberBlogPost(null);
-    return memberblogpostimage;
-  }
-  
-  
-  public Set<Memberpostcomment> getMemberBlogPostComments() {
-    return this.blogPostComments;
-  }
+	public Memberblogpostimage removeMemberblogpostimage(Memberblogpostimage memberblogpostimage) {
+		getMemberBlogPostImages().remove(memberblogpostimage);
+		memberblogpostimage.setMemberBlogPost(null);
+		return memberblogpostimage;
+	}
 
-  public void setMemberBlogPostComments(Collection<Memberpostcomment> comments) {
-    if(!this.blogPostComments.isEmpty()){
-      this.blogPostComments.clear();
-    }
-    this.blogPostComments.addAll(comments);
-  }
+	public Set<Memberpostcomment> getMemberBlogPostComments() {
+		return this.blogPostComments;
+	}
 
-  public Memberpostcomment addMemberBlogPostComment(Memberpostcomment comment) {
-    blogPostComments.add(comment);
-    comment.setBlogPost(this);
-    return comment;
-  }
+	public void setMemberBlogPostComments(Collection<Memberpostcomment> comments) {
+		if (!this.blogPostComments.isEmpty()) {
+			this.blogPostComments.clear();
+		}
+		this.blogPostComments.addAll(comments);
+	}
 
-  public Memberpostcomment removeMemberblogpostimage(Memberpostcomment comment) {
-	  blogPostComments.remove(comment);
-    comment.setBlogPost(null);
-    return comment;
-  }
+	public Memberpostcomment addMemberBlogPostComment(Memberpostcomment comment) {
+		blogPostComments.add(comment);
+		comment.setBlogPost(this);
+		return comment;
+	}
+
+	public Memberpostcomment removeMemberblogpostimage(Memberpostcomment comment) {
+		blogPostComments.remove(comment);
+		comment.setBlogPost(null);
+		return comment;
+	}
 
 }

@@ -21,6 +21,7 @@ import java.util.List;
 
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.model.Member;
+
 /***
  * 
  * @author conpem 2015-08-03
@@ -28,24 +29,22 @@ import com.moderndrummer.model.Member;
  */
 
 public interface MemberDao {
-  
-    public Member findById(Long id);
 
-    public Member findByEmail(String email);
+	public Member findById(Long id);
 
-    public List<Member> findAllOrderedByName();
+	public Member findByEmail(String email);
 
-    
+	public List<Member> findAllOrderedByName();
 
-    public Member register(Member member) throws ModernDrummerException;
+	public Member register(Member member) throws ModernDrummerException;
 
-    List<Member> findAllCreatedMembersByFromAndToDate(Date fromDate, Date toDate);
+	List<Member> findAllCreatedMembersByFromAndToDate(Date fromDate, Date toDate);
 
-    Member findMemberByUserName(String userName);
-    
-    boolean isValidUser(String userName, String password);
-    
-    public Member updateMember(Member member) throws ModernDrummerException;
-    
-    Member findByEmailOrUsername(String userName, String email);
+	Member findMemberByUserName(String userName);
+
+	boolean isValidUser(String userName, String password);
+
+	public Member updateMember(Member member) throws ModernDrummerException;
+
+	Member findByEmailOrUsername(String userName, String email);
 }

@@ -12,43 +12,43 @@ import org.apache.commons.lang3.RandomStringUtils;
  */
 public class Randomizer {
 
-    /**
-     * Method createRandomString.
-     * 
-     * @return String
-     */
-    public static String createRandomString() {
-        return RandomStringUtils.randomAlphabetic(10);
-    }
+	/**
+	 * Method createRandomString.
+	 * 
+	 * @return String
+	 */
+	public static String createRandomString() {
+		return RandomStringUtils.randomAlphabetic(10);
+	}
 
-    /**
-     * Method createRandomString.
-     * 
-     * @param size
-     *            int
-     * @return String
-     */
-    public static String createRandomString(final int size) {
-        return RandomStringUtils.randomAlphabetic(size);
-    }
+	/**
+	 * Method createRandomString.
+	 * 
+	 * @param size
+	 *            int
+	 * @return String
+	 */
+	public static String createRandomString(final int size) {
+		return RandomStringUtils.randomAlphabetic(size);
+	}
 
-    /**
-     * Method shuffle.
-     * 
-     * @param input
-     *            String
-     * @return String
-     */
-    public static String shuffle(final String input) {
-        final List<Character> characters = new ArrayList<Character>();
-        for (final char c : input.toCharArray()) {
-            characters.add(c);
-        }
-        final StringBuilder output = new StringBuilder(input.length());
-        while (characters.size() != 0) {
-            final int randPicker = (int) (Math.random() * characters.size());
-            output.append(characters.remove(randPicker));
-        }
-        return output.toString();
-    }
+	/**
+	 * Method shuffle.
+	 * 
+	 * @param input
+	 *            String
+	 * @return String
+	 */
+	public static String shuffle(final String input) {
+		final List<Character> characters = new ArrayList<Character>();
+		for (final char c : input.toCharArray()) {
+			characters.add(c);
+		}
+		final StringBuilder output = new StringBuilder(input.length());
+		while (characters.size() != 0) {
+			final int randPicker = (int) (Math.random() * characters.size());
+			output.append(characters.remove(randPicker));
+		}
+		return output.toString();
+	}
 }

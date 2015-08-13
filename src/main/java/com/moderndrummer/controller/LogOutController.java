@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller("logOutController")
-//@RequestMapping("/logout")
 public class LogOutController {
 
   @RequestMapping(value="/logout",method=RequestMethod.POST)

@@ -57,8 +57,6 @@ public class BlogController {
 
 	private Member loggedMember = new Member();
 
-	// @Autowired
-	// private JSTabsComponent jsTabsComponent;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getBlogs(Model model, HttpServletRequest request) {
@@ -71,9 +69,6 @@ public class BlogController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	// public String postBlog( @Valid @ModelAttribute("blogMember") Member
-	// loginMember, BindingResult result, ModelMap model, HttpServletRequest
-	// request ){
 	public String postBlog(@Valid BlogsViewHandler blogsViewHandler, BindingResult result, ModelMap model,
 			HttpServletRequest request) {
 		try {
@@ -99,15 +94,11 @@ public class BlogController {
 	private Memberblogpost /*Memberpostcomment*/ postBlogComment(ModelMap model, Map<String, String> mapData) throws EntityParseException {
 		int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
 		 if(selectedBlogId > 0){
-		 //  postComment(request, response, loggedUser, parameters, selectedBlogId);
 			 Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData,loggedMember,selectedBlogId);
 		     Memberblogpost post  = blogsDao.findBlogPostById(selectedBlogId);
-		     //post.addBlogPostComment(comment);
 		     comment.setBlogPost(post);
 		     post.addMemberBlogPostComment(comment);
-		     
 		     Memberblogpost updated =  blogsDao.update(post);
-		     //return updated.getMemberBlogPostComments().
 		     return updated;
 		 }
 		 else{

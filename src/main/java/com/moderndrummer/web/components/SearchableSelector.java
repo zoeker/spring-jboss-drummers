@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.moderndrummer.model.Topic;
 import com.moderndrummer.validators.StringUtilValidator;
+
 /***
  * 
  * @author conpem 2015-08-03

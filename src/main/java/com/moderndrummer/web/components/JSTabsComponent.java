@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.moderndrummer.data.BlogsDao;
 
-
 /***
  * 
  * @author conpem 2015-08-03
@@ -20,14 +19,13 @@ public class JSTabsComponent {
 
 	@Autowired
 	ImageSelector imageSelector;
-	
+
 	@Autowired
 	BlogsDao blogsDao;
-	
+
 	@Autowired
 	MemberBlogTableFacade diverBlogTableFacade;
-	
-	
+
 	public String buildJSTabs() {
 		return buildJSTabs(false);
 	}
@@ -49,8 +47,7 @@ public class JSTabsComponent {
 		builder.append("<input type=hidden name=\"" + "selectedBlogId" + "\" id=\"" + "selectedBlogId" + "\" />");
 		// builder.append(
 		builder.append(diverBlogTableFacade.printDiverBlogPostAsTableDiv(blogsDao.getAllBlogPosts()));
-		
-		
+
 		builder.append("</div>");// editor
 		builder.append("</div>"); // end tabs1-editor
 
@@ -61,7 +58,7 @@ public class JSTabsComponent {
 		builder.append("<div class=\"containerDiv display-blogpost\" style=\"width:95%;\">");
 
 		builder.append("</div>");
-		
+
 		builder.append("<div class=\"containerDiv display-comments\" style=\"width:95%;\">");
 
 		builder.append("</div>");
@@ -73,29 +70,31 @@ public class JSTabsComponent {
 		builder.append("<div id=\"tabs1-addblogs\" style=\"width:100%;\">");
 		builder.append("<div class=statistics style=\"width:100%;\">");
 		builder.append("<h3 class=\"ft-myriad-14\">Add your blog</h3>");
-	
+
 		builder.append("<div class=\"containerDiv\">");
 
 		builder.append(
 				"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11\">Topic: </div><div class=\"cellDiv ft-myriad-11\">");
 		builder.append(topicSearchableSelector.buildSelectorAllTopics("selecttopic",
-				"inputhandler-classic-rnd m-2-imp w-70-imp",useViewHandler));
+				"inputhandler-classic-rnd m-2-imp w-70-imp", useViewHandler));
 		builder.append("</div></div>");
-		
-		if(useViewHandler){
-			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog title:</div><div class=\"cellDiv ft-myriad-11\"><form:input type=\"text\" path=\"memberBlogPost.blogPostTitle\"  name=\"blogtitle\" id=\"blogtitle\" cssClass=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></div></div>");
+
+		if (useViewHandler) {
+			builder.append(
+					"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog title:</div><div class=\"cellDiv ft-myriad-11\"><form:input type=\"text\" path=\"memberBlogPost.blogPostTitle\"  name=\"blogtitle\" id=\"blogtitle\" cssClass=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></div></div>");
+		} else {
+			builder.append(
+					"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog title:</div><div class=\"cellDiv ft-myriad-11\"><input type=\"text\" name=\"blogtitle\" id=\"blogtitle\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></div></div>");
 		}
-		else{
-			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog title:</div><div class=\"cellDiv ft-myriad-11\"><input type=\"text\" name=\"blogtitle\" id=\"blogtitle\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></div></div>");
+
+		if (useViewHandler) {
+			builder.append(
+					"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><form:textarea rows=\"10\" cols=\"40\" path=\"memberBlogPost.blogPostBody\"  name=\"blogpostbody\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></form:textarea></div></div>");
+		} else {
+			builder.append(
+					"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogpostbody\" id=\"blogpostbody\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></textarea></div></div>");
 		}
-		
-		if(useViewHandler){
-			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><form:textarea rows=\"10\" cols=\"40\" path=\"memberBlogPost.blogPostBody\"  name=\"blogpostbody\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></form:textarea></div></div>");
-		}
-		else{
-			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Blog comments:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogpostbody\" id=\"blogpostbody\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\" ></textarea></div></div>");
-    	}
-	
+
 		builder.append(imageSelector.buildImageSelectorWithRow());
 
 		setSubmitButtonRow(builder, WebComponentsConstants.POST);
@@ -105,25 +104,25 @@ public class JSTabsComponent {
 		builder.append("</div>");// editor
 		builder.append("</div>"); // end tabs1-editor
 		/****/
-		
+
 		builder.append("<div id=\"tabs1-addblogcomments\" style=\"width:100%;\">");
-	    builder.append("<div class=statistics style=\"width:100%;\">");
-	    builder.append("<h3 class=\"ft-myriad-14\">Add comment</h3>");
-	    
-	    builder.append("<div class=\"containerDiv postdisplay-comments\">");
-	    builder.append("</div>");
-	    
-	    builder.append("<div class=\"containerDiv\">");
-	    builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Add comment:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogcomments\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></textarea></div></div>");
-	    setSubmitButtonRow( builder, WebComponentsConstants.POST_COMMENT);
-	    builder.append("</div>");
-	    
-	    builder.append("</div>");// editor
-	    builder.append("</div>"); // end tabs1-editor
-		
-		
-	    builder.append("</div>");// end jstabs
-		
+		builder.append("<div class=statistics style=\"width:100%;\">");
+		builder.append("<h3 class=\"ft-myriad-14\">Add comment</h3>");
+
+		builder.append("<div class=\"containerDiv postdisplay-comments\">");
+		builder.append("</div>");
+
+		builder.append("<div class=\"containerDiv\">");
+		builder.append(
+				"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 w-10-imp\">Add comment:</div><div class=\"cellDiv ft-myriad-11\"><textarea rows=\"10\" cols=\"40\" name=\"blogcomments\" id=\"blogcomments\" class=\"inputhandler-classic-rnd m-2-imp w-70-imp\"></textarea></div></div>");
+		setSubmitButtonRow(builder, WebComponentsConstants.POST_COMMENT);
+		builder.append("</div>");
+
+		builder.append("</div>");// editor
+		builder.append("</div>"); // end tabs1-editor
+
+		builder.append("</div>");// end jstabs
+
 		return builder.toString();
 	}
 
@@ -135,6 +134,5 @@ public class JSTabsComponent {
 						+ post + "\" onclick=\"" + "\">");
 		builder.append("</div></div>");
 	}
-	
-	
+
 }

@@ -29,107 +29,102 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @NamedQueries({
-  @NamedQuery(name = "findMemberByUserNameOrEmail", query = "SELECT m FROM Member m WHERE m.name LIKE ?1 or m.email LIKE ?2")
-  })
+		@NamedQuery(name = "findMemberByUserNameOrEmail", query = "SELECT m FROM Member m WHERE m.name LIKE ?1 or m.email LIKE ?2") })
 
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email") )
 public class Member implements Serializable {
-    /** Default value included to remove warning. Remove or modify at will. **/
-    private static final long serialVersionUID = 1L;
- 
-    @Id
-    @NotNull
-    @Column(name = "MemberId", unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	/** Default value included to remove warning. Remove or modify at will. **/
+	private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
-    @Column(name = "Name")
-    private String name;
+	@Id
+	@NotNull
+	@Column(name = "MemberId", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-    @NotNull
-    @NotEmpty
-    @Email
-    @Column(name = "Email")
-    private String email;
+	@NotNull
+	@Size(min = 1, max = 30)
+	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Column(name = "Name")
+	private String name;
 
-    @Size(min = 8, max = 15)
-    @Digits(fraction = 0, integer = 15)
-    @Column(name = "PhoneNumber")
-    private String phoneNumber;
+	@NotNull
+	@NotEmpty
+	@Email
+	@Column(name = "Email")
+	private String email;
 
-    @NotNull
-    @Size(min = 6, max = 200)
-    @Column(name = "password")
-    private String password;
+	@Size(min = 8, max = 15)
+	@Digits(fraction = 0, integer = 15)
+	@Column(name = "PhoneNumber")
+	private String phoneNumber;
 
-    @Column(name = "CreatedDate")
-    private Timestamp createdDate;
-    
-    @Column(name = "MemberStory")
-    //@Pattern(regexp = "[A-Za-z 0-9,-]*")
-    private String memberStory;
-    
+	@NotNull
+	@Size(min = 6, max = 200)
+	@Column(name = "password")
+	private String password;
 
-   
+	@Column(name = "CreatedDate")
+	private Timestamp createdDate;
 
-    public Long getId() {
-        return id;
-    }
+	@Column(name = "MemberStory")
+	// @Pattern(regexp = "[A-Za-z 0-9,-]*")
+	private String memberStory;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setPassword(final String password) {
-        this.password = password;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setPassword(final String password) {
+		this.password = password;
+	}
 
-    public void setPhoneNumber(final String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public Timestamp getCreatedDate() {
-        return createdDate;
-    }
+	public void setPhoneNumber(final String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setCreatedDate(Timestamp createdDate) {
-        this.createdDate = createdDate;
-    }
-    
-    public String getMemberStory() {
-      return memberStory;
-    }
+	public Timestamp getCreatedDate() {
+		return createdDate;
+	}
 
-    public void setMemberStory(String memberStory) {
-      this.memberStory = memberStory;
-    }
-    
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getMemberStory() {
+		return memberStory;
+	}
+
+	public void setMemberStory(String memberStory) {
+		this.memberStory = memberStory;
+	}
 
 }

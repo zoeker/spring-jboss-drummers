@@ -21,6 +21,7 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.util.ObjectUtil;
 import com.moderndrummer.validators.MemberValidator;
+
 /***
  * 
  * @author conpem 2015-08-03
@@ -30,74 +31,65 @@ import com.moderndrummer.validators.MemberValidator;
 @Controller
 public class PersonalPageController {
 
-  //@Resource
-  //UserService userService;
-  
-  @Autowired
-  private MemberDao memberDao;
-  
-  @Autowired
-  MemberValidator memberValidator;
+	@Autowired
+	private MemberDao memberDao;
 
-  private MessageSource messageSource;
+	@Autowired
+	MemberValidator memberValidator;
 
-  @Autowired
-  public void setMessageSource(MessageSource messageSource) {
-    this.messageSource = messageSource;
-  }
+	private MessageSource messageSource;
 
-  @RequestMapping(value = "/personal", method = RequestMethod.GET)
-  public String displayPersonalPage(
-      @RequestParam(value = "memberId") String memberId, ModelMap model,
-      HttpServletRequest request) {
-    Member member = memberDao.findById(Integer.valueOf(memberId).longValue());
-    model.addAttribute("personalModel", member);
-    model.addAttribute("member", member);
-    model.addAttribute("userName", member.getName());
-    return "personal";
-  }
+	@Autowired
+	public void setMessageSource(MessageSource messageSource) {
+		this.messageSource = messageSource;
+	}
 
+	@RequestMapping(value = "/personal", method = RequestMethod.GET)
+	public String displayPersonalPage(@RequestParam(value = "memberId") String memberId, ModelMap model,
+			HttpServletRequest request) {
+		Member member = memberDao.findById(Integer.valueOf(memberId).longValue());
+		model.addAttribute("personalModel", member);
+		model.addAttribute("member", member);
+		model.addAttribute("userName", member.getName());
+		return "personal";
+	}
 
-  @RequestMapping(value = "/personal", method = RequestMethod.POST)
-  public String updateMember(
-      @Valid @ModelAttribute("personalModel") Member updateMember,
-      BindingResult result, Model model, HttpServletRequest request) {
-    HttpSession session = request.getSession();
-    
-    if (!result.hasErrors()) {
-     try{
-       
-      if(!ObjectUtil.isValidId(updateMember.getId())){
-        updateMember.setId( ((Member) session.getAttribute("loggedUser")).getId());
-      }
-      if(ObjectUtil.nullElements(updateMember.getCreatedDate())){
-        updateMember.setCreatedDate( ((Member) session.getAttribute("loggedUser")).getCreatedDate()  );
-      }
-      
-      if( memberValidator.isUpdatebleMember(updateMember) ){
-        
-        Member updatedMember = memberDao.updateMember(updateMember);//userService.updateMember(updateMember);
-        session.setAttribute("loggedUser" , updatedMember);
-        model.addAttribute("personalModel", updatedMember);
-        
-      }else{
-        throw new ModernDrummerException(ModernDrummerMessages.FIELDS_MISSING);
-      }
-      
-      
-       
-     }catch(ModernDrummerException e){
-       
-       model.addAttribute("personalModel", session.getAttribute("loggedUser"));
-       model.addAttribute("errorMessage", e.getMessage());
-     }
-      
-     // return "redirect:/";
-     return "personal";
-     
-    } else {
-      model.addAttribute("members", session.getAttribute("loggedUser"));
-      return "personal";
-    }
-  }
+	@RequestMapping(value = "/personal", method = RequestMethod.POST)
+	public String updateMember(@Valid @ModelAttribute("personalModel") Member updateMember, BindingResult result,
+			Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+
+		if (!result.hasErrors()) {
+			try {
+
+				if (!ObjectUtil.isValidId(updateMember.getId())) {
+					updateMember.setId(((Member) session.getAttribute("loggedUser")).getId());
+				}
+				if (ObjectUtil.nullElements(updateMember.getCreatedDate())) {
+					updateMember.setCreatedDate(((Member) session.getAttribute("loggedUser")).getCreatedDate());
+				}
+
+				if (memberValidator.isUpdatebleMember(updateMember)) {
+
+					Member updatedMember = memberDao.updateMember(updateMember);// userService.updateMember(updateMember);
+					session.setAttribute("loggedUser", updatedMember);
+					model.addAttribute("personalModel", updatedMember);
+
+				} else {
+					throw new ModernDrummerException(ModernDrummerMessages.FIELDS_MISSING);
+				}
+
+			} catch (ModernDrummerException e) {
+
+				model.addAttribute("personalModel", session.getAttribute("loggedUser"));
+				model.addAttribute("errorMessage", e.getMessage());
+			}
+
+			return "personal";
+
+		} else {
+			model.addAttribute("members", session.getAttribute("loggedUser"));
+			return "personal";
+		}
+	}
 }

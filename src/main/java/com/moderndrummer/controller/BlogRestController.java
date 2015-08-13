@@ -1,6 +1,5 @@
 package com.moderndrummer.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.Set;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.slf4j.Logger;
@@ -26,7 +24,6 @@ import com.moderndrummer.model.Member;
 import com.moderndrummer.model.Memberblogpost;
 import com.moderndrummer.model.Memberblogpostimage;
 import com.moderndrummer.model.Memberpostcomment;
-import com.moderndrummer.rest.converters.JSONConverterHandler;
 import com.moderndrummer.util.DateConverter;
 
 /***
@@ -88,11 +85,8 @@ public class BlogRestController {
 
 			}
 
-			// return JSONConverterHandler.writeToJSON(diverBlogList);
-
 		} catch (RuntimeException e) {
 			log(e);
-			// return ResponseBody.
 		}
 
 		return diverBlogList;

@@ -35,6 +35,7 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.repo.base.BaseJPQLDao;
 import com.moderndrummer.util.ObjectUtil;
+
 /***
  * 
  * @author conpem 2015-08-03
@@ -43,167 +44,117 @@ import com.moderndrummer.util.ObjectUtil;
 
 @Repository
 @Transactional
-public class MemberDaoImpl  extends BaseJPQLDao<Member> implements MemberDao {
-  /*
-    @Autowired
-    private EntityManager em;
+public class MemberDaoImpl extends BaseJPQLDao<Member>implements MemberDao {
 
-    public Member findById(Long id) {
-        return em.find(Member.class, id);
-    }
+	@Override
+	public Member findById(Long id) {
+		return find(id, Member.class);
+	}
 
-    public Member findByEmail(String email) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-        Root<Member> member = criteria.from(Member.class);
+	@Override
+	public Member findByEmail(String email) {
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
+		Root<Member> member = criteria.from(Member.class);
 
-        criteria.select(member).where(cb.equal(member.get("email"), email));
-        return em.createQuery(criteria).getSingleResult();
-    }
+		criteria.select(member).where(builder.equal(member.get("email"), email));
+		return em.createQuery(criteria).getSingleResult();
+	}
 
-    public List<Member> findAllOrderedByName() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-        Root<Member> member = criteria.from(Member.class);
+	@Override
+	public Member findByEmailOrUsername(String userName, String email) {
+		try {
+			Member found = executeNamedQueryByTwoParams(userName.toLowerCase(), email.toLowerCase(),
+					"findMemberByUserNameOrEmail");
+			if (found == null) {
+				throw new NoResultException();
+			}
+			return found;
+		} catch (NoResultException e) {
+			return new Member();
+		}
+	}
 
-        criteria.select(member).orderBy(cb.asc(member.get("name")));
-        return em.createQuery(criteria).getResultList();
-    }
+	@Override
+	public List<Member> findAllOrderedByName() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+		Root<Member> member = criteria.from(Member.class);
 
-    public void register(Member member) {
-        em.persist(member);
-        return;
-    }*/
-  
-  
+		criteria.select(member).orderBy(cb.asc(member.get("name")));
+		return em.createQuery(criteria).getResultList();
+	}
 
+	@Override
+	public boolean isValidUser(String userName, String password) {
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
+		Root<Member> member = criteria.from(Member.class);
 
-  @Override
-  public Member findById(Long id)
-  {
-      return find(id, Member.class);
-  }
+		criteria.select(member).where(builder.equal(member.get("name"), userName))
+				.where(builder.equal(member.get("password"), password));
+		try {
 
-  @Override
-  public Member findByEmail(String email)
-  {
-      CriteriaBuilder builder = em.getCriteriaBuilder();
-      CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
-      Root<Member> member = criteria.from(Member.class);
+			Member validMember = em.createQuery(criteria).setMaxResults(1).getSingleResult();
+			return ObjectUtil.verifyMemberExists(validMember);
 
-  
-      criteria.select(member).where(builder.equal(member.get("email"), email));
-      return em.createQuery(criteria).getSingleResult();
-  }
-  
-  @Override
-  public Member findByEmailOrUsername(String userName, String email)
-  {
-     try{
-      Member found = executeNamedQueryByTwoParams(userName.toLowerCase(), email.toLowerCase(), "findMemberByUserNameOrEmail");
-      if(found== null){
-        throw new NoResultException();
-      }
-      return found;
-     }catch(NoResultException e){
-        return new Member();
-     }
-  }
+		} catch (NoResultException e) {
+			return false;
+		}
 
-  @Override
-  public List<Member> findAllOrderedByName()
-  {
-      CriteriaBuilder cb = em.getCriteriaBuilder();
-      CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-      Root<Member> member = criteria.from(Member.class);
+	}
 
-   
+	@Override
+	public List<Member> findAllCreatedMembersByFromAndToDate(Date fromDate, Date toDate) {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+		Root<Member> member = criteria.from(Member.class);
+		Path<Date> dateCreatedPath = member.get("createdDate");
+		List<Predicate> predicates = new ArrayList<Predicate>();
+		predicates.add(cb.lessThanOrEqualTo(dateCreatedPath, toDate));
+		predicates.add(cb.greaterThanOrEqualTo(dateCreatedPath, fromDate));
+		criteria.where(predicates.toArray(new Predicate[predicates.size()]));
+		criteria.select(member).orderBy(cb.asc(member.get("name")));
+		return em.createQuery(criteria).getResultList();
+	}
 
-      criteria.select(member).orderBy(cb.asc(member.get("name")));
-      return em.createQuery(criteria).getResultList();
-  }
-  
-  
-  @Override
-  public boolean isValidUser(String userName, String password)
-  {
-      CriteriaBuilder builder = em.getCriteriaBuilder();
-      CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
-      Root<Member> member = criteria.from(Member.class);
-      
-   
-      criteria.select(member).where(builder.equal(member.get("name"), userName)).where(builder.equal(member.get("password"), password));
-      try{
-        
-        Member validMember = em.createQuery(criteria).setMaxResults(1).getSingleResult();
-        return ObjectUtil.verifyMemberExists(validMember);
-        
-      }catch(NoResultException e){
-          return false;
-      }
-      
-     
-      
-  }
-  
-  
-  @Override
-  public List<Member> findAllCreatedMembersByFromAndToDate(Date fromDate, Date toDate)
-  {
-      CriteriaBuilder cb = em.getCriteriaBuilder();
-      CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-      Root<Member> member = criteria.from(Member.class);
-      Path<Date> dateCreatedPath = member.get("createdDate");
-      List<Predicate> predicates = new ArrayList<Predicate>();
-      predicates.add(cb.lessThanOrEqualTo(dateCreatedPath, toDate));
-      predicates.add(cb.greaterThanOrEqualTo(dateCreatedPath, fromDate));
-      criteria.where(predicates.toArray(new Predicate[predicates.size()]));
-      criteria.select(member).orderBy(cb.asc(member.get("name")));
-      return em.createQuery(criteria).getResultList();
-  }
+	@Override
+	public Member register(Member member) throws ModernDrummerException {
+		try {
+			return (Member) insert(member, Member.class);
+		} catch (Exception e) {
+			throw new ModernDrummerException(ModernDrummerMessages.INSERT_FAILURE + " " + " Member ");
+		}
 
-  @Override
-  public Member register(Member member) throws ModernDrummerException
-  {
-    try{
-      return (Member) insert(member, Member.class);
-    }catch(Exception e){
-      throw new ModernDrummerException(ModernDrummerMessages.INSERT_FAILURE + " " + " Member ");
-    }
-      
-  }
-  
-  @Override
-  public Member updateMember(Member member) throws ModernDrummerException
-  {
-    try{
-      
-      return update(member, false, Member.class);
-    
-    }catch(Exception e){
-      throw new ModernDrummerException(ModernDrummerMessages.UPDATE_FAILURE + " " + " Member ");
-    }
-   
-    
-  }
-  
-  @Override
-  public Member findMemberByUserName(String userName){
-      try{
-          
-          CriteriaBuilder builder = em.getCriteriaBuilder();
-          CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
-          Root<Member> member = criteria.from(Member.class);
+	}
 
-      
-          criteria.select(member).where(builder.equal(member.get("name"), userName));
-          return em.createQuery(criteria).getSingleResult();
-          
-          
-      }catch(NoResultException e){
-          
-          return new Member();
-      }
-     
-  }
+	@Override
+	public Member updateMember(Member member) throws ModernDrummerException {
+		try {
+
+			return update(member, false, Member.class);
+
+		} catch (Exception e) {
+			throw new ModernDrummerException(ModernDrummerMessages.UPDATE_FAILURE + " " + " Member ");
+		}
+
+	}
+
+	@Override
+	public Member findMemberByUserName(String userName) {
+		try {
+
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
+			Root<Member> member = criteria.from(Member.class);
+
+			criteria.select(member).where(builder.equal(member.get("name"), userName));
+			return em.createQuery(criteria).getSingleResult();
+
+		} catch (NoResultException e) {
+
+			return new Member();
+		}
+
+	}
 }

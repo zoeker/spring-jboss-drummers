@@ -37,78 +37,77 @@ import com.moderndrummer.entity.transformers.DateAdapter;
 @NamedQuery(name = "Memberpostcomment.findAll", query = "SELECT m FROM Memberpostcomment m")
 @SequenceGenerator(name = "sq_memberpostcomment", sequenceName = "sq_memberpostcomment", initialValue = 1)
 public class Memberpostcomment implements Serializable {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int commentId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int commentId;
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-  @JoinColumn(name = "BlogPostId", nullable = false, insertable = true, updatable = true)
-  private Memberblogpost blogPost;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "BlogPostId", nullable = false, insertable = true, updatable = true)
+	private Memberblogpost blogPost;
 
-  
+	@Column(name = "CommentBody", nullable = false)
+	private String commentBody = "";
 
-  @Column(name = "CommentBody",nullable = false)
-  private String commentBody = "";
+	@XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DatePosted")
+	private Date datePosted = new Date(System.currentTimeMillis());
 
-  @XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "DatePosted")
-  private Date datePosted = new Date(System.currentTimeMillis());
+	@OneToOne
+	@JoinColumn(name = "MemberId", nullable = false)
+	private Member member;
 
-  @OneToOne
-  @JoinColumn(name = "MemberId", nullable = false)
-  private Member member;
+	public Memberpostcomment() {
+	}
 
-  public Memberpostcomment() {}
+	public int getCommentId() {
+		return this.commentId;
+	}
 
-  public int getCommentId() {
-    return this.commentId;
-  }
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
+	}
 
-  public void setCommentId(int commentId) {
-    this.commentId = commentId;
-  }
+	public Memberblogpost getBlogPostId() {
+		return this.blogPost;
+	}
 
-  public Memberblogpost getBlogPostId() {
-    return this.blogPost;
-  }
+	public void setBlogPostId(Memberblogpost blogPost) {
+		this.blogPost = blogPost;
+	}
 
-  public void setBlogPostId(Memberblogpost blogPost) {
-    this.blogPost = blogPost;
-  }
+	public String getCommentBody() {
+		return this.commentBody;
+	}
 
-  public String getCommentBody() {
-    return this.commentBody;
-  }
+	public void setCommentBody(String commentBody) {
+		this.commentBody = commentBody;
+	}
 
-  public void setCommentBody(String commentBody) {
-    this.commentBody = commentBody;
-  }
+	public Date getDatePosted() {
+		return this.datePosted;
+	}
 
-  public Date getDatePosted() {
-    return this.datePosted;
-  }
+	public void setDatePosted(Date datePosted) {
+		this.datePosted = datePosted;
+	}
 
-  public void setDatePosted(Date datePosted) {
-    this.datePosted = datePosted;
-  }
+	public Member getMember() {
+		return this.member;
+	}
 
-  public Member getMember() {
-    return this.member;
-  }
+	public void setMember(Member member) {
+		this.member = member;
+	}
 
-  public void setMember(Member member) {
-    this.member = member;
-  }
-  
-  public Memberblogpost getBlogPost() {
-    return blogPost;
-  }
+	public Memberblogpost getBlogPost() {
+		return blogPost;
+	}
 
-  public void setBlogPost(Memberblogpost blogPost) {
-    this.blogPost = blogPost;
-  }
+	public void setBlogPost(Memberblogpost blogPost) {
+		this.blogPost = blogPost;
+	}
 
 }

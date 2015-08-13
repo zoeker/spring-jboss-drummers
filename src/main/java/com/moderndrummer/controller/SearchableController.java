@@ -30,9 +30,6 @@ import com.moderndrummer.searchdomain.SearchModel;
  * 
  */
 @Controller
-// @RequestMapping(value="/searchable")
-//@RequestMapping("/")
-//@RequestMapping(value = "/search")
 public class SearchableController {
 
     @Autowired
