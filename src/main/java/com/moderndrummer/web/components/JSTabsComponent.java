@@ -127,11 +127,13 @@ public class JSTabsComponent {
 	}
 
 	private void setSubmitButtonRow(final StringBuilder builder, String post) {
-		builder.append(
-				"<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 pad-b-5 w-10-imp\"></div><div class=\"cellDiv ft-myriad-11 pad-b-5 w-10-imp\">");
-		builder.append(
-				"<INPUT TYPE=\"SUBMIT\" class=\"styled-button f-r-m-13\" NAME=\"submitInsertForm\" id=\"submitInsertForm\" VALUE=\""
-						+ post + "\" onclick=\"" + "\">");
+		if(post.equals(WebComponentsConstants.POST_COMMENT)){
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 pad-b-5 w-10-imp\"></div><div class=\"cellDiv ft-myriad-11 pad-b-5 w-10-imp p-40-left\">");
+		}
+		else{
+			builder.append("<div class=\"rowDiv\"><div class=\"cellDiv ft-myriad-11 pad-b-5 w-10-imp\"></div><div class=\"cellDiv ft-myriad-11 pad-b-5 w-10-imp p-40-left\">");
+		}
+		builder.append("<INPUT TYPE=\"SUBMIT\" class=\"styled-button f-r-m-13\" NAME=\"submitInsertForm\" id=\"submitInsertForm\" VALUE=\"" + post + "\" onclick=\"" + "\">");
 		builder.append("</div></div>");
 	}
 

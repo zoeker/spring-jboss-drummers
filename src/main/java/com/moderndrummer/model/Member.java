@@ -44,13 +44,14 @@ public class Member implements Serializable {
 
 	@NotNull
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z 0-9]*", message = "must contain only letters numbers and spaces")
 	@Column(name = "Name")
 	private String name;
 
 	@NotNull
 	@NotEmpty
 	@Email
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})")
 	@Column(name = "Email")
 	private String email;
 
@@ -61,7 +62,7 @@ public class Member implements Serializable {
 
 	@NotNull
 	@Size(min = 6, max = 200)
-	@Column(name = "password")
+	@Column(name = "Password")
 	private String password;
 
 	@Column(name = "CreatedDate")

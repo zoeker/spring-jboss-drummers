@@ -401,3 +401,11 @@ h7.font-layout {
 	font-size: 14px;
 	font-weight: normal;
 }
+
+.p-35-left{
+	  padding-left: 35%;
+}
+
+.p-40-left{
+	  padding-left: 40%;
+}
