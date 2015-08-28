@@ -28,14 +28,15 @@ import com.moderndrummer.model.Memberblogpostimage;
 import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.presentationmanagers.BlogPresentationManager;
 import com.moderndrummer.requesthandler.FileItemRequestHandler;
+import com.moderndrummer.util.ObjectUtil;
 import com.moderndrummer.viewhandlers.BlogsViewHandler;
 import com.moderndrummer.web.components.WebComponentsConstants;
+
 /***
  * 
  * @author conpem 2015-08-03
  *
  */
-
 
 @Controller("blogController")
 @RequestMapping(value = "/blogs")
@@ -57,15 +58,21 @@ public class BlogController {
 
 	private Member loggedMember = new Member();
 
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String getBlogs(Model model, HttpServletRequest request) {
-		model.addAttribute("blogPost", new Memberblogpost());
-		model.addAttribute("postComment", new Memberpostcomment());
-		loggedMember = (Member) request.getSession().getAttribute("loggedUser");
-		model.addAttribute("loggedMember", loggedMember);
+		Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+		if (ObjectUtil.verifyMemberExists(loggedMember)) {
 
-		return "blogs";
+			model.addAttribute("blogPost", new Memberblogpost());
+			model.addAttribute("postComment", new Memberpostcomment());
+			loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+			model.addAttribute("loggedMember", loggedMember);
+
+			return "blogs";
+
+		} else {
+			return "redirect:login";
+		}
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -79,11 +86,11 @@ public class BlogController {
 				model.addAttribute("blogPost", inserted);
 			} else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
 				// Memberpostcomment inserted = postBlogComment(model, mapData);
-				 Memberblogpost inserted = postBlogComment(model, mapData);
-				 //model.addAttribute("postComment", inserted );
-				 model.addAttribute("blogPost", inserted);
+				Memberblogpost inserted = postBlogComment(model, mapData);
+				// model.addAttribute("postComment", inserted );
+				model.addAttribute("blogPost", inserted);
 			}
-			
+
 		} catch (EntityParseException | BlogJPAException e) {
 			LOGGER.error("error post request blog controller", e);
 			model.addAttribute("errorMessage", "failed to insert blog");
@@ -91,19 +98,20 @@ public class BlogController {
 		return "blogs";
 	}
 
-	private Memberblogpost /*Memberpostcomment*/ postBlogComment(ModelMap model, Map<String, String> mapData) throws EntityParseException {
+	private Memberblogpost /* Memberpostcomment */ postBlogComment(ModelMap model, Map<String, String> mapData)
+			throws EntityParseException {
 		int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
-		 if(selectedBlogId > 0){
-			 Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData,loggedMember,selectedBlogId);
-		     Memberblogpost post  = blogsDao.findBlogPostById(selectedBlogId);
-		     comment.setBlogPost(post);
-		     post.addMemberBlogPostComment(comment);
-		     Memberblogpost updated =  blogsDao.update(post);
-		     return updated;
-		 }
-		 else{
-		   throw new ModernDrummerException("Choose blog to post comment on");
-		 }
+		if (selectedBlogId > 0) {
+			Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData, loggedMember,
+					selectedBlogId);
+			Memberblogpost post = blogsDao.findBlogPostById(selectedBlogId);
+			comment.setBlogPost(post);
+			post.addMemberBlogPostComment(comment);
+			Memberblogpost updated = blogsDao.update(post);
+			return updated;
+		} else {
+			throw new ModernDrummerException("Choose blog to post comment on");
+		}
 	}
 
 	private Memberblogpost postBlog(Map<String, String> mapData) throws EntityParseException {

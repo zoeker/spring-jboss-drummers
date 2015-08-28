@@ -24,7 +24,7 @@ public class JSTabsComponent {
 	BlogsDao blogsDao;
 
 	@Autowired
-	MemberBlogTableFacade diverBlogTableFacade;
+	MemberBlogTableFacade memberBlogTableFacade;
 
 	public String buildJSTabs() {
 		return buildJSTabs(false);
@@ -46,7 +46,7 @@ public class JSTabsComponent {
 		builder.append("<h3 class=\"ft-myriad-14\">Latest blogs</h3>");
 		builder.append("<input type=hidden name=\"" + "selectedBlogId" + "\" id=\"" + "selectedBlogId" + "\" />");
 		// builder.append(
-		builder.append(diverBlogTableFacade.printDiverBlogPostAsTableDiv(blogsDao.getAllBlogPosts()));
+		builder.append(memberBlogTableFacade.printMemberBlogPostAsTableDiv(blogsDao.getAllBlogPosts()));
 
 		builder.append("</div>");// editor
 		builder.append("</div>"); // end tabs1-editor

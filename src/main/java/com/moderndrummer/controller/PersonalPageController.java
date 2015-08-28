@@ -45,13 +45,20 @@ public class PersonalPageController {
 	}
 
 	@RequestMapping(value = "/personal", method = RequestMethod.GET)
-	public String displayPersonalPage(@RequestParam(value = "memberId") String memberId, ModelMap model,
-			HttpServletRequest request) {
-		Member member = memberDao.findById(Integer.valueOf(memberId).longValue());
-		model.addAttribute("personalModel", member);
-		model.addAttribute("member", member);
-		model.addAttribute("userName", member.getName());
-		return "personal";
+	public String displayPersonalPage(ModelMap model,HttpServletRequest request) {
+			Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+			if(ObjectUtil.verifyMemberExists(loggedMember)){
+				Member member = memberDao.findById(loggedMember.getId());
+				model.addAttribute("personalModel", member);
+				model.addAttribute("member", member);
+				model.addAttribute("userName", member.getName());
+				return "personal";
+			}
+			else{
+				return "redirect:login";
+			}
+	
+		
 	}
 
 	@RequestMapping(value = "/personal", method = RequestMethod.POST)

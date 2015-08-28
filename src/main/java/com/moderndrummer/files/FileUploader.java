@@ -103,7 +103,7 @@ public class FileUploader {
 					}
 
 					if (!graphics.isEmpty()) {
-						setDiverBlogGraphics(graphics);
+						setMemberBlogGraphics(graphics);
 					}
 				}
 
@@ -170,7 +170,7 @@ public class FileUploader {
 		return graphics;
 	}
 
-	public void setDiverBlogGraphics(final List<Memberblogpostimage> graphics) {
+	public void setMemberBlogGraphics(final List<Memberblogpostimage> graphics) {
 		synchronized (memberBlogGraphics) {
 			if (!memberBlogGraphics.isEmpty()) {
 				memberBlogGraphics.clear();
@@ -182,7 +182,7 @@ public class FileUploader {
 
 	}
 
-	public synchronized void emptyDiverBlogImages() {
+	public synchronized void emptyMemberBlogImages() {
 		this.memberBlogGraphics.clear();
 	}
 

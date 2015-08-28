@@ -149,12 +149,12 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao
       throws BlogJPAException {
 
     try {
-      List<Memberblogpostimage> images = executeNamedQueryByOneParamReturnList(blogPost.getBlogPostId(), "Diverblogpost.findAllImagesById",Memberblogpostimage.class);
+      List<Memberblogpostimage> images = executeNamedQueryByOneParamReturnList(blogPost.getBlogPostId(), "Memberblogpost.findAllImagesById",Memberblogpostimage.class);
       for(Memberblogpostimage i : images){
         em.remove(i);
       }
       
-      List<Memberpostcomment> comments = executeNamedQueryByOneParamReturnList(blogPost.getBlogPostId(), "Diverblogpost.findAllCommentsById", Memberpostcomment.class);
+      List<Memberpostcomment> comments = executeNamedQueryByOneParamReturnList(blogPost.getBlogPostId(), "Memberblogpost.findAllCommentsById", Memberpostcomment.class);
       for(Memberpostcomment c : comments){
         em.remove(c);
       }

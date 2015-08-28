@@ -21,19 +21,19 @@ import com.moderndrummer.util.DateConverter;
 @Component("memberBlogTableFacade")
 public class MemberBlogTableFacade {
 
-	public String printDiverBlogPost(Memberblogpost memberBlogPost) {
+	public String printMemberBlogPost(Memberblogpost memberBlogPost) {
 		StringBuilder builder = new StringBuilder();
 		printRowDiv(builder, "Title: ", memberBlogPost.getBlogPostTitle());
 		printRowDiv(builder, "Message: ", memberBlogPost.getBlogPostBody());
 		printRowDiv(builder, "Posted date: ", DateConverter.getDateTimeFormat(memberBlogPost.getDatePosted()));
 		Member member = memberBlogPost.getMember();
 		printRowDiv(builder, "Posted by: ", member.getName());
-		builder.append(printDiverBlogImages(memberBlogPost, WebComponentsParameters.DESTINATION_DIR_PATH));
+		builder.append(printMemberBlogImages(memberBlogPost, WebComponentsParameters.DESTINATION_DIR_PATH));
 
 		return builder.toString();
 	}
 
-	public String printDiverBlogPostComment(Memberpostcomment comment) {
+	public String printMemberBlogPostComment(Memberpostcomment comment) {
 		StringBuilder builder = new StringBuilder();
 		printRowDiv(builder, "Message: ", comment.getCommentBody());
 		printRowDiv(builder, "Commented date: ", DateConverter.getDateTimeFormat(comment.getDatePosted()));
@@ -41,7 +41,7 @@ public class MemberBlogTableFacade {
 		printRowDiv(builder, "Commented by: ", member.getName());
 		Member memberComment = comment.getBlogPost().getMember();
 		printRowDiv(builder, "Commented on Post: ", " by " + memberComment.getName());
-		builder.append(printDiverBlogPost(comment.getBlogPost()));
+		builder.append(printMemberBlogPost(comment.getBlogPost()));
 
 		return builder.toString();
 	}
@@ -60,7 +60,7 @@ public class MemberBlogTableFacade {
 
 	}
 
-	public String printDiverBlogPostAsTableDiv(Collection<Memberblogpost> memberBlogPosts) {
+	public String printMemberBlogPostAsTableDiv(Collection<Memberblogpost> memberBlogPosts) {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("<div class=\"containerDiv\" style=\"width:95%;\">");
@@ -86,13 +86,13 @@ public class MemberBlogTableFacade {
 		return builder.toString();
 	}
 
-	private void printColumnCheckBox(StringBuilder builder, Memberblogpost diverBlogPost) {
+	private void printColumnCheckBox(StringBuilder builder, Memberblogpost memberBlogPost) {
 		builder.append(WebComponentsConstants.CELL_DIV + "<input type=\"checkbox\" id=\"blogpost_"
-				+ diverBlogPost.getBlogPostId() + "\"  name=\"memberBlogGroup\" class=fl-mrg-5-left value=\""
-				+ diverBlogPost.getBlogPostId() + "\" />" + WebComponentsConstants.END_DIV);
+				+ memberBlogPost.getBlogPostId() + "\"  name=\"memberBlogGroup\" class=fl-mrg-5-left value=\""
+				+ memberBlogPost.getBlogPostId() + "\" />" + WebComponentsConstants.END_DIV);
 	}
 
-	public String printDiverBlogImages(final Memberblogpost memberBlogPost, final String destinationPath) {
+	public String printMemberBlogImages(final Memberblogpost memberBlogPost, final String destinationPath) {
 		final StringBuilder stringBuilder = new StringBuilder();
 		Set<Memberblogpostimage> images = memberBlogPost.getMemberBlogPostImages();
 		if (!images.isEmpty()) {

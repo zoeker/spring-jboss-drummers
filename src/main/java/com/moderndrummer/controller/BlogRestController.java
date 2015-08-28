@@ -46,12 +46,12 @@ public class BlogRestController {
 	// JSONResponse
 
 	@RequestMapping(value = "/get/json/memberblog/{blogPostId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public @ResponseBody List<Map<String, Object>> getDiverBlogPost(@PathVariable("blogPostId") final int blogPostId) {
+	public @ResponseBody List<Map<String, Object>> getMemberBlogPost(@PathVariable("blogPostId") final int blogPostId) {
 
 		Memberblogpost memberBlogPost = blogsDao.findBlogPostById(blogPostId);
-		Map<String, Object> diverBlogPostMap = new HashMap<String, Object>();
+		Map<String, Object> memberBlogPostMap = new HashMap<String, Object>();
 		List<Map<String, Object>> blogGraphics = new ArrayList<Map<String, Object>>();
-		List<Map<String, Object>> diverBlogList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> memberBlogList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> commentList = new ArrayList<Map<String, Object>>();
 		try {
 
@@ -77,11 +77,11 @@ public class BlogRestController {
 
 				}
 
-				diverBlogPostMap.put("bloginfo", getDiverBlogInfo(memberBlogPost));
-				diverBlogPostMap.put("graphics", blogGraphics);
-				diverBlogPostMap.put("comments", commentList);
+				memberBlogPostMap.put("bloginfo", getMemberBlogInfo(memberBlogPost));
+				memberBlogPostMap.put("graphics", blogGraphics);
+				memberBlogPostMap.put("comments", commentList);
 
-				diverBlogList.add(diverBlogPostMap);
+				memberBlogList.add(memberBlogPostMap);
 
 			}
 
@@ -89,13 +89,13 @@ public class BlogRestController {
 			log(e);
 		}
 
-		return diverBlogList;
+		return memberBlogList;
 
 	}
 
-	private Map<String, Object> getDiverBlogInfo(Memberblogpost memberBlogPost) {
+	private Map<String, Object> getMemberBlogInfo(Memberblogpost memberBlogPost) {
 		final Map<String, Object> data = new HashMap<String, Object>();
-		data.put("diverBlogPostId", memberBlogPost.getBlogPostId());
+		data.put("memberBlogPostId", memberBlogPost.getBlogPostId());
 		data.put("title", memberBlogPost.getBlogPostTitle());
 		data.put("message", memberBlogPost.getBlogPostBody());
 		data.put("postedDate", DateConverter.getDateTimeFormat(memberBlogPost.getDatePosted()));

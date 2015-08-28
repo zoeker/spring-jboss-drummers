@@ -46,65 +46,7 @@ public abstract class BaseJPQLDao<E> {
 	// @Qualifier(value = "em")
 	protected EntityManager em;
 
-	/*
-	 * protected List setParametersAndReturnResult(final Map<String, Object>
-	 * criteriaValues, final Query q) {
-	 * 
-	 * if (criteriaValues.containsKey(AttributeWebConstants.DIVER_SCHOOL)) {
-	 * q.setParameter("diveSchool",
-	 * criteriaValues.get(AttributeWebConstants.DIVER_SCHOOL)); } if
-	 * (criteriaValues.containsKey(AttributeWebConstants.FROM_DATE)) {
-	 * q.setParameter(AttributeWebConstants.FROM_DATE, (Date)
-	 * criteriaValues.get(AttributeWebConstants.FROM_DATE), TemporalType.DATE);
-	 * q.setParameter(AttributeWebConstants.TO_DATE, (Date)
-	 * criteriaValues.get(AttributeWebConstants.TO_DATE), TemporalType.DATE); }
-	 * if (criteriaValues.containsKey(AttributeWebConstants.DIVE_NUMBER)) {
-	 * q.setParameter("diveNumber",
-	 * criteriaValues.get(AttributeWebConstants.DIVE_NUMBER)); } if
-	 * (criteriaValues.containsKey(AttributeWebConstants.DIVE_LOCATION)) {
-	 * q.setParameter("diveLocation",
-	 * criteriaValues.get(AttributeWebConstants.DIVE_LOCATION)); } if
-	 * (criteriaValues.containsKey(AttributeWebConstants.DIVE_SITE)) {
-	 * q.setParameter("diveSite",
-	 * criteriaValues.get(AttributeWebConstants.DIVE_SITE)); } if
-	 * (criteriaValues.containsKey(AttributeWebConstants.COUNTRY)) {
-	 * q.setParameter("countryId",
-	 * criteriaValues.get(AttributeWebConstants.COUNTRY)); }
-	 * 
-	 * if (criteriaValues.containsKey(AttributeWebConstants.DIVER)) {
-	 * q.setParameter("diverId",
-	 * criteriaValues.get(AttributeWebConstants.DIVER));
-	 * 
-	 * }
-	 * 
-	 * return q.getResultList();
-	 * 
-	 * }
-	 */
-	/*
-	 * protected List setParametersByEntityTypes(final Map<String, Object>
-	 * criterias, Query q) { if
-	 * (criterias.containsKey(EntityTypes.DIVER.getNameToMap())) {
-	 * q.setParameter("diverId", Integer.valueOf((Integer)
-	 * criterias.get(EntityTypes.DIVER.getNameToMap()))); } if
-	 * (criterias.containsKey(EntityTypes.DIVERSCHOOL.getNameToMap())) {
-	 * q.setParameter("diverSchoolId",
-	 * criterias.get(EntityTypes.DIVER.getNameToMap())); } if
-	 * (criterias.containsKey(EntityTypes.DIVESITE.getNameToMap())) {
-	 * q.setParameter("diveSiteId",
-	 * criterias.get(EntityTypes.DIVESITE.getNameToMap())); } if
-	 * (criterias.containsKey(EntityTypes.DIVELOCATION.getNameToMap())) {
-	 * q.setParameter("diveLocationId",
-	 * criterias.get(EntityTypes.DIVELOCATION.getNameToMap())); } if
-	 * (criterias.containsKey(EntityTypes.COUNTRY.getNameToMap())) {
-	 * q.setParameter("countryId",
-	 * criterias.get(EntityTypes.COUNTRY.getNameToMap())); }
-	 * 
-	 * return q.getResultList();
-	 * 
-	 * }
-	 * 
-	 */
+	
 
 	protected void log(final Exception e) {
 		LOGGER.error(e.getMessage());
