@@ -8,12 +8,11 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import org.springframework.stereotype.Component;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 @Component("fileUploadWriter")
 public class FileUploadWriter {
 

@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.util.ObjectUtil;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
 
 @Component

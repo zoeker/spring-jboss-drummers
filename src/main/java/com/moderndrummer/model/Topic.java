@@ -10,12 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 /**
  * The persistent class for the topic database table.
  * 

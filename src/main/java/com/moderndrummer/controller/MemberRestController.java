@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.moderndrummer.data.MemberDao;
 import com.moderndrummer.model.Member;
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
 
 @Controller

@@ -1,10 +1,9 @@
 package com.moderndrummer.web.components;
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 public class WebComponentsConstants {
     public static final String SEARCH = "Search";
     public static final String ZERO = "0";

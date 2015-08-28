@@ -2,6 +2,7 @@ package com.moderndrummer.exceptions;
 
 /**
  * @author conpem
+ * @realname Conny Pemfors
  * @version $Revision: 1.0 $
  */
 public class ModernDrummerInvalidFormatException extends IllegalArgumentException {

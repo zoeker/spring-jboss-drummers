@@ -21,12 +21,11 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 //import com.drumchops.authentication.DrumChopsRoles;
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "findMemberByUserNameOrEmail", query = "SELECT m FROM Member m WHERE m.name LIKE ?1 or m.email LIKE ?2") })

@@ -4,6 +4,7 @@ import java.text.ParseException;
 
 /**
  * @author conpem
+ * @realname Conny Pemfors
  * @version $Revision: 1.0 $
  */
 public class EntityParseException extends ParseException {

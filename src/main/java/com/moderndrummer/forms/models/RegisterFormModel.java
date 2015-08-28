@@ -2,12 +2,11 @@ package com.moderndrummer.forms.models;
 
 import java.io.Serializable;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 public class RegisterFormModel implements Serializable {
 
 	private String name;

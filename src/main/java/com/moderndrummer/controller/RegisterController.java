@@ -22,13 +22,11 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.util.DateConverter;
 import com.moderndrummer.validators.MemberValidator;
-
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 @Controller("registerController")
 @RequestMapping(value = "/register")
 public class RegisterController {

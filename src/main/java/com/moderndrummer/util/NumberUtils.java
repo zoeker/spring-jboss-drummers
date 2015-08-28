@@ -8,7 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.moderndrummer.ejb.regexp.RegExpExpressions;
-
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
+ */
 public class NumberUtils {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger("errorslog");

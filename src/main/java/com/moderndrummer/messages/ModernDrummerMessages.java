@@ -2,6 +2,7 @@ package com.moderndrummer.messages;
 
 /**
  * @author conpem
+ * @realname Conny Pemfors
  * @version $Revision: 1.0 $
  */
 public class ModernDrummerMessages {

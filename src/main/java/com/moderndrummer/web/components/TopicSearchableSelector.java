@@ -11,12 +11,11 @@ import org.springframework.stereotype.Component;
 import com.moderndrummer.data.TopicDao;
 import com.moderndrummer.model.Topic;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 @Component("topicSearchableSelector")
 public class TopicSearchableSelector extends SearchableSelector<Topic>implements Serializable {
 

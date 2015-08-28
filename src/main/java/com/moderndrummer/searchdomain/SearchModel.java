@@ -6,12 +6,10 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-/***
- * 
- * 
- * 
+/**
  * @author conpem
- *
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
 public class SearchModel implements Serializable {
 

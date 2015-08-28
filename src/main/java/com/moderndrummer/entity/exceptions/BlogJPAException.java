@@ -1,12 +1,11 @@
 package com.moderndrummer.entity.exceptions;
 
 import org.springframework.dao.DataAccessException;
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 public class BlogJPAException extends DataAccessException {
 
   private static final long serialVersionUID = -4744430183523721711L;

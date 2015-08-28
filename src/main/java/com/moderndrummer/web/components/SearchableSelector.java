@@ -8,12 +8,11 @@ import org.springframework.stereotype.Component;
 import com.moderndrummer.model.Topic;
 import com.moderndrummer.validators.StringUtilValidator;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 @Component("searchableSelector")
 public class SearchableSelector<E> implements Serializable {
 

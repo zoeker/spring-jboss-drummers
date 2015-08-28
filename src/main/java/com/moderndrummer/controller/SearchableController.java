@@ -23,11 +23,10 @@ import com.moderndrummer.data.MemberDao;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.searchdomain.SearchModel;
 
-/***
- * 
- * 
+/**
  * @author conpem
- * 
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
 @Controller
 public class SearchableController {

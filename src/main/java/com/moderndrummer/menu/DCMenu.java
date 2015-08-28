@@ -1,10 +1,9 @@
 package com.moderndrummer.menu;
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 public class DCMenu {
 
   public static String buildMenu() {

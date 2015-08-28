@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 import com.moderndrummer.entity.exceptions.EntityParseException;
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
-
 /**
  * @author conpem
+ * @realname Conny Pemfors
  * @version $Revision: 1.0 $
  */
 public class IntegerConverter {

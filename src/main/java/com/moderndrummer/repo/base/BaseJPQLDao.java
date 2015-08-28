@@ -29,12 +29,11 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.repo.base.helpers.JPAResultHelper;
 import com.moderndrummer.util.ObjectUtil;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 public abstract class BaseJPQLDao<E> {
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger("drumchops-errorslog");

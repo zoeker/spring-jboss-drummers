@@ -1,7 +1,7 @@
 package com.moderndrummer.entity.exceptions;
-
 /**
  * @author conpem
+ * @realname Conny Pemfors
  * @version $Revision: 1.0 $
  */
 public class ModernDrummerException extends RuntimeException {

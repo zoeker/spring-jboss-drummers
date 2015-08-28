@@ -32,10 +32,10 @@ import com.moderndrummer.util.ObjectUtil;
 import com.moderndrummer.viewhandlers.BlogsViewHandler;
 import com.moderndrummer.web.components.WebComponentsConstants;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
 
 @Controller("blogController")

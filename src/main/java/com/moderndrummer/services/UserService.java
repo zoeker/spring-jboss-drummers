@@ -8,9 +8,11 @@ import com.moderndrummer.data.MemberDao;
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.model.Member;
 
-
-//conpem 15 dec 2014
-
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
+ */
 @Service("userService")  
 public class UserService {
     

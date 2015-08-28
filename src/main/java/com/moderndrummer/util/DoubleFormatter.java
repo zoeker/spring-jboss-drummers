@@ -1,7 +1,11 @@
 package com.moderndrummer.util;
 
 import java.text.NumberFormat;
-
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
+ */
 public class DoubleFormatter {
 	private enum NumberFormatKind {
 		Below, Normal, Above

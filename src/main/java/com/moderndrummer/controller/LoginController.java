@@ -17,13 +17,11 @@ import com.moderndrummer.data.MemberDao;
 import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
-// conpem 16 dec 2014
 @Controller("loginController")
 public class LoginController {
 

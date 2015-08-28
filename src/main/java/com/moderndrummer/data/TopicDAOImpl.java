@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.moderndrummer.model.Topic;
 import com.moderndrummer.repo.base.BaseJPQLDao;
 
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
 
 @Repository // ("blogsDao")

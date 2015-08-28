@@ -8,13 +8,11 @@ import org.apache.commons.validator.EmailValidator;
 
 import com.moderndrummer.entity.exceptions.EntityParseException;
 import com.moderndrummer.messages.ModernDrummerMessages;
-
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 public class DCStringUtils {
 
 	protected static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

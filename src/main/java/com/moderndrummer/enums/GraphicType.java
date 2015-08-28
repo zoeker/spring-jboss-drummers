@@ -1,10 +1,9 @@
 package com.moderndrummer.enums;
-/***
- * 
- * @author conpem 2015-08-03
- *
+/**
+ * @author conpem
+ * @realname Conny Pemfors
+ * @version $Revision: 1.0 $
  */
-
 public enum GraphicType {
 
 	BLOG_IMAGE(1,"BlogImage");
