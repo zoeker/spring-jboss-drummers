@@ -56,8 +56,7 @@ public class BlogController {
 	@Autowired
 	private BlogPresentationManager blogPresentationManager;
 
-	private Member loggedMember = new Member();
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getBlogs(Model model, HttpServletRequest request) {
 		Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
@@ -79,17 +78,24 @@ public class BlogController {
 	public String postBlog(@Valid BlogsViewHandler blogsViewHandler, BindingResult result, ModelMap model,
 			HttpServletRequest request) {
 		try {
-			Map<String, String> mapData = fileItemRequestHandler.getRequestParameters(request, GraphicType.BLOG_IMAGE);
-			String btn = mapData.get("submitInsertForm");
-			if (btn != null && btn.equals(WebComponentsConstants.POST)) {
-				Memberblogpost inserted = postBlog(mapData);
-				model.addAttribute("blogPost", inserted);
-			} else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
-				// Memberpostcomment inserted = postBlogComment(model, mapData);
-				Memberblogpost inserted = postBlogComment(model, mapData);
-				// model.addAttribute("postComment", inserted );
-				model.addAttribute("blogPost", inserted);
+			Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+			if (!ObjectUtil.verifyMemberExists(loggedMember)) {
+				return "redirect:login";
 			}
+			else{
+				Map<String, String> mapData = fileItemRequestHandler.getRequestParameters(request, GraphicType.BLOG_IMAGE);
+				String btn = mapData.get("submitInsertForm");
+				if (btn != null && btn.equals(WebComponentsConstants.POST)) {
+					Memberblogpost inserted = postBlog(mapData,loggedMember);
+					model.addAttribute("blogPost", inserted);
+				} else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
+					// Memberpostcomment inserted = postBlogComment(model, mapData);
+					Memberblogpost inserted = postBlogComment(model, mapData,loggedMember);
+					// model.addAttribute("postComment", inserted );
+					model.addAttribute("blogPost", inserted);
+				}
+			}
+			
 
 		} catch (EntityParseException | BlogJPAException e) {
 			LOGGER.error("error post request blog controller", e);
@@ -98,12 +104,11 @@ public class BlogController {
 		return "blogs";
 	}
 
-	private Memberblogpost /* Memberpostcomment */ postBlogComment(ModelMap model, Map<String, String> mapData)
+	private Memberblogpost /* Memberpostcomment */ postBlogComment(ModelMap model, Map<String, String> mapData, Member loggedMember)
 			throws EntityParseException {
 		int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
 		if (selectedBlogId > 0) {
-			Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData, loggedMember,
-					selectedBlogId);
+			Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData, loggedMember,selectedBlogId);
 			Memberblogpost post = blogsDao.findBlogPostById(selectedBlogId);
 			comment.setBlogPost(post);
 			post.addMemberBlogPostComment(comment);
@@ -114,7 +119,7 @@ public class BlogController {
 		}
 	}
 
-	private Memberblogpost postBlog(Map<String, String> mapData) throws EntityParseException {
+	private Memberblogpost postBlog(Map<String, String> mapData, Member loggedMember) throws EntityParseException {
 		List<Memberblogpostimage> images = (List<Memberblogpostimage>) fileItemRequestHandler.getListGraphics();
 		Memberblogpost blogPost = blogPresentationManager.buildEntity(mapData, loggedMember);
 		if (!images.isEmpty()) {

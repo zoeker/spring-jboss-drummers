@@ -84,6 +84,12 @@ function() {
 	            });
 	            jq(blogInfo).appendTo(".display-blogpost");
 	            jq(displayComments).appendTo(".display-comments");
+	          },
+	          cleanFieldsChecked: function(elementId){
+	        	  jq(elementId).prop('checked', false);
+	              jq("input#selectedBlogId").val(0);
+	              jq(".display-blogpost").children().remove();
+	              jq(".display-comments").children().remove();
 	          }
 	          
 	  };
@@ -116,10 +122,7 @@ function() {
 	                      });
 
 	            } else {
-	              jq(elementId).prop('checked', false);
-	              jq("input#selectedBlogId").val(0);
-	              jq(".display-blogpost").children().remove();
-	              jq(".display-comments").children().remove();
+	            	SelectorDataHandler.cleanFieldsChecked(elementId);
 	              
 	            }
 
@@ -144,6 +147,7 @@ function() {
 	      jq("input[name=memberBlogGroup]:checked").each(function() {
 	        if (changeElement.attr("id") !== jq(this).attr("id")) {
 	          jq(this).removeAttr('checked');
+	          SelectorDataHandler.cleanFieldsChecked(this);
 	        }
 	 
 	      });
