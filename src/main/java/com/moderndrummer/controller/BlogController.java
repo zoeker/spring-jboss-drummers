@@ -89,9 +89,7 @@ public class BlogController {
 					Memberblogpost inserted = postBlog(mapData,loggedMember);
 					model.addAttribute("blogPost", inserted);
 				} else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
-					// Memberpostcomment inserted = postBlogComment(model, mapData);
 					Memberblogpost inserted = postBlogComment(model, mapData,loggedMember);
-					// model.addAttribute("postComment", inserted );
 					model.addAttribute("blogPost", inserted);
 				}
 			}
