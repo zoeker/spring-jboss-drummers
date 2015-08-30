@@ -20,6 +20,7 @@ import com.moderndrummer.data.BlogsDao;
 import com.moderndrummer.data.MemberDao;
 import com.moderndrummer.entity.exceptions.BlogJPAException;
 import com.moderndrummer.entity.exceptions.EntityParseException;
+import com.moderndrummer.entity.exceptions.InvalidAttributeException;
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.enums.GraphicType;
 import com.moderndrummer.model.Member;
@@ -29,6 +30,7 @@ import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.presentationmanagers.BlogPresentationManager;
 import com.moderndrummer.requesthandler.FileItemRequestHandler;
 import com.moderndrummer.util.ObjectUtil;
+import com.moderndrummer.validators.StringUtilValidator;
 import com.moderndrummer.viewhandlers.BlogsViewHandler;
 import com.moderndrummer.web.components.WebComponentsConstants;
 
@@ -102,19 +104,28 @@ public class BlogController {
 		return "blogs";
 	}
 
-	private Memberblogpost /* Memberpostcomment */ postBlogComment(ModelMap model, Map<String, String> mapData, Member loggedMember)
+	private Memberblogpost  postBlogComment(ModelMap model, Map<String, String> mapData, Member loggedMember)
 			throws EntityParseException {
-		int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
-		if (selectedBlogId > 0) {
-			Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData, loggedMember,selectedBlogId);
-			Memberblogpost post = blogsDao.findBlogPostById(selectedBlogId);
-			comment.setBlogPost(post);
-			post.addMemberBlogPostComment(comment);
-			Memberblogpost updated = blogsDao.update(post);
-			return updated;
-		} else {
-			throw new ModernDrummerException("Choose blog to post comment on");
+		try{
+			if(StringUtilValidator.isEmptyOrNull(mapData.get("selectedBlogId"))){
+				throw new InvalidAttributeException("Choose blog.");
+			}
+			int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
+			if (selectedBlogId > 0) {
+				Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData, loggedMember,selectedBlogId);
+				Memberblogpost post = blogsDao.findBlogPostById(selectedBlogId);
+				comment.setBlogPost(post);
+				post.addMemberBlogPostComment(comment);
+				Memberblogpost updated = blogsDao.update(post);
+				return updated;
+			} else {
+				throw new EntityParseException("Choose blog to post comment on");
+			}
+			
+		}catch(InvalidAttributeException | NumberFormatException e){
+			throw new EntityParseException(e.getMessage());
 		}
+		
 	}
 
 	private Memberblogpost postBlog(Map<String, String> mapData, Member loggedMember) throws EntityParseException {

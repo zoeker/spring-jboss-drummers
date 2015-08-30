@@ -20,3 +20,9 @@
 
 -- You can use this file to load seed data into the database using SQL statements
 insert into MemberBasic (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212')
+INSERT INTO topic VALUES
+(1, 'Topic about drumvideos and drummers', 'Drumvideos'),
+(2, 'Topic about gigs for drummers', 'Gigs'),
+(3, 'Bands looking for drummers', 'Bands'),
+(4, 'Concerts with drummers', 'Concerts'),
+(5, 'Drummers sharing drumlessons', 'Drum lessons');
