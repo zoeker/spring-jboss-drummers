@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Conny Pemfors 2015-09-11
+ * Conny Pemfors 2015-09-13
  * 
  */
 var VideoController = (function() {
@@ -123,16 +123,6 @@ var VideoController = (function() {
 		}
 	};
 
-	/*
-	 * var init = function() { var videoController = new VideoController(false);
-	 * videoController.initVideo();
-	 *  };
-	 * 
-	 * if (document.addEventListener) { window.addEventListener('load', init,
-	 * false);
-	 *  // If IE event model is used } else if (document.attachEvent) {
-	 * window.attachEvent('onload', init); }
-	 */
 	
 	 function  getVideoController() {
 		 var src = 'http://localhost:8080/ModernDrummer/files/brushes.MP4';

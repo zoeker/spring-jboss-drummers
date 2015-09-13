@@ -49,13 +49,7 @@
 
 <link href="<c:url value="/resources/css/videos.css"/>" rel="stylesheet"
 	type="text/css" href="resources/css/videos.css" />
-
-
-<!--<link href="<c:url value="/resources/css/plugins/video/basic-video-styles.css"/>" rel="stylesheet" type="text/css" media="all">-->
 <link href="<c:url value="/resources/css/plugins/video/bigvideo.css"/>" rel="stylesheet" type="text/css" media="all">
-
-
-<!--<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>-->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
   
