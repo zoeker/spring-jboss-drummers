@@ -17,6 +17,23 @@ input.inputhandler-classic-rnd, select.inputhandler-classic-rnd,
 
 /*******************************************
 
+images
+
+*******************************************/
+.img-auto {
+    height: auto; 
+    width: auto; 
+    max-width: 700px; 
+    max-height: 700px;
+}
+
+.img-min-w-100 {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+/*******************************************
+
 CSS3 DIV TABLE
 
 *******************************************/
