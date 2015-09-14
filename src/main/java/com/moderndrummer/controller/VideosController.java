@@ -17,14 +17,10 @@
 package com.moderndrummer.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,9 +39,16 @@ import com.moderndrummer.util.ObjectUtil;
 public class VideosController {
 	@Autowired
 	private MemberDao memberDao;
-
+	
+	/***
+	 * #TODO
+	 * 
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String displaySortedMembers(Model model, HttpServletRequest request) {
+	public String displayVideos(Model model, HttpServletRequest request) {
 		Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
 		if (ObjectUtil.verifyMemberExists(loggedMember)) {
 			return "videos";

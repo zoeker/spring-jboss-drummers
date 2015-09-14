@@ -21,7 +21,6 @@ import com.moderndrummer.data.MemberDao;
 import com.moderndrummer.entity.exceptions.BlogJPAException;
 import com.moderndrummer.entity.exceptions.EntityParseException;
 import com.moderndrummer.entity.exceptions.InvalidAttributeException;
-import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.enums.GraphicType;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.model.Memberblogpost;
@@ -129,7 +128,7 @@ public class BlogController {
 	}
 
 	private Memberblogpost postBlog(Map<String, String> mapData, Member loggedMember) throws EntityParseException {
-		List<Memberblogpostimage> images = (List<Memberblogpostimage>) fileItemRequestHandler.getListGraphics();
+		List<Memberblogpostimage> images = fileItemRequestHandler.getListGraphics();
 		Memberblogpost blogPost = blogPresentationManager.buildEntity(mapData, loggedMember);
 		if (!images.isEmpty()) {
 			blogPost.setMemberBlogPostImages(images);
