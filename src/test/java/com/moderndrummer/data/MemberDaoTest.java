@@ -14,41 +14,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.moderndrummer.test;
+package com.moderndrummer.data;
 
 import java.util.List;
 
 import com.moderndrummer.data.MemberDao;
 import com.moderndrummer.model.Member;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml",
-                                   "classpath:/META-INF/spring/applicationContext.xml"})
+@ContextConfiguration(locations = {"file:src/test/resources/application-context-test.xml",
+                                   "file:src/main/resources/META-INF/spring/applicationContext.xml"})
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
+@ActiveProfiles("test")
 public class MemberDaoTest {
+    
     @Autowired
     private MemberDao memberDao;
+    
+    @Before 
+    public void init(){
+        //MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testFindById() {
-        Member member = memberDao.findById(0l);
-
+        List<Member> members = memberDao.findAllOrderedByName();
+        Member member = members.get(0);
         assertEquals("John Smith", member.getName());
         assertEquals("john.smith@mailinator.com", member.getEmail());
         assertEquals("2125551212", member.getPhoneNumber());
-        return;
+        
     }
 
     @Test
@@ -58,7 +67,7 @@ public class MemberDaoTest {
         assertEquals("John Smith", member.getName());
         assertEquals("john.smith@mailinator.com", member.getEmail());
         assertEquals("2125551212", member.getPhoneNumber());
-        return;
+      
     }
 
     @Test
@@ -78,7 +87,7 @@ public class MemberDaoTest {
         assertEquals("Jane Doe", newMember.getName());
         assertEquals("jane.doe@mailinator.com", newMember.getEmail());
         assertEquals("2125552121", newMember.getPhoneNumber());
-        return;
+       
     }
 
     @Test
@@ -96,6 +105,6 @@ public class MemberDaoTest {
         assertEquals("Jane Doe", newMember.getName());
         assertEquals("jane.doe@mailinator.com", newMember.getEmail());
         assertEquals("2125552121", newMember.getPhoneNumber());
-        return;
+       
     }
 }

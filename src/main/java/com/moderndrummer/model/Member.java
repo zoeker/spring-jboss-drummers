@@ -30,7 +30,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @NamedQueries({
 		@NamedQuery(name = "findMemberByUserNameOrEmail", query = "SELECT m FROM Member m WHERE m.name LIKE ?1 or m.email LIKE ?2") })
 
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email") )
+@Table(name="MEMBER",uniqueConstraints = @UniqueConstraint(columnNames = "email") )
 public class Member implements Serializable {
 	/** Default value included to remove warning. Remove or modify at will. **/
 	private static final long serialVersionUID = 1L;
