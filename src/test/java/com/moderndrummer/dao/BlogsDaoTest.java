@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,8 +55,31 @@ public class BlogsDaoTest {
 
     @Test
     public void findBlogPostById_shouldSucceed() {
-        Memberblogpost result = blogsDao.findBlogPostById(1L);
+        //Given
+        Long id = 1L;
+        
+        //when
+      
+        Memberblogpost result = blogsDao.findBlogPostById(id);
+        
+        //Then
+        assertThat(1L).isEqualTo(result.getBlogPostId());
+        assertThat("John Smith").isEqualTo(result.getMember().getName());
+        assertThat("Body").isEqualTo(result.getBlogPostBody());
+        assertThat("Title").isEqualTo(result.getBlogPostTitle());
 
+    }
+    
+    @Test
+    public void getAllBlogPosts_shouldSucceed() {
+        //Given
+        
+        //when
+      
+        Set<Memberblogpost> resultList = blogsDao.getAllBlogPosts();
+        Memberblogpost result = resultList.stream().findFirst().get();
+        
+        //Then
         assertThat(1L).isEqualTo(result.getBlogPostId());
         assertThat("John Smith").isEqualTo(result.getMember().getName());
         assertThat("Body").isEqualTo(result.getBlogPostBody());
