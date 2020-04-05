@@ -3,7 +3,7 @@ package com.moderndrummer.web.components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.moderndrummer.data.BlogsDao;
+import com.moderndrummer.dao.BlogsDao;
 
 /**
  * @author conpem

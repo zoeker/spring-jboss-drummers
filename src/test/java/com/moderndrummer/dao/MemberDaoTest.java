@@ -14,25 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.moderndrummer.data;
+package com.moderndrummer.dao;
+
+import static org.assertj.core.api.Assertions.assertThat;  // main one
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
-
-import com.moderndrummer.data.MemberDao;
-import com.moderndrummer.model.Member;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.moderndrummer.dao.MemberDao;
+import com.moderndrummer.model.Member;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/test/resources/application-context-test.xml",
@@ -54,9 +55,9 @@ public class MemberDaoTest {
     public void testFindById() {
         List<Member> members = memberDao.findAllOrderedByName();
         Member member = members.get(0);
-        assertEquals("John Smith", member.getName());
-        assertEquals("john.smith@mailinator.com", member.getEmail());
-        assertEquals("2125551212", member.getPhoneNumber());
+        assertThat("John Smith").isEqualTo(member.getName());
+        assertThat("john.smith@mailinator.com").isEqualTo(member.getEmail());
+        assertThat("2125551212").isEqualTo(member.getPhoneNumber());
         
     }
 
@@ -64,9 +65,9 @@ public class MemberDaoTest {
     public void testFindByEmail() {
         Member member = memberDao.findByEmail("john.smith@mailinator.com");
 
-        assertEquals("John Smith", member.getName());
-        assertEquals("john.smith@mailinator.com", member.getEmail());
-        assertEquals("2125551212", member.getPhoneNumber());
+        assertThat("John Smith").isEqualTo(member.getName());
+        assertThat("john.smith@mailinator.com").isEqualTo(member.getEmail());
+        assertThat("2125551212").isEqualTo(member.getPhoneNumber());
       
     }
 
@@ -76,7 +77,7 @@ public class MemberDaoTest {
         member.setEmail("jane.doe@mailinator.com");
         member.setName("Jane Doe");
         member.setPhoneNumber("2125552121");
-
+        member.setPassword("12345678");
         memberDao.register(member);
         Long id = member.getId();
         assertNotNull(id);
@@ -84,9 +85,9 @@ public class MemberDaoTest {
         assertEquals(2, memberDao.findAllOrderedByName().size());
         Member newMember = memberDao.findById(id);
 
-        assertEquals("Jane Doe", newMember.getName());
-        assertEquals("jane.doe@mailinator.com", newMember.getEmail());
-        assertEquals("2125552121", newMember.getPhoneNumber());
+        assertThat("Jane Doe").isEqualTo(member.getName());
+        assertThat("jane.doe@mailinator.com").isEqualTo(member.getEmail());
+        assertThat("2125552121").isEqualTo(member.getPhoneNumber());
        
     }
 
@@ -96,15 +97,18 @@ public class MemberDaoTest {
         member.setEmail("jane.doe@mailinator.com");
         member.setName("Jane Doe");
         member.setPhoneNumber("2125552121");
+        member.setPassword("12345678");
+        
         memberDao.register(member);
 
         List<Member> members = memberDao.findAllOrderedByName();
         assertEquals(2, members.size());
         Member newMember = members.get(0);
 
-        assertEquals("Jane Doe", newMember.getName());
-        assertEquals("jane.doe@mailinator.com", newMember.getEmail());
-        assertEquals("2125552121", newMember.getPhoneNumber());
        
+       
+        assertThat("Jane Doe").isEqualTo(member.getName());
+        assertThat("jane.doe@mailinator.com").isEqualTo(member.getEmail());
+        assertThat("2125552121").isEqualTo(member.getPhoneNumber());
     }
 }

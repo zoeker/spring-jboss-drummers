@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.moderndrummer.data.MemberDao;
-import com.moderndrummer.data.TopicDao;
+import com.moderndrummer.dao.MemberDao;
+import com.moderndrummer.dao.TopicDao;
 import com.moderndrummer.entity.exceptions.EntityParseException;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.model.Memberblogpost;

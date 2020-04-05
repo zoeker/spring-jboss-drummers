@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.moderndrummer.data.BlogsDao;
+import com.moderndrummer.dao.BlogsDao;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.model.Memberblogpost;
 import com.moderndrummer.model.Memberblogpostimage;

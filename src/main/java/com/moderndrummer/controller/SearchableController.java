@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.moderndrummer.data.MemberDao;
+import com.moderndrummer.dao.MemberDao;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.searchdomain.SearchModel;
 

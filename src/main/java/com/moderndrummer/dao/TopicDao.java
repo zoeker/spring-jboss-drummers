@@ -1,4 +1,4 @@
-package com.moderndrummer.data;
+package com.moderndrummer.dao;
 
 import java.util.Set;
 

@@ -29,7 +29,7 @@
 	<context:component-scan base-package="com.moderndrummer.requesthandler" />
 	<context:component-scan base-package="com.moderndrummer.presentationmanagers" />
 	
-    <context:component-scan base-package="com.moderndrummer.data" />
+    <context:component-scan base-package="com.moderndrummer.dao" />
 	<!--<context:component-scan base-package="com.moderndrummer.repo" />-->
 	
     <tx:annotation-driven />

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.moderndrummer.data;
+package com.moderndrummer.dao;
 
 import java.util.Date;
 import java.util.List;
