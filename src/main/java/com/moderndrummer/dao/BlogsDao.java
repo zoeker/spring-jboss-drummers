@@ -14,7 +14,7 @@ import com.moderndrummer.model.Memberpostcomment;
  */
 public interface BlogsDao {
 
-	Memberblogpost findBlogPostById(int id);
+	Memberblogpost findBlogPostById(long id);
 
 	Set<Memberblogpost> getAllBlogPosts();
 

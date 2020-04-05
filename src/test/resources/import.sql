@@ -19,4 +19,13 @@
 -- Use only for a proof of concept
 
 -- You can use this file to load seed data into the database using SQL statements
-insert into Member ( name, email, phonenumber,password) values ( 'John Smith', 'john.smith@mailinator.com', '2125551212','john316');
+insert into Member (name, email, phonenumber,password) values (  'John Smith', 'john.smith@mailinator.com', '2125551212','john316');
+
+INSERT INTO TOPIC(TOPICID,TopicDescription,TopicName) VALUES (1, 'Topic about drumvideos and drummers', 'Drumvideos');
+INSERT INTO TOPIC(TOPICID,TopicDescription,TopicName) VALUES (2,'Topic about gigs for drummers', 'Gigs');
+INSERT INTO TOPIC(TOPICID,TopicDescription,TopicName) VALUES (3, 'Bands looking for drummers', 'Bands');
+INSERT INTO TOPIC(TOPICID,TopicDescription,TopicName) VALUES (4,'Concerts with drummers', 'Concerts');
+INSERT INTO TOPIC(TOPICID,TopicDescription,TopicName) VALUES (5, 'Drummers sharing drumlessons', 'Drum lessons');
+
+INSERT INTO memberblogpost(blogPostId,BlogPostBody,BlogPostTitle,MemberAuthorId,TopicId) VALUES(1,'Body','Title',1,2);
+

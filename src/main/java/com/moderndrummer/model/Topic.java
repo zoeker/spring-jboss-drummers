@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * @author conpem
@@ -20,6 +21,7 @@ import javax.persistence.SequenceGenerator;
  * 
  */
 @Entity
+@Table(name="TOPIC")
 @NamedQuery(name = "Topic.findAll", query = "SELECT t FROM Topic t order by t.topicName asc")
 @SequenceGenerator(name = "sq_topic", sequenceName = "sq_topic", initialValue = 1)
 public class Topic implements Serializable {
@@ -27,7 +29,7 @@ public class Topic implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int topicId;
+	private long topicId;
 
 	@Column(name = "TopicDescription")
 	private String topicDescription = "";
@@ -38,7 +40,7 @@ public class Topic implements Serializable {
 	public Topic() {
 	}
 
-	public int getTopicId() {
+	public long getTopicId() {
 		return this.topicId;
 	}
 

@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -34,6 +35,7 @@ import com.moderndrummer.entity.transformers.DateAdapter;
  * 
  */
 @Entity
+@Table(name="MEMBERBLOGPOST")
 @NamedQuery(name = "Memberblogpost.findAll", query = "SELECT m FROM Memberblogpost m order by m.datePosted desc")
 @SequenceGenerator(name = "sq_memberblogpost", sequenceName = "sq_memberblogpost", initialValue = 1)
 public class Memberblogpost implements Serializable {
@@ -41,7 +43,7 @@ public class Memberblogpost implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int blogPostId;
+	private long blogPostId;
 
 	@Column(name = "BlogPostBody")
 	private String blogPostBody = "";
@@ -73,7 +75,7 @@ public class Memberblogpost implements Serializable {
 	public Memberblogpost() {
 	}
 
-	public int getBlogPostId() {
+	public long getBlogPostId() {
 		return this.blogPostId;
 	}
 
