@@ -310,7 +310,14 @@
 				<version>1.4</version>
 			</dependency>
 
-			
+			<!-- OWN dependencies -->
+			<dependency>
+				<groupId>com.conpem.homeprojects</groupId>
+				<artifactId>common</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+
+
 
 			<dependency>
 				<groupId>org.mockito</groupId>
@@ -594,12 +601,18 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		
+
+		<!-- OWN dependencies -->
 		<dependency>
-				<groupId>org.assertj</groupId>
-				<artifactId>assertj-core</artifactId>
-				<scope>test</scope>
-			</dependency>
+			<groupId>com.conpem.homeprojects</groupId>
+			<artifactId>common</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

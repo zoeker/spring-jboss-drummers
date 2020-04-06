@@ -31,15 +31,9 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
 
     @Override
     public Memberblogpost insert(Memberblogpost blogPost) throws BlogJPAException {
-        if (blogPost.getMemberBlogPostImages() == null) {
-            blogPost.setMemberBlogPostImages(new HashSet<Memberblogpostimage>());
-        } else {
-            for (Memberblogpostimage image : blogPost.getMemberBlogPostImages()) {
-                image.setMemberBlogPost(blogPost);
-            }
-        }
+        Set<Memberblogpostimage> images = Optional.ofNullable(blogPost.getMemberBlogPostImages()).filter(list -> list.isEmpty()).isPresent() ?  blogPost.getMemberBlogPostImages() : new HashSet<Memberblogpostimage>() ;
+        images.forEach(image -> image.setMemberBlogPost(blogPost));
         return insertTruly(blogPost);
-
     }
 
     @Override

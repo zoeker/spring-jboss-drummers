@@ -36,6 +36,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.moderndrummer.dao.MemberDao;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.model.Memberblogpost;
+import com.moderndrummer.model.Topic;
+
+import common.conpem.homeprojects.util.DateUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/test/resources/application-context-test.xml",
@@ -47,6 +50,12 @@ public class BlogsDaoTest {
 
     @Autowired
     private BlogsDao blogsDao;
+    
+    @Autowired
+    private TopicDao topicDao;
+    
+    @Autowired
+    private MemberDao memberDao;
 
     @Before
     public void init() {
@@ -69,6 +78,38 @@ public class BlogsDaoTest {
         assertThat("Title").isEqualTo(result.getBlogPostTitle());
 
     }
+    
+    @Test
+    public void insert_shouldSucceed() {
+        //Given
+        String blogPostBody = "something happened in the drumming session";
+        String blogPostTitle = "new drum session";
+      
+        Memberblogpost post = new Memberblogpost();
+        Topic topic = topicDao.findAllTopics().parallelStream().findFirst().get();
+        Member member =  memberDao.findById(1L);
+        
+        //when
+        
+        post.setBlogPostBody(blogPostBody);
+        post.setBlogPostTitle(blogPostTitle);
+        post.setDatePosted(DateUtils.parseToDateTime("2020-01-01 12:12:12"));
+        post.setTopic(topic);
+        post.setMember(member);
+        
+        Memberblogpost result = blogsDao.insert(post);
+         
+        //Then
+        assertThat(2L).isEqualTo(result.getBlogPostId());
+        assertThat("John Smith").isEqualTo(result.getMember().getName());
+        assertThat(blogPostBody).isEqualTo(result.getBlogPostBody());
+        assertThat(blogPostTitle).isEqualTo(result.getBlogPostTitle());
+
+    }
+    
+    
+    
+    
     
     @Test
     public void getAllBlogPosts_shouldSucceed() {

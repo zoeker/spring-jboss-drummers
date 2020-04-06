@@ -31,6 +31,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
+import com.moderndrummer.entity.exceptions.NotFoundException;
 import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.repo.base.BaseJPQLDao;
@@ -152,8 +153,7 @@ public class MemberDaoImpl extends BaseJPQLDao<Member>implements MemberDao {
 			return em.createQuery(criteria).getSingleResult();
 
 		} catch (NoResultException e) {
-
-			return new Member();
+		    throw new NotFoundException("Could not find member");
 		}
 
 	}
