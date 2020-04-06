@@ -45,24 +45,21 @@ public class SearchableController {
     public String displaySearchPage(Model model) {
         model.addAttribute("searchModel", new SearchModel());
         model.addAttribute("members", new LinkedHashSet<Member>());
-         return "searchable";
+        return "searchable";
     }
 
     @InitBinder
     public void initBinder(final WebDataBinder binder) {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(
-                dateFormat, true));
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-    @RequestMapping(value = "/searchable",method = RequestMethod.POST)
-    public String searchMembers(
-            @Valid @ModelAttribute("searchModel") SearchModel searchModel,
-            BindingResult result, Model model) {
+    @RequestMapping(value = "/searchable", method = RequestMethod.POST)
+    public String searchMembers(@Valid @ModelAttribute("searchModel") SearchModel searchModel, BindingResult result,
+            Model model) {
         Date fromDate = searchModel.getFromDate();
         Date toDate = searchModel.getToDate();
-        List<Member> members = memberDao.findAllCreatedMembersByFromAndToDate(
-                fromDate, toDate);
+        List<Member> members = memberDao.findAllCreatedMembersByFromAndToDate(fromDate, toDate);
         if (members.isEmpty()) {
             model.addAttribute("members", new LinkedHashSet<Member>());
         } else {

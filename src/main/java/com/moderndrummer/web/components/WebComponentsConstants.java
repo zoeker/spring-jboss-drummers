@@ -1,4 +1,5 @@
 package com.moderndrummer.web.components;
+
 /**
  * @author conpem
  * @realname Conny Pemfors
@@ -21,15 +22,14 @@ public class WebComponentsConstants {
     public static final String START_TD = "<td>";
     public static final String TABLE = "</table>";
     public static final String PRINT_OWN = "Print own";
-    public static final String PRINT_ALL =  "Print all";
-    public static final String DELETE =  "Delete";
-    public static final String ADD =   "Add";
-    public static final String UPDATE =   "Update";
-    public static final String PDF =   "PDF";
-    public static final String REGISTER =  "Register";
-    public static final String SEND =   "Send";
-    public static final String POST =  "Post";
-    public static final String POST_COMMENT =  "Post comment";
-   
-    
+    public static final String PRINT_ALL = "Print all";
+    public static final String DELETE = "Delete";
+    public static final String ADD = "Add";
+    public static final String UPDATE = "Update";
+    public static final String PDF = "PDF";
+    public static final String REGISTER = "Register";
+    public static final String SEND = "Send";
+    public static final String POST = "Post";
+    public static final String POST_COMMENT = "Post comment";
+
 }

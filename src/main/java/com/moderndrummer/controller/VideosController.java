@@ -17,6 +17,7 @@
 package com.moderndrummer.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,30 +38,30 @@ import com.moderndrummer.util.ObjectUtil;
 @Controller
 @RequestMapping(value = "/videos")
 public class VideosController {
-	@Autowired
-	private MemberDao memberDao;
-	
-	/***
-	 * #TODO
-	 * 
-	 * @param model
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public String displayVideos(Model model, HttpServletRequest request) {
-		Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
-		if (ObjectUtil.verifyMemberExists(loggedMember)) {
-			return "videos";
-		} else {
-			return "redirect:login";
-		}
+    @Autowired
+    private MemberDao memberDao;
 
-	}
+    /***
+     * #TODO
+     * 
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String displayVideos(Model model, HttpServletRequest request) {
+        Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+        if (ObjectUtil.verifyMemberExists(loggedMember)) {
+            return "videos";
+        } else {
+            return "redirect:login";
+        }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String postVideo(BindingResult result, Model model) {
+    }
 
-		return "videos";
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public String postVideo(BindingResult result, Model model) {
+
+        return "videos";
+    }
 }

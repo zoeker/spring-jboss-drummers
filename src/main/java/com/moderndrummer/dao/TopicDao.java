@@ -12,7 +12,7 @@ import com.moderndrummer.model.Topic;
 
 public interface TopicDao {
 
-	Set<Topic> findAllTopics();
+    Set<Topic> findAllTopics();
 
-	public Topic findById(Integer id);
+    public Topic findById(Integer id);
 }

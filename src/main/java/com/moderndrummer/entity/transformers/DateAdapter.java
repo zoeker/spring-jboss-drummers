@@ -12,8 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  */
 public class DateAdapter extends XmlAdapter<String, Date> {
 
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat(
-            "yyyy-MM-dd HH:mm:ss");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * Method marshal.

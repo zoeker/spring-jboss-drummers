@@ -13,46 +13,46 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  */
 public class SearchModel implements Serializable {
 
-	@DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
-	private Date fromDate;
+    @DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
+    private Date fromDate;
 
-	@DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
-	private Date toDate;
+    @DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
+    private Date toDate;
 
-	private String name;
+    private String name;
 
-	private String password;
+    private String password;
 
-	public Date getToDate() {
-		return toDate;
-	}
+    public Date getToDate() {
+        return toDate;
+    }
 
-	public void setToDate(Date toDate) {
-		this.toDate = toDate;
-	}
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
 
-	public Date getFromDate() {
-		return fromDate;
-	}
+    public Date getFromDate() {
+        return fromDate;
+    }
 
-	public void setFromDate(Date fromDate) {
-		this.fromDate = fromDate;
-	}
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
 
-	public String getUserName() {
-		return name;
-	}
+    public String getUserName() {
+        return name;
+    }
 
-	public void setUserName(String userName) {
-		this.name = userName;
-	}
+    public void setUserName(String userName) {
+        this.name = userName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }

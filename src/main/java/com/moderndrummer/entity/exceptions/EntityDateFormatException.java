@@ -8,8 +8,8 @@ package com.moderndrummer.entity.exceptions;
 public class EntityDateFormatException extends Exception {
 
     /**
-	 * 
-	 */
+     * 
+     */
     private static final long serialVersionUID = 1L;
     String message = "";
 

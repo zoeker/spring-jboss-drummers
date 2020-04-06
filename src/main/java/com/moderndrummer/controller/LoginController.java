@@ -25,31 +25,31 @@ import com.moderndrummer.model.Member;
 @Controller("loginController")
 public class LoginController {
 
-	@Autowired
-	private MemberDao memberDao;
+    @Autowired
+    private MemberDao memberDao;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
-		model.addAttribute("loginMember", new Member());
-		return "login";
-	}
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model) {
+        model.addAttribute("loginMember", new Member());
+        return "login";
+    }
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@Valid @ModelAttribute("loginMember") Member loginMember, BindingResult result, ModelMap model,
-			HttpServletRequest request) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@Valid @ModelAttribute("loginMember") Member loginMember, BindingResult result, ModelMap model,
+            HttpServletRequest request) {
 
-		boolean isValid = memberDao.isValidUser(loginMember.getName(), loginMember.getPassword());
-		if (!isValid) {
+        boolean isValid = memberDao.isValidUser(loginMember.getName(), loginMember.getPassword());
+        if (!isValid) {
 
-			model.addAttribute("errorMessage", ModernDrummerMessages.INVALID_LOGIN);
-			return "login";
-		} else {
-			Member loggedMember = memberDao.findMemberByUserName(loginMember.getName());
-			HttpSession session = request.getSession();
-			session.setAttribute("loggedUser", loggedMember);
-			model.addAttribute("loggedInMember", loggedMember);
-			return "redirect:personal?memberId=" + loggedMember.getId();
-		}
+            model.addAttribute("errorMessage", ModernDrummerMessages.INVALID_LOGIN);
+            return "login";
+        } else {
+            Member loggedMember = memberDao.findMemberByUserName(loginMember.getName());
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedUser", loggedMember);
+            model.addAttribute("loggedInMember", loggedMember);
+            return "redirect:personal?memberId=" + loggedMember.getId();
+        }
 
-	}
+    }
 }

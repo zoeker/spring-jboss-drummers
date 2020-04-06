@@ -20,6 +20,7 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.util.ObjectUtil;
 import com.moderndrummer.validators.MemberValidator;
+
 /**
  * @author conpem
  * @realname Conny Pemfors
@@ -28,72 +29,70 @@ import com.moderndrummer.validators.MemberValidator;
 @Controller
 public class PersonalPageController {
 
-	@Autowired
-	private MemberDao memberDao;
+    @Autowired
+    private MemberDao memberDao;
 
-	@Autowired
-	MemberValidator memberValidator;
+    @Autowired
+    MemberValidator memberValidator;
 
-	private MessageSource messageSource;
+    private MessageSource messageSource;
 
-	@Autowired
-	public void setMessageSource(MessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
+    @Autowired
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
-	@RequestMapping(value = "/personal", method = RequestMethod.GET)
-	public String displayPersonalPage(ModelMap model,HttpServletRequest request) {
-			Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
-			if(ObjectUtil.verifyMemberExists(loggedMember)){
-				Member member = memberDao.findById(loggedMember.getId());
-				model.addAttribute("personalModel", member);
-				model.addAttribute("member", member);
-				model.addAttribute("userName", member.getName());
-				return "personal";
-			}
-			else{
-				return "redirect:login";
-			}
-	
-		
-	}
+    @RequestMapping(value = "/personal", method = RequestMethod.GET)
+    public String displayPersonalPage(ModelMap model, HttpServletRequest request) {
+        Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+        if (ObjectUtil.verifyMemberExists(loggedMember)) {
+            Member member = memberDao.findById(loggedMember.getId());
+            model.addAttribute("personalModel", member);
+            model.addAttribute("member", member);
+            model.addAttribute("userName", member.getName());
+            return "personal";
+        } else {
+            return "redirect:login";
+        }
 
-	@RequestMapping(value = "/personal", method = RequestMethod.POST)
-	public String updateMember(@Valid @ModelAttribute("personalModel") Member updateMember, BindingResult result,
-			Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+    }
 
-		if (!result.hasErrors()) {
-			try {
+    @RequestMapping(value = "/personal", method = RequestMethod.POST)
+    public String updateMember(@Valid @ModelAttribute("personalModel") Member updateMember, BindingResult result,
+            Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
 
-				if (!ObjectUtil.isValidId(updateMember.getId())) {
-					updateMember.setId(((Member) session.getAttribute("loggedUser")).getId());
-				}
-				if (ObjectUtil.nullElements(updateMember.getCreatedDate())) {
-					updateMember.setCreatedDate(((Member) session.getAttribute("loggedUser")).getCreatedDate());
-				}
+        if (!result.hasErrors()) {
+            try {
 
-				if (memberValidator.isUpdatebleMember(updateMember)) {
+                if (!ObjectUtil.isValidId(updateMember.getId())) {
+                    updateMember.setId(((Member) session.getAttribute("loggedUser")).getId());
+                }
+                if (ObjectUtil.nullElements(updateMember.getCreatedDate())) {
+                    updateMember.setCreatedDate(((Member) session.getAttribute("loggedUser")).getCreatedDate());
+                }
 
-					Member updatedMember = memberDao.updateMember(updateMember);// userService.updateMember(updateMember);
-					session.setAttribute("loggedUser", updatedMember);
-					model.addAttribute("personalModel", updatedMember);
+                if (memberValidator.isUpdatebleMember(updateMember)) {
 
-				} else {
-					throw new ModernDrummerException(ModernDrummerMessages.FIELDS_MISSING);
-				}
+                    Member updatedMember = memberDao.updateMember(updateMember);// userService.updateMember(updateMember);
+                    session.setAttribute("loggedUser", updatedMember);
+                    model.addAttribute("personalModel", updatedMember);
 
-			} catch (ModernDrummerException e) {
+                } else {
+                    throw new ModernDrummerException(ModernDrummerMessages.FIELDS_MISSING);
+                }
 
-				model.addAttribute("personalModel", session.getAttribute("loggedUser"));
-				model.addAttribute("errorMessage", e.getMessage());
-			}
+            } catch (ModernDrummerException e) {
 
-			return "personal";
+                model.addAttribute("personalModel", session.getAttribute("loggedUser"));
+                model.addAttribute("errorMessage", e.getMessage());
+            }
 
-		} else {
-			model.addAttribute("members", session.getAttribute("loggedUser"));
-			return "personal";
-		}
-	}
+            return "personal";
+
+        } else {
+            model.addAttribute("members", session.getAttribute("loggedUser"));
+            return "personal";
+        }
+    }
 }

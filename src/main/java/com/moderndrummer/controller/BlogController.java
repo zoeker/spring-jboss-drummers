@@ -43,99 +43,98 @@ import com.moderndrummer.web.components.WebComponentsConstants;
 @RequestMapping(value = "/blogs")
 public class BlogController {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(BlogController.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(BlogController.class);
 
-	@Autowired
-	private MemberDao memberDao;
+    @Autowired
+    private MemberDao memberDao;
 
-	@Autowired
-	private BlogsDao blogsDao;
+    @Autowired
+    private BlogsDao blogsDao;
 
-	@Autowired
-	private FileItemRequestHandler fileItemRequestHandler;
+    @Autowired
+    private FileItemRequestHandler fileItemRequestHandler;
 
-	@Autowired
-	private BlogPresentationManager blogPresentationManager;
+    @Autowired
+    private BlogPresentationManager blogPresentationManager;
 
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public String getBlogs(Model model, HttpServletRequest request) {
-		Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
-		if (ObjectUtil.verifyMemberExists(loggedMember)) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String getBlogs(Model model, HttpServletRequest request) {
+        Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+        if (ObjectUtil.verifyMemberExists(loggedMember)) {
 
-			model.addAttribute("blogPost", new Memberblogpost());
-			model.addAttribute("postComment", new Memberpostcomment());
-			loggedMember = (Member) request.getSession().getAttribute("loggedUser");
-			model.addAttribute("loggedMember", loggedMember);
+            model.addAttribute("blogPost", new Memberblogpost());
+            model.addAttribute("postComment", new Memberpostcomment());
+            loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+            model.addAttribute("loggedMember", loggedMember);
 
-			return "blogs";
+            return "blogs";
 
-		} else {
-			return "redirect:login";
-		}
-	}
+        } else {
+            return "redirect:login";
+        }
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String postBlog(@Valid BlogsViewHandler blogsViewHandler, BindingResult result, ModelMap model,
-			HttpServletRequest request) {
-		try {
-			Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
-			if (!ObjectUtil.verifyMemberExists(loggedMember)) {
-				return "redirect:login";
-			}
-			else{
-				Map<String, String> mapData = fileItemRequestHandler.getRequestParameters(request, GraphicType.BLOG_IMAGE);
-				String btn = mapData.get("submitInsertForm");
-				if (btn != null && btn.equals(WebComponentsConstants.POST)) {
-					Memberblogpost inserted = postBlog(mapData,loggedMember);
-					model.addAttribute("blogPost", inserted);
-				} else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
-					Memberblogpost inserted = postBlogComment(model, mapData,loggedMember);
-					model.addAttribute("blogPost", inserted);
-				}
-			}
-			
+    @RequestMapping(method = RequestMethod.POST)
+    public String postBlog(@Valid BlogsViewHandler blogsViewHandler, BindingResult result, ModelMap model,
+            HttpServletRequest request) {
+        try {
+            Member loggedMember = (Member) request.getSession().getAttribute("loggedUser");
+            if (!ObjectUtil.verifyMemberExists(loggedMember)) {
+                return "redirect:login";
+            } else {
+                Map<String, String> mapData = fileItemRequestHandler.getRequestParameters(request,
+                        GraphicType.BLOG_IMAGE);
+                String btn = mapData.get("submitInsertForm");
+                if (btn != null && btn.equals(WebComponentsConstants.POST)) {
+                    Memberblogpost inserted = postBlog(mapData, loggedMember);
+                    model.addAttribute("blogPost", inserted);
+                } else if (btn != null && btn.equals(WebComponentsConstants.POST_COMMENT)) {
+                    Memberblogpost inserted = postBlogComment(model, mapData, loggedMember);
+                    model.addAttribute("blogPost", inserted);
+                }
+            }
 
-		} catch (EntityParseException | BlogJPAException e) {
-			LOGGER.error("error post request blog controller", e);
-			model.addAttribute("errorMessage", "failed to insert blog");
-		}
-		return "blogs";
-	}
+        } catch (EntityParseException | BlogJPAException e) {
+            LOGGER.error("error post request blog controller", e);
+            model.addAttribute("errorMessage", "failed to insert blog");
+        }
+        return "blogs";
+    }
 
-	private Memberblogpost  postBlogComment(ModelMap model, Map<String, String> mapData, Member loggedMember)
-			throws EntityParseException {
-		try{
-			if(StringUtilValidator.isEmptyOrNull(mapData.get("selectedBlogId"))){
-				throw new InvalidAttributeException("Choose blog.");
-			}
-			int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
-			if (selectedBlogId > 0) {
-				Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData, loggedMember,selectedBlogId);
-				Memberblogpost post = blogsDao.findBlogPostById(selectedBlogId);
-				comment.setBlogPost(post);
-				post.addMemberBlogPostComment(comment);
-				Memberblogpost updated = blogsDao.update(post);
-				return updated;
-			} else {
-				throw new EntityParseException("Choose blog to post comment on");
-			}
-			
-		}catch(InvalidAttributeException | NumberFormatException e){
-			throw new EntityParseException(e.getMessage());
-		}
-		
-	}
+    private Memberblogpost postBlogComment(ModelMap model, Map<String, String> mapData, Member loggedMember)
+            throws EntityParseException {
+        try {
+            if (StringUtilValidator.isEmptyOrNull(mapData.get("selectedBlogId"))) {
+                throw new InvalidAttributeException("Choose blog.");
+            }
+            int selectedBlogId = Integer.valueOf(mapData.get("selectedBlogId"));
+            if (selectedBlogId > 0) {
+                Memberpostcomment comment = blogPresentationManager.buildEntityComment(mapData, loggedMember,
+                        selectedBlogId);
+                Memberblogpost post = blogsDao.findBlogPostById(selectedBlogId);
+                comment.setBlogPost(post);
+                post.addMemberBlogPostComment(comment);
+                Memberblogpost updated = blogsDao.update(post);
+                return updated;
+            } else {
+                throw new EntityParseException("Choose blog to post comment on");
+            }
 
-	private Memberblogpost postBlog(Map<String, String> mapData, Member loggedMember) throws EntityParseException {
-		List<Memberblogpostimage> images = fileItemRequestHandler.getListGraphics();
-		Memberblogpost blogPost = blogPresentationManager.buildEntity(mapData, loggedMember);
-		if (!images.isEmpty()) {
-			blogPost.setMemberBlogPostImages(images);
-		}
-		Memberblogpost inserted = blogsDao.insert(blogPost);
-		fileItemRequestHandler.clearListGraphics();
-		return inserted;
-	}
+        } catch (InvalidAttributeException | NumberFormatException e) {
+            throw new EntityParseException(e.getMessage());
+        }
+
+    }
+
+    private Memberblogpost postBlog(Map<String, String> mapData, Member loggedMember) throws EntityParseException {
+        List<Memberblogpostimage> images = fileItemRequestHandler.getListGraphics();
+        Memberblogpost blogPost = blogPresentationManager.buildEntity(mapData, loggedMember);
+        if (!images.isEmpty()) {
+            blogPost.setMemberBlogPostImages(images);
+        }
+        Memberblogpost inserted = blogsDao.insert(blogPost);
+        fileItemRequestHandler.clearListGraphics();
+        return inserted;
+    }
 
 }

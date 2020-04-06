@@ -1,4 +1,5 @@
 package com.moderndrummer.enums;
+
 /**
  * @author conpem
  * @realname Conny Pemfors
@@ -6,29 +7,29 @@ package com.moderndrummer.enums;
  */
 public enum GraphicType {
 
-	BLOG_IMAGE(1,"BlogImage");
-	
-	private int value;
-	private String graphicName;
-	
-	 public int getValue() {
-		return value;
-	}
+    BLOG_IMAGE(1, "BlogImage");
 
-	public void setValue(int value) {
-		this.value = value;
-	}
+    private int value;
+    private String graphicName;
 
-	public String getName() {
-		return graphicName;
-	}
+    public int getValue() {
+        return value;
+    }
 
-	public void setName(String name) {
-		this.graphicName = name;
-	}
+    public void setValue(int value) {
+        this.value = value;
+    }
 
-	GraphicType(int val,String name){
-		value = val;
-		this.graphicName = name;
-	}
+    public String getName() {
+        return graphicName;
+    }
+
+    public void setName(String name) {
+        this.graphicName = name;
+    }
+
+    GraphicType(int val, String name) {
+        value = val;
+        this.graphicName = name;
+    }
 }

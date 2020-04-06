@@ -14,20 +14,20 @@ import com.moderndrummer.model.Memberpostcomment;
  */
 public interface BlogsDao {
 
-	Memberblogpost findBlogPostById(long id);
+    Memberblogpost findBlogPostById(long id);
 
-	Set<Memberblogpost> getAllBlogPosts();
+    Set<Memberblogpost> getAllBlogPosts();
 
-	boolean delete(Memberblogpost blogPost) throws BlogJPAException;
+    boolean delete(Memberblogpost blogPost) throws BlogJPAException;
 
-	Memberpostcomment insertWithMerge(Memberpostcomment object) throws BlogJPAException;
+    Memberpostcomment insertWithMerge(Memberpostcomment object) throws BlogJPAException;
 
-	boolean insert(Memberblogpost blogPost, Set<Memberblogpostimage> images) throws BlogJPAException;
+    boolean insert(Memberblogpost blogPost, Set<Memberblogpostimage> images) throws BlogJPAException;
 
-	Memberblogpost insert(Memberblogpost blogPost) throws BlogJPAException;
+    Memberblogpost insert(Memberblogpost blogPost) throws BlogJPAException;
 
-	Memberpostcomment insertTruly(Memberpostcomment comment) throws BlogJPAException;
+    Memberpostcomment insertTruly(Memberpostcomment comment) throws BlogJPAException;
 
-	Memberblogpost update(Memberblogpost object) throws BlogJPAException;
+    Memberblogpost update(Memberblogpost object) throws BlogJPAException;
 
 }

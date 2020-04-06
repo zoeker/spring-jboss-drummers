@@ -1,4 +1,5 @@
 package com.moderndrummer.entity.exceptions;
+
 /**
  * @author conpem
  * @realname Conny Pemfors
@@ -7,8 +8,8 @@ package com.moderndrummer.entity.exceptions;
 public class ModernDrummerException extends RuntimeException {
 
     /**
-	 * 
-	 */
+     * 
+     */
     private static final long serialVersionUID = 1L;
     public final static String SYSTEM_ERROR = "Error in System";
     public final static String Member_CERTIFICATE = "Member Certificate error";
@@ -88,7 +89,7 @@ public class ModernDrummerException extends RuntimeException {
     }
 
     public ModernDrummerException() {
-      
+
     }
 
 }

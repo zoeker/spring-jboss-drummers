@@ -172,8 +172,7 @@ public class ModernDrummerMessages {
             + "<br>Added support for Suunto DM4 divelog import!"
             + "<br>Also developed with responsive design fit with pads and mobile phones!";
 
-    public final static String BASIC_PAGE_SECTION_TITLE = "Welcome to Divemaster"
-            + "<br>";
+    public final static String BASIC_PAGE_SECTION_TITLE = "Welcome to Divemaster" + "<br>";
     public final static String INVALID_LOGIN = "Invalid login. Wrong username or password.";
     public final static String INVALID_SIGNUP = "Invalid signup. Something went wrong, ";
 
@@ -207,22 +206,21 @@ public class ModernDrummerMessages {
     public final static String REJECTED = "Rejected";
     public final static String GOOGLE_MAP = "Google map";
     public final static String SOMETHING_WENT_WRONG = "something went wrong";
-    public final static String COURSE_DESCRIPTION =  "Click the link to see course description";
+    public final static String COURSE_DESCRIPTION = "Click the link to see course description";
     public final static String INSTRUCTOR_NUMBER = "Instructor Number:";
     public final static String BEST_TIME_ACCESS = ", Best time access: ";
-    public final static String ACCESS_DIVELOCATION =  ", Access to dive location ";
-    public final static String  STRING_VALUE_MISSING = "String value missing";
+    public final static String ACCESS_DIVELOCATION = ", Access to dive location ";
+    public final static String STRING_VALUE_MISSING = "String value missing";
     public static final String INVALID_OPERATOR = "invalid operator";
-    public static final String WRONG_EMAIL_ADDRESS ="wrong email address";
+    public static final String WRONG_EMAIL_ADDRESS = "wrong email address";
     public static final String INVALID_PASSWORD = "invalid password";
     public static final String UPDATE_FAILURE = "Failed to update ";
     public static final String INSERT_FAILURE = "Failed to insert ";
-    
+
     public static final String FIELDS_MISSING = "Field values missing";
     public static final String FIELDS_INVALID = "Field values invalid";
     public static final String FIELDS_EXISTS = "Field values exist";
     public static final String PASSWORD_NOT_EQUAL = "Passwords inequal";
     public static final String EMAIL_NOT_EQUAL = "Email inequal";
-    
-    
+
 }

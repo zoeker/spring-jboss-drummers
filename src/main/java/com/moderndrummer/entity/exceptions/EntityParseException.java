@@ -12,8 +12,8 @@ public class EntityParseException extends ParseException {
     String errorMessage = "";
 
     /**
-	 * 
-	 */
+     * 
+     */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -24,7 +24,7 @@ public class EntityParseException extends ParseException {
      */
     public EntityParseException(final String s) {
         super(s, 0);
-         errorMessage = s;
+        errorMessage = s;
     }
 
     /**

@@ -26,8 +26,7 @@ public class ModernDrummerEntitySecurityException extends RuntimeException {
      * @param cause
      *            Throwable
      */
-    public ModernDrummerEntitySecurityException(final String message,
-            final Throwable cause) {
+    public ModernDrummerEntitySecurityException(final String message, final Throwable cause) {
         super(message, cause);
     }
 

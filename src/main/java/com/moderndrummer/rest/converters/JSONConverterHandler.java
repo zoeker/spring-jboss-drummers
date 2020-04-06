@@ -33,22 +33,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public class JSONConverterHandler {
 
-	@ResponseBody
-	public static Response writeToJSON(final List<Map<String, BigDecimal>> memberSchoolMapList,
-			final List<Map<String, String>> list) throws IOException {
-		final SimpleModule module = new SimpleModule("MyMapKeySerializerModule", new Version(1, 0, 0, null));
-		TypeFactory.defaultInstance().constructParametricType(ArrayList.class, HashMap.class);
+    @ResponseBody
+    public static Response writeToJSON(final List<Map<String, BigDecimal>> memberSchoolMapList,
+            final List<Map<String, String>> list) throws IOException {
+        final SimpleModule module = new SimpleModule("MyMapKeySerializerModule", new Version(1, 0, 0, null));
+        TypeFactory.defaultInstance().constructParametricType(ArrayList.class, HashMap.class);
 
-		final MapType myMapType = TypeFactory.defaultInstance().constructMapType(HashMap.class, String.class,
-				String.class);
+        final MapType myMapType = TypeFactory.defaultInstance().constructMapType(HashMap.class, String.class,
+                String.class);
 
-		final ObjectWriter writer = new ObjectMapper().withModule(module).typedWriter(myMapType);
+        final ObjectWriter writer = new ObjectMapper().withModule(module).typedWriter(myMapType);
 
-		return Response.ok(writer.writeValueAsString(list)).build();
-	}
+        return Response.ok(writer.writeValueAsString(list)).build();
+    }
 
-	public static Response writeToJSON(final List<Map<String, Object>> list) throws IOException {
+    public static Response writeToJSON(final List<Map<String, Object>> list) throws IOException {
 
-		return Response.ok(new ObjectMapper().writeValueAsString(list)).build();
-	}
+        return Response.ok(new ObjectMapper().writeValueAsString(list)).build();
+    }
 }

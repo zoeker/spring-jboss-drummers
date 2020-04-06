@@ -22,6 +22,7 @@ import com.moderndrummer.messages.ModernDrummerMessages;
 import com.moderndrummer.model.Member;
 import com.moderndrummer.util.DateConverter;
 import com.moderndrummer.validators.MemberValidator;
+
 /**
  * @author conpem
  * @realname Conny Pemfors
@@ -31,74 +32,74 @@ import com.moderndrummer.validators.MemberValidator;
 @RequestMapping(value = "/register")
 public class RegisterController {
 
-	@Autowired
-	private MemberDao memberDao;
+    @Autowired
+    private MemberDao memberDao;
 
-	@Autowired
-	MemberValidator memberValidator;
+    @Autowired
+    MemberValidator memberValidator;
 
-	private MessageSource messageSource;
+    private MessageSource messageSource;
 
-	@Autowired
-	public void setMessageSource(MessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
+    @Autowired
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String displaySortedMembers(Model model) {
-		model.addAttribute("newMember", new RegisterFormModel());
-		return "register";
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public String displaySortedMembers(Model model) {
+        model.addAttribute("newMember", new RegisterFormModel());
+        return "register";
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String registerNewMember(@Valid @ModelAttribute("newMember") RegisterFormModel registerModel,
-			BindingResult result, Model model, HttpServletRequest request) {
-		if (!result.hasErrors()) {
-			try {
-				Member newMember = new Member();
-				validateMember(newMember, registerModel);
+    @RequestMapping(method = RequestMethod.POST)
+    public String registerNewMember(@Valid @ModelAttribute("newMember") RegisterFormModel registerModel,
+            BindingResult result, Model model, HttpServletRequest request) {
+        if (!result.hasErrors()) {
+            try {
+                Member newMember = new Member();
+                validateMember(newMember, registerModel);
 
-				newMember.setId(0L);
-				newMember.setCreatedDate(DateConverter.convertToTimeStamp(new Date(System.currentTimeMillis())));
-				Member member = memberDao.register(newMember);
-				HttpSession session = request.getSession();
-				session.setAttribute("loggedUser", member);
-				model.addAttribute("loggedInMember", member);
-				return "redirect:personal?memberId=" + member.getId();
+                newMember.setId(0L);
+                newMember.setCreatedDate(DateConverter.convertToTimeStamp(new Date(System.currentTimeMillis())));
+                Member member = memberDao.register(newMember);
+                HttpSession session = request.getSession();
+                session.setAttribute("loggedUser", member);
+                model.addAttribute("loggedInMember", member);
+                return "redirect:personal?memberId=" + member.getId();
 
-			} catch (ModernDrummerException e) {
-				model.addAttribute("errorMessage", e.getMessage());
-			}
+            } catch (ModernDrummerException e) {
+                model.addAttribute("errorMessage", e.getMessage());
+            }
 
-			return "register";
-		} else {
+            return "register";
+        } else {
 
-			return "register";
-		}
-	}
+            return "register";
+        }
+    }
 
-	private void validateMember(Member newMember, RegisterFormModel model) throws ModernDrummerException {
-		if (!model.getPassword().equals(model.getConfirmPassword())) {
-			throw new ModernDrummerException(ModernDrummerMessages.PASSWORD_NOT_EQUAL);
-		}
-		if (!model.getEmail().equals(model.getConfirmEmail())) {
-			throw new ModernDrummerException(ModernDrummerMessages.EMAIL_NOT_EQUAL);
-		}
-		updateMember(newMember, model);
-		if (!memberValidator.isInsertableMember(newMember)) {
-			throw new ModernDrummerException(ModernDrummerMessages.FIELDS_INVALID);
-		}
-		Member foundMember = memberDao.findByEmailOrUsername(newMember.getName(), newMember.getEmail());
-		if (foundMember.getId() > 0) {
-			throw new ModernDrummerException(
-					ModernDrummerMessages.FIELDS_EXISTS + " " + newMember.getName() + " " + newMember.getEmail());
-		}
-	}
+    private void validateMember(Member newMember, RegisterFormModel model) throws ModernDrummerException {
+        if (!model.getPassword().equals(model.getConfirmPassword())) {
+            throw new ModernDrummerException(ModernDrummerMessages.PASSWORD_NOT_EQUAL);
+        }
+        if (!model.getEmail().equals(model.getConfirmEmail())) {
+            throw new ModernDrummerException(ModernDrummerMessages.EMAIL_NOT_EQUAL);
+        }
+        updateMember(newMember, model);
+        if (!memberValidator.isInsertableMember(newMember)) {
+            throw new ModernDrummerException(ModernDrummerMessages.FIELDS_INVALID);
+        }
+        Member foundMember = memberDao.findByEmailOrUsername(newMember.getName(), newMember.getEmail());
+        if (foundMember.getId() > 0) {
+            throw new ModernDrummerException(
+                    ModernDrummerMessages.FIELDS_EXISTS + " " + newMember.getName() + " " + newMember.getEmail());
+        }
+    }
 
-	private void updateMember(Member newMember, RegisterFormModel model) {
-		newMember.setEmail(model.getEmail());
-		newMember.setName(model.getName());
-		newMember.setPassword(model.getPassword());
-	}
+    private void updateMember(Member newMember, RegisterFormModel model) {
+        newMember.setEmail(model.getEmail());
+        newMember.setName(model.getName());
+        newMember.setPassword(model.getPassword());
+    }
 
 }

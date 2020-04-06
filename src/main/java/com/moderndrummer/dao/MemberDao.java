@@ -30,21 +30,21 @@ import com.moderndrummer.model.Member;
 
 public interface MemberDao {
 
-	public Member findById(Long id);
+    public Member findById(Long id);
 
-	public Member findByEmail(String email);
+    public Member findByEmail(String email);
 
-	public List<Member> findAllOrderedByName();
+    public List<Member> findAllOrderedByName();
 
-	public Member register(Member member) throws ModernDrummerException;
+    public Member register(Member member) throws ModernDrummerException;
 
-	List<Member> findAllCreatedMembersByFromAndToDate(Date fromDate, Date toDate);
+    List<Member> findAllCreatedMembersByFromAndToDate(Date fromDate, Date toDate);
 
-	Member findMemberByUserName(String userName);
+    Member findMemberByUserName(String userName);
 
-	boolean isValidUser(String userName, String password);
+    boolean isValidUser(String userName, String password);
 
-	public Member updateMember(Member member) throws ModernDrummerException;
+    public Member updateMember(Member member) throws ModernDrummerException;
 
-	Member findByEmailOrUsername(String userName, String email);
+    Member findByEmailOrUsername(String userName, String email);
 }

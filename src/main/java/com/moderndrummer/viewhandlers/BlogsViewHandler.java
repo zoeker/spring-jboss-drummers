@@ -14,32 +14,32 @@ import com.moderndrummer.model.Memberpostcomment;
 
 public class BlogsViewHandler implements Serializable {
 
-	private Memberblogpost memberBlogPost;
-	private Memberblogpostimage memberBlogPostImage;
-	private Memberpostcomment memberPostComment;
+    private Memberblogpost memberBlogPost;
+    private Memberblogpostimage memberBlogPostImage;
+    private Memberpostcomment memberPostComment;
 
-	public Memberblogpost getMemberBlogPost() {
-		return memberBlogPost;
-	}
+    public Memberblogpost getMemberBlogPost() {
+        return memberBlogPost;
+    }
 
-	public void setMemberBlogPost(Memberblogpost memberBlogPost) {
-		this.memberBlogPost = memberBlogPost;
-	}
+    public void setMemberBlogPost(Memberblogpost memberBlogPost) {
+        this.memberBlogPost = memberBlogPost;
+    }
 
-	public Memberblogpostimage getMemberBlogPostImage() {
-		return memberBlogPostImage;
-	}
+    public Memberblogpostimage getMemberBlogPostImage() {
+        return memberBlogPostImage;
+    }
 
-	public void setMemberBlogPostImage(Memberblogpostimage memberBlogPostImage) {
-		this.memberBlogPostImage = memberBlogPostImage;
-	}
+    public void setMemberBlogPostImage(Memberblogpostimage memberBlogPostImage) {
+        this.memberBlogPostImage = memberBlogPostImage;
+    }
 
-	public Memberpostcomment getMemberPostComment() {
-		return memberPostComment;
-	}
+    public Memberpostcomment getMemberPostComment() {
+        return memberPostComment;
+    }
 
-	public void setMemberPostComment(Memberpostcomment memberPostComment) {
-		this.memberPostComment = memberPostComment;
-	}
+    public void setMemberPostComment(Memberpostcomment memberPostComment) {
+        this.memberPostComment = memberPostComment;
+    }
 
 }

@@ -21,7 +21,6 @@ import javax.persistence.Table;
  * @version $Revision: 1.0 $
  */
 
-
 /**
  * The persistent class for the memberblogpostimages database table.
  * 
@@ -31,44 +30,44 @@ import javax.persistence.Table;
 @NamedQuery(name = "Memberblogpostimage.findAll", query = "SELECT m FROM Memberblogpostimage m")
 @SequenceGenerator(name = "sq_memberblogpostimage", sequenceName = "sq_memberblogpostimage", initialValue = 1)
 public class Memberblogpostimage implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int memberBlogPostImageId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int memberBlogPostImageId;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "BlogPostId", nullable = false, insertable = true, updatable = true)
-	private Memberblogpost blogPost;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "BlogPostId", nullable = false, insertable = true, updatable = true)
+    private Memberblogpost blogPost;
 
-	@Column(name = "FileName", nullable = false)
-	private String fileName = "";
+    @Column(name = "FileName", nullable = false)
+    private String fileName = "";
 
-	public Memberblogpostimage() {
-	}
+    public Memberblogpostimage() {
+    }
 
-	public int getMemberBlogPostImageId() {
-		return this.memberBlogPostImageId;
-	}
+    public int getMemberBlogPostImageId() {
+        return this.memberBlogPostImageId;
+    }
 
-	public void setMemberBlogPostImageId(int memberBlogPostImageId) {
-		this.memberBlogPostImageId = memberBlogPostImageId;
-	}
+    public void setMemberBlogPostImageId(int memberBlogPostImageId) {
+        this.memberBlogPostImageId = memberBlogPostImageId;
+    }
 
-	public String getFileName() {
-		return this.fileName;
-	}
+    public String getFileName() {
+        return this.fileName;
+    }
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-	public Memberblogpost getMemberBlogPost() {
-		return this.blogPost;
-	}
+    public Memberblogpost getMemberBlogPost() {
+        return this.blogPost;
+    }
 
-	public void setMemberBlogPost(Memberblogpost blogpost) {
-		this.blogPost = blogpost;
-	}
+    public void setMemberBlogPost(Memberblogpost blogpost) {
+        this.blogPost = blogpost;
+    }
 
 }

@@ -26,49 +26,49 @@ import com.moderndrummer.files.FileUploader;
 @Component
 public class FileItemRequestHandler<E> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("errorslog");
+    private static final Logger LOGGER = LoggerFactory.getLogger("errorslog");
 
-	@Autowired
-	protected FileUploader fileUploader;
+    @Autowired
+    protected FileUploader fileUploader;
 
-	public List<E> listGraphics = null;
+    public List<E> listGraphics = null;
 
-	public List<E> getListGraphics() {
-		return listGraphics;
-	}
+    public List<E> getListGraphics() {
+        return listGraphics;
+    }
 
-	public void clearListGraphics() {
-		if (listGraphics != null) {
-			listGraphics.clear();
-		}
-	}
+    public void clearListGraphics() {
+        if (listGraphics != null) {
+            listGraphics.clear();
+        }
+    }
 
-	public Map<String, String> getRequestParameters(final HttpServletRequest request, GraphicType graphicType) {
-		final Map<String, String> parameters = new HashMap<String, String>();
-		synchronized (parameters) {
-			try {
-				final DiskFileItemFactory fileItemFactory = fileUploader.setFileItemFactory(request);
-				fileUploader.readRequestParameters(request, parameters, new ArrayList<Integer>(), fileItemFactory,
-						graphicType);
-				if (graphicType == GraphicType.BLOG_IMAGE) {
-					listGraphics = (List<E>) fileUploader.getBlogGraphics();
-				}
-			} catch (final FileUploadException | IOException ex) {
-				log("Error encountered while parsing the request", ex);
-			} catch (final Exception ex) {
-				log("Error encountered while uploading file", ex);
-			}
+    public Map<String, String> getRequestParameters(final HttpServletRequest request, GraphicType graphicType) {
+        final Map<String, String> parameters = new HashMap<String, String>();
+        synchronized (parameters) {
+            try {
+                final DiskFileItemFactory fileItemFactory = fileUploader.setFileItemFactory(request);
+                fileUploader.readRequestParameters(request, parameters, new ArrayList<Integer>(), fileItemFactory,
+                        graphicType);
+                if (graphicType == GraphicType.BLOG_IMAGE) {
+                    listGraphics = (List<E>) fileUploader.getBlogGraphics();
+                }
+            } catch (final FileUploadException | IOException ex) {
+                log("Error encountered while parsing the request", ex);
+            } catch (final Exception ex) {
+                log("Error encountered while uploading file", ex);
+            }
 
-			return parameters;
-		}
+            return parameters;
+        }
 
-	}
+    }
 
-	private void log(String message, Exception e) {
-		if (LOGGER.isErrorEnabled()) {
-			LOGGER.error(message, e);
-		}
+    private void log(String message, Exception e) {
+        if (LOGGER.isErrorEnabled()) {
+            LOGGER.error(message, e);
+        }
 
-	}
+    }
 
 }

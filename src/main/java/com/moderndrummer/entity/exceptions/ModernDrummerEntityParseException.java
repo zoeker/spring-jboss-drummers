@@ -12,8 +12,8 @@ public class ModernDrummerEntityParseException extends ParseException {
     String errorMessage = "";
 
     /**
-	 * 
-	 */
+     * 
+     */
     private static final long serialVersionUID = 1L;
 
     ModernDrummerEntityParseException() {
@@ -28,7 +28,7 @@ public class ModernDrummerEntityParseException extends ParseException {
      */
     public ModernDrummerEntityParseException(final String s) {
         super(s, 0);
-       errorMessage = s;
+        errorMessage = s;
     }
 
     /**
@@ -41,7 +41,7 @@ public class ModernDrummerEntityParseException extends ParseException {
      */
     public ModernDrummerEntityParseException(final String s, final int errorOffset) {
         super(s, errorOffset);
-   }
+    }
 
     /**
      * Method getErrorMessage.

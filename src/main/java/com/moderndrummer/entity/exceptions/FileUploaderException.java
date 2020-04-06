@@ -1,4 +1,5 @@
 package com.moderndrummer.entity.exceptions;
+
 /**
  * @author conpem
  * @realname Conny Pemfors

@@ -21,47 +21,47 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="TOPIC")
+@Table(name = "TOPIC")
 @NamedQuery(name = "Topic.findAll", query = "SELECT t FROM Topic t order by t.topicName asc")
 @SequenceGenerator(name = "sq_topic", sequenceName = "sq_topic", initialValue = 1)
 public class Topic implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long topicId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long topicId;
 
-	@Column(name = "TopicDescription")
-	private String topicDescription = "";
+    @Column(name = "TopicDescription")
+    private String topicDescription = "";
 
-	@Column(name = "TopicName")
-	private String topicName = "";
+    @Column(name = "TopicName")
+    private String topicName = "";
 
-	public Topic() {
-	}
+    public Topic() {
+    }
 
-	public long getTopicId() {
-		return this.topicId;
-	}
+    public long getTopicId() {
+        return this.topicId;
+    }
 
-	public void setTopicId(int topicId) {
-		this.topicId = topicId;
-	}
+    public void setTopicId(int topicId) {
+        this.topicId = topicId;
+    }
 
-	public String getTopicDescription() {
-		return this.topicDescription;
-	}
+    public String getTopicDescription() {
+        return this.topicDescription;
+    }
 
-	public void setTopicDescription(String topicDescription) {
-		this.topicDescription = topicDescription;
-	}
+    public void setTopicDescription(String topicDescription) {
+        this.topicDescription = topicDescription;
+    }
 
-	public String getTopicName() {
-		return this.topicName;
-	}
+    public String getTopicName() {
+        return this.topicName;
+    }
 
-	public void setTopicName(String topicName) {
-		this.topicName = topicName;
-	}
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
+    }
 
 }

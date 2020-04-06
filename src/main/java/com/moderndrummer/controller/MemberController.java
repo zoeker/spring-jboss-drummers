@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moderndrummer.dao.MemberDao;
 import com.moderndrummer.model.Member;
+
 /**
  * @author conpem
  * @realname Conny Pemfors
@@ -49,7 +50,8 @@ public class MemberController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String registerNewMember(@Valid @ModelAttribute("newMember") Member newMember, BindingResult result, Model model) {
+    public String registerNewMember(@Valid @ModelAttribute("newMember") Member newMember, BindingResult result,
+            Model model) {
         if (!result.hasErrors()) {
             try {
                 memberDao.register(newMember);
