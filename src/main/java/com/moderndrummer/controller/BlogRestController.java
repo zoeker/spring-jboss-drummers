@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.moderndrummer.dao.BlogsDao;
-import com.moderndrummer.model.Member;
-import com.moderndrummer.model.Memberblogpost;
-import com.moderndrummer.model.Memberblogpostimage;
-import com.moderndrummer.model.Memberpostcomment;
+import com.moderndrummer.entity.Member;
+import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberblogpostimage;
+import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.util.DateConverter;
 
 /**

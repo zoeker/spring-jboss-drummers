@@ -2,9 +2,9 @@ package com.moderndrummer.viewhandlers;
 
 import java.io.Serializable;
 
-import com.moderndrummer.model.Memberblogpost;
-import com.moderndrummer.model.Memberblogpostimage;
-import com.moderndrummer.model.Memberpostcomment;
+import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberblogpostimage;
+import com.moderndrummer.entity.Memberpostcomment;
 
 /**
  * @author conpem

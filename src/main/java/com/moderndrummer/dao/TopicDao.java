@@ -2,7 +2,7 @@ package com.moderndrummer.dao;
 
 import java.util.Set;
 
-import com.moderndrummer.model.Topic;
+import com.moderndrummer.entity.Topic;
 
 /**
  * @author conpem

@@ -1,4 +1,4 @@
-package com.moderndrummer.model;
+package com.moderndrummer.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -34,7 +35,11 @@ import com.moderndrummer.entity.transformers.DateAdapter;
  */
 @Entity
 @Table(name = "memberpostcomments")
-@NamedQuery(name = "Memberpostcomment.findAll", query = "SELECT m FROM Memberpostcomment m")
+
+@NamedQueries({ 
+    @NamedQuery(name = "Memberpostcomment.findAll", query = "SELECT m FROM Memberpostcomment m"),
+    @NamedQuery(name ="Memberpostcomment.findAllCommentsByPostId", query = "SELECT m FROM Memberpostcomment m join fetch m.blogPost b where b.blogPostId = ?1")
+})
 @SequenceGenerator(name = "sq_memberpostcomment", sequenceName = "sq_memberpostcomment", initialValue = 1)
 public class Memberpostcomment implements Serializable {
     private static final long serialVersionUID = 1L;

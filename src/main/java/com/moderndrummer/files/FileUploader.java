@@ -19,10 +19,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.moderndrummer.entity.Memberblogpostimage;
 import com.moderndrummer.entity.exceptions.FileUploaderException;
 import com.moderndrummer.enums.GraphicType;
 import com.moderndrummer.messages.ModernDrummerMessages;
-import com.moderndrummer.model.Memberblogpostimage;
 import com.moderndrummer.web.components.WebComponentsParameters;
 
 /**

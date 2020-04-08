@@ -5,16 +5,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberblogpostimage;
+import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.entity.exceptions.BlogJPAException;
 import com.moderndrummer.entity.exceptions.NotFoundException;
-import com.moderndrummer.model.Memberblogpost;
-import com.moderndrummer.model.Memberblogpostimage;
-import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.repo.base.BaseJPQLDao;
 
 /**
@@ -38,23 +40,7 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
         return insertTruly(blogPost);
     }
 
-    @Override
-    public boolean insert(Memberblogpost blogPost, Set<Memberblogpostimage> images) throws BlogJPAException {
-
-        try {
-            if (blogPost.getMemberBlogPostImages().isEmpty() && !images.isEmpty()) {
-                blogPost.setMemberBlogPostImages(images);
-            }
-            em.persist(blogPost);
-
-            return true;
-
-        } catch (RuntimeException e) {
-            LOGGER.error("failed to insert ", e);
-            throw new BlogJPAException("failed to insert blog post " + e.getMessage());
-        }
-
-    }
+   
 
     private Memberblogpost insertTruly(Memberblogpost blogPost) throws BlogJPAException {
 
@@ -128,24 +114,23 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
     }
 
     @Override
-    public boolean delete(Memberblogpost blogPost) throws BlogJPAException {
+    public boolean delete(Long id) throws BlogJPAException {
 
         try {
-            List<Memberblogpostimage> images = executeNamedQueryByOneParamReturnList(blogPost.getBlogPostId(),
-                    "Memberblogpost.findAllImagesById", Memberblogpostimage.class);
-            for (Memberblogpostimage i : images) {
-                em.remove(i);
-            }
+            
+            Memberblogpost post = Optional.ofNullable(find(id, Memberblogpost.class)).map(Memberblogpost.class::cast).orElseThrow(() -> new NotFoundException("memberblogpost not found"));
+            List<Memberblogpostimage> images =  executeNamedQueryByOneParamReturnList(post.getBlogPostId(),
+                    "Memberblogpostimage.findAllImagesByPostId", Memberblogpostimage.class);
+            images.forEach(image -> em.remove(image));
+            
 
-            List<Memberpostcomment> comments = executeNamedQueryByOneParamReturnList(blogPost.getBlogPostId(),
-                    "Memberblogpost.findAllCommentsById", Memberpostcomment.class);
-            for (Memberpostcomment c : comments) {
-                em.remove(c);
-            }
-            em.remove(blogPost);
+            List<Memberpostcomment> comments = executeNamedQueryByOneParamReturnList(post.getBlogPostId(),
+                    "Memberpostcomment.findAllCommentsByPostId", Memberpostcomment.class);
+            comments.forEach(comment -> em.remove(comment));
+            em.remove(post);
             return true;
 
-        } catch (RuntimeException e) {
+        } catch ( RuntimeException e) {
             LOGGER.error("failed to delete ", e);
             return false;
         }

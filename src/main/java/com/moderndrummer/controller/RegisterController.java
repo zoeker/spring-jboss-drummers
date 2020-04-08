@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moderndrummer.dao.MemberDao;
+import com.moderndrummer.entity.Member;
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.forms.models.RegisterFormModel;
 import com.moderndrummer.messages.ModernDrummerMessages;
-import com.moderndrummer.model.Member;
 import com.moderndrummer.util.DateConverter;
 import com.moderndrummer.validators.MemberValidator;
 

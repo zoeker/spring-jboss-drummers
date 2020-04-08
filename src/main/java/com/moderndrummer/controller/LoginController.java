@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moderndrummer.dao.MemberDao;
+import com.moderndrummer.entity.Member;
 import com.moderndrummer.messages.ModernDrummerMessages;
-import com.moderndrummer.model.Member;
 
 /**
  * @author conpem

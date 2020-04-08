@@ -5,12 +5,12 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
+import com.moderndrummer.entity.Member;
+import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberblogpostimage;
+import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.files.FileUtils;
 import com.moderndrummer.messages.ModernDrummerMessages;
-import com.moderndrummer.model.Member;
-import com.moderndrummer.model.Memberblogpost;
-import com.moderndrummer.model.Memberblogpostimage;
-import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.util.DateConverter;
 
 /**

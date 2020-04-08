@@ -2,9 +2,9 @@ package com.moderndrummer.presentationmanagers;
 
 import java.util.Map;
 
+import com.moderndrummer.entity.Member;
+import com.moderndrummer.entity.Memberblogpost;
 import com.moderndrummer.entity.exceptions.EntityParseException;
-import com.moderndrummer.model.Member;
-import com.moderndrummer.model.Memberblogpost;
 
 /**
  * @author conpem

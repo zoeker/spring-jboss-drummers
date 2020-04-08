@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.moderndrummer.dao.TopicDao;
-import com.moderndrummer.model.Topic;
+import com.moderndrummer.entity.Topic;
 
 /**
  * @author conpem

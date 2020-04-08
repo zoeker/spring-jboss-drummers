@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moderndrummer.model.Member;
+import com.moderndrummer.entity.Member;
 
 import common.conpem.homeprojects.util.DateUtils;
 

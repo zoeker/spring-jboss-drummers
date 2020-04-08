@@ -2,7 +2,7 @@ package com.moderndrummer.validators;
 
 import org.springframework.stereotype.Component;
 
-import com.moderndrummer.model.Member;
+import com.moderndrummer.entity.Member;
 import com.moderndrummer.util.ObjectUtil;
 
 /**

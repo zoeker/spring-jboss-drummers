@@ -19,11 +19,11 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
     <persistence-unit name="memberPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>com.moderndrummer.model.Member</class>
-        <class>com.moderndrummer.model.Topic</class>
-        <class>com.moderndrummer.model.Memberblogpost</class>
-        <class>com.moderndrummer.model.Memberblogpostimage</class>
-        <class>com.moderndrummer.model.Memberpostcomment</class>
+        <class>com.moderndrummer.entity.Member</class>
+        <class>com.moderndrummer.entity.Topic</class>
+        <class>com.moderndrummer.entity.Memberblogpost</class>
+        <class>com.moderndrummer.entity.Memberblogpostimage</class>
+        <class>com.moderndrummer.entity.Memberpostcomment</class>
         
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>

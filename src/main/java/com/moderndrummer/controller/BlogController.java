@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moderndrummer.dao.BlogsDao;
 import com.moderndrummer.dao.MemberDao;
+import com.moderndrummer.entity.Member;
+import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberblogpostimage;
+import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.entity.exceptions.BlogJPAException;
 import com.moderndrummer.entity.exceptions.EntityParseException;
 import com.moderndrummer.entity.exceptions.InvalidAttributeException;
 import com.moderndrummer.enums.GraphicType;
-import com.moderndrummer.model.Member;
-import com.moderndrummer.model.Memberblogpost;
-import com.moderndrummer.model.Memberblogpostimage;
-import com.moderndrummer.model.Memberpostcomment;
 import com.moderndrummer.presentationmanagers.BlogPresentationManager;
 import com.moderndrummer.requesthandler.FileItemRequestHandler;
 import com.moderndrummer.util.ObjectUtil;

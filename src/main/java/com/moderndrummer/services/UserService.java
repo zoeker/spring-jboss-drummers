@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.moderndrummer.dao.MemberDao;
+import com.moderndrummer.entity.Member;
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
-import com.moderndrummer.model.Member;
 
 /**
  * @author conpem

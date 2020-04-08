@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.moderndrummer.dao.MemberDao;
 import com.moderndrummer.dao.TopicDao;
+import com.moderndrummer.entity.Member;
+import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.entity.exceptions.EntityParseException;
-import com.moderndrummer.model.Member;
-import com.moderndrummer.model.Memberblogpost;
-import com.moderndrummer.model.Memberpostcomment;
 
 /**
  * @author conpem

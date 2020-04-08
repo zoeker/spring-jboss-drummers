@@ -1,4 +1,4 @@
-package com.moderndrummer.model;
+package com.moderndrummer.entity;
 
 import java.io.Serializable;
 
@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,7 +28,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "memberblogpostimages")
-@NamedQuery(name = "Memberblogpostimage.findAll", query = "SELECT m FROM Memberblogpostimage m")
+@NamedQueries({ 
+    @NamedQuery(name = "Memberblogpostimage.findAll", query = "SELECT m FROM Memberblogpostimage m"),
+    @NamedQuery(name ="Memberblogpostimage.findAllImagesByPostId", query = "SELECT m FROM Memberblogpostimage m join fetch m.blogPost b where b.blogPostId = ?1")
+})
 @SequenceGenerator(name = "sq_memberblogpostimage", sequenceName = "sq_memberblogpostimage", initialValue = 1)
 public class Memberblogpostimage implements Serializable {
     private static final long serialVersionUID = 1L;

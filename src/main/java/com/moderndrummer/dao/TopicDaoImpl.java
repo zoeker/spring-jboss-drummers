@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moderndrummer.model.Topic;
+import com.moderndrummer.entity.Topic;
 import com.moderndrummer.repo.base.BaseJPQLDao;
 
 /**

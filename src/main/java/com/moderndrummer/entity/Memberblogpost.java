@@ -1,4 +1,4 @@
-package com.moderndrummer.model;
+package com.moderndrummer.entity;
 
 import java.io.Serializable;
 import java.util.Collection;

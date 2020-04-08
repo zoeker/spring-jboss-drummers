@@ -2,10 +2,10 @@ package com.moderndrummer.dao;
 
 import java.util.Set;
 
+import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberblogpostimage;
+import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.entity.exceptions.BlogJPAException;
-import com.moderndrummer.model.Memberblogpost;
-import com.moderndrummer.model.Memberblogpostimage;
-import com.moderndrummer.model.Memberpostcomment;
 
 /**
  * @author conpem
@@ -18,12 +18,11 @@ public interface BlogsDao {
 
     Set<Memberblogpost> getAllBlogPosts();
 
-    boolean delete(Memberblogpost blogPost) throws BlogJPAException;
+    boolean delete(Long id) throws BlogJPAException;
 
     Memberpostcomment insertWithMerge(Memberpostcomment object) throws BlogJPAException;
 
-    boolean insert(Memberblogpost blogPost, Set<Memberblogpostimage> images) throws BlogJPAException;
-
+  
     Memberblogpost insert(Memberblogpost blogPost) throws BlogJPAException;
 
     Memberpostcomment insertTruly(Memberpostcomment comment) throws BlogJPAException;

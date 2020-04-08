@@ -19,8 +19,8 @@ package com.moderndrummer.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.moderndrummer.entity.Member;
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
-import com.moderndrummer.model.Member;
 
 /**
  * @author conpem

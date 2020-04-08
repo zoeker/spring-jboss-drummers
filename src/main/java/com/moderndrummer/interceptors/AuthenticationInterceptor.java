@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.moderndrummer.model.Member;
+import com.moderndrummer.entity.Member;
 
 /**
  * @author conpem

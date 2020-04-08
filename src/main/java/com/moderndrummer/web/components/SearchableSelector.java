@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.moderndrummer.model.Topic;
+import com.moderndrummer.entity.Topic;
 import com.moderndrummer.validators.StringUtilValidator;
 
 /**

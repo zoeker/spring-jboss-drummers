@@ -30,10 +30,10 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moderndrummer.entity.Member;
 import com.moderndrummer.entity.exceptions.ModernDrummerException;
 import com.moderndrummer.entity.exceptions.NotFoundException;
 import com.moderndrummer.messages.ModernDrummerMessages;
-import com.moderndrummer.model.Member;
 import com.moderndrummer.repo.base.BaseJPQLDao;
 import com.moderndrummer.util.ObjectUtil;
 

@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.moderndrummer.dao.MemberDao;
-import com.moderndrummer.model.Member;
+import com.moderndrummer.entity.Member;
 
 /**
  * @author conpem
