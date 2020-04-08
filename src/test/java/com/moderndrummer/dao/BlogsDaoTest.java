@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.moderndrummer.entity.Member;
 import com.moderndrummer.entity.Memberblogpost;
+import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.entity.Topic;
 import com.moderndrummer.entity.exceptions.NotFoundException;
 
@@ -96,7 +97,18 @@ public class BlogsDaoTest {
         assertThat(deleted).isEqualTo(true);
 
     }
-    
+
+    @Test
+    public void delete_memberEmpty_shouldThrowError() {
+        // Given
+        // Then
+        expectedException.expect(RuntimeException.class);
+        // when
+
+        blogsDao.delete(0L);
+
+    }
+
     @Test
     public void update_shouldSucceed() {
 
@@ -104,19 +116,36 @@ public class BlogsDaoTest {
         String blogPostBody = "something happened in the drumming session";
         String blogPostTitle = "new drum session";
         String blogPostBodyUpdate = "updating body";
-        
+
         Memberblogpost post = getInsertableMemberBlogPost(blogPostBody, blogPostTitle);
 
         Memberblogpost result = blogsDao.insert(post);
-        
+
         result.setBlogPostBody(blogPostBodyUpdate);
-        
 
         // when
         Memberblogpost updated = blogsDao.update(result);
 
         // Then
         assertThat(updated.getBlogPostBody()).isEqualTo(blogPostBodyUpdate);
+
+    }
+
+    @Test
+    public void update_Post_memberEmpty_shouldThrowError() {
+        // Given
+        String blogPostBody = "something happened in the drumming session";
+        String blogPostTitle = "new drum session";
+        String commentBody = "I have a comment";
+
+        Memberblogpost post = getInsertableMemberBlogPost(blogPostBody, blogPostTitle);
+        post.getMember().setId(0L);
+
+        // Then
+        expectedException.expect(RuntimeException.class);
+        // when
+
+        blogsDao.update(post);
 
     }
 
@@ -152,6 +181,119 @@ public class BlogsDaoTest {
         assertThat("John Smith").isEqualTo(result.getMember().getName());
         assertThat(blogPostBody).isEqualTo(result.getBlogPostBody());
         assertThat(blogPostTitle).isEqualTo(result.getBlogPostTitle());
+
+    }
+    
+    @Test
+    public void insert_memberEmpty_shouldThrowError() {
+        // Given
+        String blogPostBody = "something happened in the drumming session";
+        String blogPostTitle = "new drum session";
+        String commentBody = "I have a comment";
+
+        Memberblogpost post = getInsertableMemberBlogPost(blogPostBody, blogPostTitle);
+        post.setMember(null);
+
+        // Then
+        expectedException.expect(RuntimeException.class);
+        // when
+
+        blogsDao.insert(post);
+
+    }
+
+    @Test
+    public void insertTruly_shouldSucceed() {
+        // Given
+        String blogPostBody = "something happened in the drumming session";
+        String blogPostTitle = "new drum session";
+        String commentBody = "I have a comment";
+
+        Memberblogpost post = getInsertableMemberBlogPost(blogPostBody, blogPostTitle);
+        Memberpostcomment comment = new Memberpostcomment();
+        comment.setCommentBody(commentBody);
+        comment.setDatePosted(DateUtils.parseDate("2020-04-04"));
+        comment.setMember(post.getMember());
+        Memberblogpost saved = blogsDao.insert(post);
+        comment.setBlogPost(saved);
+
+        // when
+
+        Memberpostcomment result = blogsDao.insertTruly(comment);
+
+        // Then
+        assertThat(0L).isLessThan(result.getCommentId());
+        assertThat(commentBody).isEqualTo(result.getCommentBody());
+
+    }
+
+    @Test
+    public void insertTruly_blogPostEmpty_shouldThrowError() {
+        // Given
+        String blogPostBody = "something happened in the drumming session";
+        String blogPostTitle = "new drum session";
+        String commentBody = "I have a comment";
+
+        Memberblogpost post = getInsertableMemberBlogPost(blogPostBody, blogPostTitle);
+        Memberpostcomment comment = new Memberpostcomment();
+        comment.setCommentBody(commentBody);
+        comment.setDatePosted(DateUtils.parseDate("2020-04-04"));
+        comment.setMember(post.getMember());
+        comment.setBlogPost(null);
+
+        // Then
+        expectedException.expect(RuntimeException.class);
+        // when
+
+        blogsDao.insertTruly(comment);
+
+    }
+
+    @Test
+    public void insertWithMerge_Post_blogPostEmpty_shouldThrowError() {
+        // Given
+        String blogPostBody = "something happened in the drumming session";
+        String blogPostTitle = "new drum session";
+        String commentBody = "I have a comment";
+
+        Memberblogpost post = getInsertableMemberBlogPost(blogPostBody, blogPostTitle);
+        Memberpostcomment comment = new Memberpostcomment();
+        comment.setCommentBody(commentBody);
+        comment.setDatePosted(DateUtils.parseDate("2020-04-04"));
+        comment.setMember(post.getMember());
+        comment.setBlogPost(null);
+
+        // Then
+        expectedException.expect(RuntimeException.class);
+        // when
+
+        blogsDao.insertWithMerge(comment);
+
+    }
+
+    @Test
+    public void insertWithMerge_shouldSucceed() {
+        // Given
+        String blogPostBody = "something happened in the drumming session";
+        String blogPostTitle = "new drum session";
+        String commentBody = "I have a comment";
+
+        Memberblogpost post = getInsertableMemberBlogPost(blogPostBody, blogPostTitle);
+        Memberpostcomment comment = new Memberpostcomment();
+        comment.setCommentBody(commentBody);
+        comment.setDatePosted(DateUtils.parseDate("2020-04-04"));
+        comment.setMember(post.getMember());
+
+        Memberblogpost saved = blogsDao.insert(post);
+        comment.setBlogPost(saved);
+
+        // when
+
+        Memberpostcomment result = blogsDao.insertWithMerge(comment);
+
+        // Then
+        assertThat(0L).isLessThan(result.getCommentId());
+        assertThat(commentBody).isEqualTo(result.getCommentBody());
 
     }
 

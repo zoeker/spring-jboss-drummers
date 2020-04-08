@@ -12,10 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moderndrummer.entity.Member;
 import com.moderndrummer.entity.Memberblogpost;
 import com.moderndrummer.entity.Memberblogpostimage;
 import com.moderndrummer.entity.Memberpostcomment;
 import com.moderndrummer.entity.exceptions.BlogJPAException;
+import com.moderndrummer.entity.exceptions.ModernDrummerJPAException;
 import com.moderndrummer.entity.exceptions.NotFoundException;
 import com.moderndrummer.repo.base.BaseJPQLDao;
 
@@ -40,17 +42,16 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
         return insertTruly(blogPost);
     }
 
-   
-
     private Memberblogpost insertTruly(Memberblogpost blogPost) throws BlogJPAException {
 
         try {
 
-            return (Memberblogpost) insert(blogPost, Memberblogpost.class);
+            return Optional.ofNullable(insert(blogPost, Memberblogpost.class)).map(Memberblogpost.class::cast)
+                    .orElseThrow(() -> new ModernDrummerJPAException("Not able to save new post"));
 
         } catch (RuntimeException e) {
             LOGGER.error("failed to insert ", e);
-            return new Memberblogpost();
+            throw new ModernDrummerJPAException(e.getMessage());
         }
 
     }
@@ -64,7 +65,7 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
 
         } catch (RuntimeException e) {
             LOGGER.error("failed to insert ", e);
-            return new Memberpostcomment();
+            throw new BlogJPAException(e.getMessage());
         }
 
     }
@@ -73,12 +74,15 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
     public Memberpostcomment insertWithMerge(Memberpostcomment object) throws BlogJPAException {
         try {
 
+            Memberblogpost inserted = em.find(Memberblogpost.class, object.getBlogPost().getBlogPostId());
+            object.setBlogPost(
+                    Optional.ofNullable(object.getBlogPost()).filter(b -> b.getBlogPostId() > 0).orElse(inserted));
+
             em.persist(object);
             // em.merge(object) ;
 
             em.flush();
 
-            Memberblogpost inserted = em.find(Memberblogpost.class, object.getBlogPost().getBlogPostId());
             Memberpostcomment insertedComment = em.find(Memberpostcomment.class, object.getCommentId());
 
             em.refresh(inserted);
@@ -96,6 +100,8 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
     public Memberblogpost update(Memberblogpost object) throws BlogJPAException {
         try {
 
+            Member member = em.find(Member.class, object.getMember().getId());
+
             // em.persist(object);
             em.merge(object);
 
@@ -107,7 +113,7 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
 
             return object;
 
-        } catch (final Exception ex) {
+        } catch (final RuntimeException ex) {
             LOGGER.error(ex.getMessage(), ex);
             throw new BlogJPAException(ex.getMessage());
         }
@@ -117,12 +123,12 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
     public boolean delete(Long id) throws BlogJPAException {
 
         try {
-            
-            Memberblogpost post = Optional.ofNullable(find(id, Memberblogpost.class)).map(Memberblogpost.class::cast).orElseThrow(() -> new NotFoundException("memberblogpost not found"));
-            List<Memberblogpostimage> images =  executeNamedQueryByOneParamReturnList(post.getBlogPostId(),
+
+            Memberblogpost post = Optional.ofNullable(find(id, Memberblogpost.class)).map(Memberblogpost.class::cast).filter(blog -> blog.getBlogPostId() > 0L)
+                    .orElseThrow(() -> new NotFoundException("memberblogpost not found"));
+            List<Memberblogpostimage> images = executeNamedQueryByOneParamReturnList(post.getBlogPostId(),
                     "Memberblogpostimage.findAllImagesByPostId", Memberblogpostimage.class);
             images.forEach(image -> em.remove(image));
-            
 
             List<Memberpostcomment> comments = executeNamedQueryByOneParamReturnList(post.getBlogPostId(),
                     "Memberpostcomment.findAllCommentsByPostId", Memberpostcomment.class);
@@ -130,9 +136,9 @@ public class BlogsDaoImpl extends BaseJPQLDao implements BlogsDao {
             em.remove(post);
             return true;
 
-        } catch ( RuntimeException e) {
+        } catch (RuntimeException e) {
             LOGGER.error("failed to delete ", e);
-            return false;
+            throw new BlogJPAException("Unable to delete blog");
         }
 
     }
